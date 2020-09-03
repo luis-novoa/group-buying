@@ -84,3 +84,6 @@ Style/SlicingWithRange:
   Enabled: true
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']

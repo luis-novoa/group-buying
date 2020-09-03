@@ -25,18 +25,20 @@ ActiveRecord::Schema.define(version: 2020_09_02_210713) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name", null: false
-    t.string "address", null: false
-    t.string "phone1", null: false
+    t.string "name", limit: 75, null: false
+    t.string "address", limit: 75, null: false
+    t.string "city", limit: 30, null: false
+    t.string "state", limit: 2, null: false
+    t.string "phone1", limit: 19, null: false
     t.string "phone1_type", null: false
-    t.string "phone2"
+    t.string "phone2", limit: 19
     t.string "phone2_type"
-    t.string "account_type", default: "consumer"
-    t.string "instagram"
-    t.string "facebook"
-    t.string "lattes"
-    t.string "institution"
-    t.string "degree"
+    t.string "account_type", default: "Consumidor"
+    t.string "instagram", limit: 75
+    t.string "facebook", limit: 75
+    t.string "lattes", limit: 75
+    t.string "institution", limit: 75
+    t.string "degree", limit: 75
     t.string "unemat_bond"
     t.boolean "super_user", default: false
     t.boolean "moderator", default: false
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_210713) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

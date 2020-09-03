@@ -14,13 +14,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       ## Rememberable
       t.datetime :remember_created_at
 
-      ## Trackable
-      # t.integer  :sign_in_count, default: 0, null: false
-      # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
-      # t.inet     :current_sign_in_ip
-      # t.inet     :last_sign_in_ip
-
       ## Confirmable
       t.string   :confirmation_token
       t.datetime :confirmed_at
@@ -32,18 +25,20 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.string :name, null: false
-      t.string :address, null: false
-      t.string :phone1, null: false
+      t.string :name, null: false, limit: 75, unique: true
+      t.string :address, null: false, limit: 75
+      t.string :city, null: false, limit: 30
+      t.string :state, null: false, limit: 2
+      t.string :phone1, null: false, limit: 19
       t.string :phone1_type, null: false
-      t.string :phone2
+      t.string :phone2, limit: 19
       t.string :phone2_type
-      t.string :account_type, default: 'consumer'
-      t.string :instagram
-      t.string :facebook
-      t.string :lattes
-      t.string :institution
-      t.string :degree
+      t.string :account_type, default: 'Consumidor'
+      t.string :instagram, limit: 75
+      t.string :facebook, limit: 75
+      t.string :lattes, limit: 75
+      t.string :institution, limit: 75
+      t.string :degree, limit: 75
       t.string :unemat_bond
       t.boolean :super_user, default: false
       t.boolean :moderator, default: false
@@ -52,6 +47,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
 
+    add_index :users, :name, unique: true
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
