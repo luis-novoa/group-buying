@@ -15,4 +15,9 @@ class Partner < ApplicationRecord
             format: %r{\A\d{2}.\d{3}.\d{3}/\d{4}-\d{2}\z}
   validates :description, presence: true, length: { minimum: 2, maximum: 500 }
   validates :website, allow_nil: true, length: { minimum: 2, maximum: 75 }
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 2, maximum: 75 },
+            format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 end

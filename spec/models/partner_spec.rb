@@ -28,10 +28,11 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to allow_value(nil).for(:website) }
   it { is_expected.to validate_length_of(:website).is_at_least(2).is_at_most(75) }
 
-  # it { is_expected.to validate_presence_of(:email) }
-  # it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
-  # it { is_expected.to allow_value('email@test.com').for(:email) }
-  # it { is_expected.to_not allow_value('emailtest.com', 'email@testcom', 'emailtestcom').for(:email) }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+  it { is_expected.to validate_length_of(:email).is_at_least(2).is_at_most(75) }
+  it { is_expected.to allow_value('email@test.com').for(:email) }
+  it { is_expected.to_not allow_value('emailtest.com', 'email@testcom', 'emailtestcom').for(:email) }
 
   # it { is_expected.to validate_presence_of(:address) }
   # it { is_expected.to validate_length_of(:address).is_at_least(2).is_at_most(75) }
