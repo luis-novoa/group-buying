@@ -30,21 +30,23 @@ class User < ApplicationRecord
             unless: -> { phone2.blank? }
   validates :phone2_type, absence: true, if: -> { phone2.blank? }
   validates :account_type, presence: true, inclusion: { in: ['Comprador', 'Voluntário', 'Ponto de Entrega'] }
-  validates :facebook, absence: true, if: -> { account_type == 'Comprador' }
+  validates :facebook, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega' }
   validates :facebook, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
-  validates :instagram, absence: true, if: -> { account_type == 'Comprador' }
+  validates :instagram, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega'  }
   validates :instagram, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
-  validates :lattes, absence: true, if: -> { account_type == 'Comprador' }
+  validates :lattes, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega' }
   validates :lattes, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
-  validates :institution, absence: true, if: -> { account_type == 'Comprador' }
+  validates :institution, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega'  }
   validates :institution, presence: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
-  validates :degree, absence: true, if: -> { account_type == 'Comprador' }
+  validates :degree, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega'  }
   validates :degree, presence: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
-  validates :unemat_bond, absence: true, if: -> { account_type == 'Comprador' }
+  validates :unemat_bond, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Ponto de Entrega' }
   validates :unemat_bond,
             presence: true,
             inclusion: { in: ['Professor', 'Aluno', 'Colaborador Externo'] },
             if: -> { account_type == 'Voluntário' }
+  validates :cpf_cnpj, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Voluntário' }
+  validates :cpf_cnpj, presence: true, length: { minimum: 13, maximum: 19 }, if: -> { account_type == 'Ponto de Entrega' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

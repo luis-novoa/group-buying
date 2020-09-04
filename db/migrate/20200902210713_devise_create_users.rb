@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :phone2, limit: 19
       t.string :phone2_type
       t.string :account_type, default: 'Consumidor'
+      t.string :cpf_cnpj, limit: 19
       t.string :instagram, limit: 75
       t.string :facebook, limit: 75
       t.string :lattes, limit: 75
