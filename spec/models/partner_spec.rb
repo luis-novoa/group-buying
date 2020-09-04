@@ -22,8 +22,8 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to allow_value('12.345.678/9012-34').for(:cnpj) }
   it { is_expected.to_not allow_values('aa.aaa.aaaa/aaaa-aa', 'a' * 18).for(:cnpj) }
 
-  # it { is_expected.to validate_presence_of(:description) }
-  # it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(500) }
+  it { is_expected.to validate_presence_of(:description) }
+  it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(500) }
 
   # it { is_expected.to allow_value(nil).for(:website) }
   # it { is_expected.to validate_length_of(:website).is_at_least(2).is_at_most(75) }
