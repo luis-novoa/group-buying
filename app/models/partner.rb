@@ -36,4 +36,8 @@ class Partner < ApplicationRecord
             inclusion: { in: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp'] },
             unless: -> { phone2.blank? }
   validates :phone2_type, absence: true, if: -> { phone2.blank? }
+  validates :address,
+            presence: true,
+            length: { minimum: 2, maximum: 75 },
+            format: %r{\A(\w+ )+(\w+), (\d+|s/n)(\z|.+\z)}i
 end
