@@ -13,6 +13,12 @@ FactoryBot.define do
     phone1_type { phone_type_creator }
     phone2 { phone_creator }
     phone2_type { phone_type_creator }
-    account_type { account_type_creator }
+    account_type { 'Comprador' }
+
+    trait :volunteer_type do
+      account_type { 'Voluntário' }
+    end
+
+    factory :volunteer, traits: [:volunteer_type]
   end
 end

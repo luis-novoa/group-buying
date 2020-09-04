@@ -29,7 +29,16 @@ class User < ApplicationRecord
             inclusion: { in: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp'] },
             unless: -> { phone2.blank? }
   validates :phone2_type, absence: true, if: -> { phone2.blank? }
-  validates :account_type, presence: true, inclusion: { in: ['Consumidor', 'Voluntário', 'Ponto de Entrega'] }
+  validates :account_type, presence: true, inclusion: { in: ['Comprador', 'Voluntário', 'Ponto de Entrega'] }
+  validates :facebook, absence: true, if: -> { account_type == 'Comprador' }
+  validates :facebook, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
+  validates :instagram, absence: true, if: -> { account_type == 'Comprador' }
+  validates :instagram, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
+  validates :lattes, absence: true, if: -> { account_type == 'Comprador' }
+  validates :lattes, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
+  validates :institution, absence: true, if: -> { account_type == 'Comprador' }
+  validates :degree, absence: true, if: -> { account_type == 'Comprador' }
+  validates :unemat_bond, absence: true, if: -> { account_type == 'Comprador' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

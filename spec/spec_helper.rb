@@ -30,7 +30,7 @@ def phone_type_creator
 end
 
 def account_type_creator
-  types = ['Consumidor', 'Voluntário', 'Ponto de Entrega']
+  types = ['Comprador', 'Voluntário', 'Ponto de Entrega']
   types[Faker::Number.between(from: 0, to: 2)]
 end
 

@@ -73,13 +73,28 @@ RSpec.describe User, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:account_type) }
-  it { is_expected.to validate_inclusion_of(:account_type).in_array(['Consumidor', 'Voluntário', 'Ponto de Entrega']) }
+  it { is_expected.to validate_inclusion_of(:account_type).in_array(['Comprador', 'Voluntário', 'Ponto de Entrega']) }
 
-  # it { is_expected.to validate_length_of(:instagram).is_at_least(2).is_at_most(75) }
+  context ".account_type == 'Comprador'" do
+    it { is_expected.to validate_absence_of(:instagram) }
+    it { is_expected.to validate_absence_of(:facebook) }
+    it { is_expected.to validate_absence_of(:lattes) }
+    it { is_expected.to validate_absence_of(:institution) }
+    it { is_expected.to validate_absence_of(:degree) }
+    it { is_expected.to validate_absence_of(:unemat_bond) }
+  end
 
-  # it { is_expected.to validate_length_of(:facebook).is_at_least(2).is_at_most(75) }
+  context ".account_type == 'Voluntário'" do
+    subject { build(:volunteer) }
+    it { is_expected.to allow_value(nil).for(:instagram) }
+    it { is_expected.to validate_length_of(:instagram).is_at_least(2).is_at_most(75) }
 
-  # it { is_expected.to validate_length_of(:lattes).is_at_least(2).is_at_most(75) }
+    it { is_expected.to allow_value(nil).for(:facebook) }
+    it { is_expected.to validate_length_of(:facebook).is_at_least(2).is_at_most(75) }
+
+    it { is_expected.to allow_value(nil).for(:lattes) }
+    it { is_expected.to validate_length_of(:lattes).is_at_least(2).is_at_most(75) }
+  end
 
   # it { is_expected.to validate_length_of(:institution).is_at_least(2).is_at_most(75) }
 
