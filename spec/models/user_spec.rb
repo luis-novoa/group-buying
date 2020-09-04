@@ -25,40 +25,40 @@ RSpec.describe User, type: :model do
   it { is_expected.to allow_values('bla bla bla bla, 78', 'bla bla bla bla, s/n', 'bla bla bla, 98, ap 200').for(:address) }
   it { is_expected.to_not allow_values('bla bla bla bla', 'bla bla bla bla 78').for(:address) }
 
-  # it { is_expected.to validate_presence_of(:city) }
-  # it { is_expected.to validate_length_of(:city).is_at_least(2).is_at_most(30) }
+  it { is_expected.to validate_presence_of(:city) }
+  it { is_expected.to validate_length_of(:city).is_at_least(2).is_at_most(30) }
 
-  # it { is_expected.to validate_presence_of(:state) }
-  # it {
-  #   is_expected.to validate_inclusion_of(:state).in_array(
-  #     %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ
-  #        RN RO RS RR SC SE SP TO]
-  #   )
-  # }
+  it { is_expected.to validate_presence_of(:state) }
+  it {
+    is_expected.to validate_inclusion_of(:state).in_array(
+      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ
+         RN RO RS RR SC SE SP TO]
+    )
+  }
 
-  # it { is_expected.to validate_presence_of(:phone1) }
-  # it { is_expected.to validate_length_of(:phone1).is_at_least(18).is_at_most(19) }
-  # it { is_expected.to allow_values('+55 (66) 8536-7485', '+55 (66) 98536-7485').for(:phone1) }
-  # it { is_expected.to_not allow_value('a' * 19).for(:phone1) }
+  it { is_expected.to validate_presence_of(:phone1) }
+  it { is_expected.to validate_length_of(:phone1).is_at_least(14).is_at_most(15) }
+  it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone1) }
+  it { is_expected.to_not allow_value('a' * 14).for(:phone1) }
 
-  # it { is_expected.to validate_presence_of(:phone1_type) }
-  # it { is_expected.to validate_inclusion_of(:phone1_type).in_array(['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']) }
+  it { is_expected.to validate_presence_of(:phone1_type) }
+  it { is_expected.to validate_inclusion_of(:phone1_type).in_array(['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']) }
 
-  # it { is_expected.to validate_length_of(:phone2).is_at_least(18).is_at_most(19) }
-  # it { is_expected.to allow_values('+55 (66) 8536-7485', '+55 (66) 98536-7485').for(:phone2) }
-  # it { is_expected.to_not allow_value('a' * 19).for(:phone2) }
-  # it 'with phone2 undefined and phone2_type defined' do
-  #   subject.phone2_type = phone_type_creator
-  #   subject.save
-  #   expect(subject.errors[:phone2]).to eq('cannot be nil')
-  # end
-
-  # it { is_expected.to validate_inclusion_of(:phone2_type).in_array(['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']) }
-  # it 'with phone2 defined and phone2_type undefined' do
-  #   subject.phone2 = phone_creator
-  #   subject.save
-  #   expect(subject.errors[:phone2_type]).to eq('cannot be nil')
-  # end
+  it { is_expected.to validate_length_of(:phone2).is_at_least(14).is_at_most(15) }
+  it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone2) }
+  it { is_expected.to_not allow_values('a' * 14, nil).for(:phone2) }
+  context '.phone2 defined' do
+    it { is_expected.to_not allow_value(nil).for(:phone2_type) }
+  end
+  context '.phone2 undefined' do
+    before(:each) { subject.phone2 = nil }
+    it { is_expected.to allow_value(nil).for(:phone2_type) }
+    it { is_expected.to_not allow_values('Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp').for(:phone2_type) }
+  end
+  context '.phone2_type defined' do
+    it { is_expected.to_not allow_value(nil).for(:phone2) }
+    it { is_expected.to validate_inclusion_of(:phone2_type).in_array(['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']) }
+  end
 
   # it { is_expected.to validate_presence_of(:account_type) }
   # it { is_expected.to validate_inclusion_of(:account_type).in_array(['Consumidor', 'Voluntário', 'Ponto de Entrega']) }
