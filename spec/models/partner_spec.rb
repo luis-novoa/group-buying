@@ -12,9 +12,9 @@ RSpec.describe Partner, type: :model do
     expect(subject.name).to eq('Fulano do da dos das e Silva Neto')
   end
 
-  # it { is_expected.to validate_presence_of(:official_name) }
-  # it { is_expected.to validate_uniqueness_of(:official_name).case_insensitive }
-  # it { is_expected.to validate_length_of(:official_name).is_at_least(2).is_at_most(75) }
+  it { is_expected.to validate_presence_of(:official_name) }
+  it { is_expected.to validate_uniqueness_of(:official_name).case_insensitive }
+  it { is_expected.to validate_length_of(:official_name).is_at_least(2).is_at_most(75) }
 
   # it { is_expected.to validate_presence_of(:cnpj) }
   # it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
