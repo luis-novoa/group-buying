@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_195551) do
     t.text "description", null: false
     t.string "website", limit: 75
     t.string "email", limit: 75, null: false
-    t.string "phone1", limit: 19, null: false
+    t.string "phone1", limit: 18, null: false
     t.string "phone1_type", null: false
     t.string "phone2", limit: 19
     t.string "phone2_type"

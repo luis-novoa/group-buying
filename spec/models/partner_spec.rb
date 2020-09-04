@@ -16,11 +16,11 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to validate_uniqueness_of(:official_name).case_insensitive }
   it { is_expected.to validate_length_of(:official_name).is_at_least(2).is_at_most(75) }
 
-  # it { is_expected.to validate_presence_of(:cnpj) }
-  # it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
-  # it { is_expected.to validate_length_of(:cnpj).is_equal_to(19) }
-  # it { is_expected.to allow_value('12.345.678/9012-34').for(:cnpj) }
-  # it { is_expected.to_not allow_values('aa.aaa.aaaa/aaaa-aa', 'a' * 19).for(:cnpj) }
+  it { is_expected.to validate_presence_of(:cnpj) }
+  it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
+  it { is_expected.to validate_length_of(:cnpj).is_equal_to(18) }
+  it { is_expected.to allow_value('12.345.678/9012-34').for(:cnpj) }
+  it { is_expected.to_not allow_values('aa.aaa.aaaa/aaaa-aa', 'a' * 18).for(:cnpj) }
 
   # it { is_expected.to validate_presence_of(:description) }
   # it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(500) }
