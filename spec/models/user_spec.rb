@@ -32,8 +32,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of(:state) }
   it {
     is_expected.to validate_inclusion_of(:state).in_array(
-      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ
-         RN RO RS RR SC SE SP TO]
+      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
     )
   }
 
