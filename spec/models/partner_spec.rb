@@ -74,8 +74,8 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to allow_values('bla bla, 78', 'bla bla, s/n', 'bla bla, 98, ap 200').for(:address) }
   it { is_expected.to_not allow_values('bla bla bla bla', 'bla bla bla bla 78').for(:address) }
 
-  # it { is_expected.to validate_presence_of(:city) }
-  # it { is_expected.to validate_length_of(:city).is_at_least(2).is_at_most(30) }
+  it { is_expected.to validate_presence_of(:city) }
+  it { is_expected.to validate_length_of(:city).is_at_least(2).is_at_most(30) }
 
   # it { is_expected.to validate_presence_of(:state) }
   # it {

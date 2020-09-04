@@ -40,4 +40,5 @@ class Partner < ApplicationRecord
             presence: true,
             length: { minimum: 2, maximum: 75 },
             format: %r{\A(\w+ )+(\w+), (\d+|s/n)(\z|.+\z)}i
+  validates :city, presence: true, length: { minimum: 2, maximum: 30 }
 end
