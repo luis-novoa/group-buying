@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_210713) do
+ActiveRecord::Schema.define(version: 2020_09_04_195551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name", limit: 75, null: false
+    t.text "description", null: false
+    t.string "website", limit: 75
+    t.string "email", limit: 75, null: false
+    t.string "phone", limit: 75, null: false
+    t.string "address", limit: 75, null: false
+    t.string "city", limit: 30, null: false
+    t.string "state", limit: 2, null: false
+    t.boolean "supplier", default: false
+    t.boolean "partner_page", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_partners_on_email", unique: true
+    t.index ["name"], name: "index_partners_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_210713) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["cpf_cnpj"], name: "index_users_on_cpf_cnpj", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

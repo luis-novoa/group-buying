@@ -3,7 +3,8 @@ require:
   - rubocop-gitlab-security
 
 AllCops:
-  DisabledByDefault: false
+  Exclude:
+    - "db/**/*"
 
 Rails/OutputSafety:
   Enabled: true

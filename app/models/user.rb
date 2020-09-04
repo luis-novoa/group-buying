@@ -46,7 +46,11 @@ class User < ApplicationRecord
             inclusion: { in: ['Professor', 'Aluno', 'Colaborador Externo'] },
             if: -> { account_type == 'Voluntário' }
   validates :cpf_cnpj, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Voluntário' }
-  validates :cpf_cnpj, presence: true, length: { minimum: 13, maximum: 19 }, if: -> { account_type == 'Ponto de Entrega' }
+  validates :cpf_cnpj,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            length: { minimum: 13, maximum: 19 },
+            if: -> { account_type == 'Ponto de Entrega' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

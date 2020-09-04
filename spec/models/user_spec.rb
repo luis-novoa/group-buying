@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
   end
 
   context ".account_type == 'Ponto de Entrega'" do
-    subject { build(:delivery) } 
+    subject { build(:delivery) }
     it { is_expected.to validate_absence_of(:instagram) }
     it { is_expected.to validate_absence_of(:facebook) }
     it { is_expected.to validate_absence_of(:lattes) }
@@ -95,6 +95,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_absence_of(:unemat_bond) }
 
     it { is_expected.to validate_presence_of(:cpf_cnpj) }
+    it { is_expected.to validate_uniqueness_of(:cpf_cnpj).case_insensitive }
     it { is_expected.to validate_length_of(:cpf_cnpj).is_at_least(13).is_at_most(19) }
   end
 
