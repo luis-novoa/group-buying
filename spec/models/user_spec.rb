@@ -19,6 +19,7 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to validate_presence_of(:password) }
   it { is_expected.to validate_length_of(:password).is_at_least(6).is_at_most(50) }
+  it { is_expected.to validate_confirmation_of(:password) }
 
   it { is_expected.to validate_presence_of(:address) }
   it { is_expected.to validate_length_of(:address).is_at_least(2).is_at_most(75) }
@@ -60,8 +61,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_inclusion_of(:phone2_type).in_array(['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']) }
   end
 
-  # it { is_expected.to validate_presence_of(:account_type) }
-  # it { is_expected.to validate_inclusion_of(:account_type).in_array(['Consumidor', 'Voluntário', 'Ponto de Entrega']) }
+  it { is_expected.to validate_presence_of(:account_type) }
+  it { is_expected.to validate_inclusion_of(:account_type).in_array(['Consumidor', 'Voluntário', 'Ponto de Entrega']) }
 
   # it { is_expected.to validate_length_of(:instagram).is_at_least(2).is_at_most(75) }
 

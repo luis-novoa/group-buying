@@ -29,6 +29,7 @@ class User < ApplicationRecord
             inclusion: { in: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp'] },
             unless: -> { phone2.blank? }
   validates :phone2_type, absence: true, if: -> { phone2.blank? }
+  validates :account_type, presence: true, inclusion: { in: ['Consumidor', 'Voluntário', 'Ponto de Entrega'] }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
