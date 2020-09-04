@@ -37,8 +37,14 @@ class User < ApplicationRecord
   validates :lattes, absence: true, if: -> { account_type == 'Comprador' }
   validates :lattes, allow_nil: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
   validates :institution, absence: true, if: -> { account_type == 'Comprador' }
+  validates :institution, presence: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
   validates :degree, absence: true, if: -> { account_type == 'Comprador' }
+  validates :degree, presence: true, length: { minimum: 2, maximum: 75 }, if: -> { account_type == 'Voluntário' }
   validates :unemat_bond, absence: true, if: -> { account_type == 'Comprador' }
+  validates :unemat_bond,
+            presence: true,
+            inclusion: { in: ['Professor', 'Aluno', 'Colaborador Externo'] },
+            if: -> { account_type == 'Voluntário' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

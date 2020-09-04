@@ -94,29 +94,14 @@ RSpec.describe User, type: :model do
 
     it { is_expected.to allow_value(nil).for(:lattes) }
     it { is_expected.to validate_length_of(:lattes).is_at_least(2).is_at_most(75) }
+
+    it { is_expected.to validate_presence_of(:institution) }
+    it { is_expected.to validate_length_of(:institution).is_at_least(2).is_at_most(75) }
+
+    it { is_expected.to validate_presence_of(:degree) }
+    it { is_expected.to validate_length_of(:degree).is_at_least(2).is_at_most(75) }
+
+    it { is_expected.to validate_presence_of(:unemat_bond) }
+    it { is_expected.to validate_inclusion_of(:unemat_bond).in_array(['Professor', 'Aluno', 'Colaborador Externo']) }
   end
-
-  # it { is_expected.to validate_length_of(:institution).is_at_least(2).is_at_most(75) }
-
-  # it { is_expected.to validate_length_of(:degree).is_at_least(2).is_at_most(75) }
-
-  # it { is_expected.to validate_inclusion_of(:unemat_bond).in_array(['Professor', 'Aluno', 'Colaborador Externo']) }
-  # context 'is a volunteer' do
-  #   def save_volunteer
-  #     subject.account_type = 'Voluntário'
-  #     subject.save
-  #   end
-  #   it 'requires institution' do
-  #     save_volunteer
-  #     expect(subject.errors[:institution]).to eq('cannot be nil')
-  #   end
-  #   it 'requires degree' do
-  #     save_volunteer
-  #     expect(subject.errors[:degree]).to eq('cannot be nil')
-  #   end
-  #   it 'requires unemat_bond' do
-  #     save_volunteer
-  #     expect(subject.errors[:unemat_bond]).to eq('cannot be nil')
-  #   end
-  # end
 end
