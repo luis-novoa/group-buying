@@ -17,10 +17,15 @@ ActiveRecord::Schema.define(version: 2020_09_04_195551) do
 
   create_table "partners", force: :cascade do |t|
     t.string "name", limit: 75, null: false
+    t.string "official_name", limit: 75, null: false
+    t.string "cnpj", limit: 19, null: false
     t.text "description", null: false
     t.string "website", limit: 75
     t.string "email", limit: 75, null: false
-    t.string "phone", limit: 75, null: false
+    t.string "phone1", limit: 19, null: false
+    t.string "phone1_type", null: false
+    t.string "phone2", limit: 19
+    t.string "phone2_type"
     t.string "address", limit: 75, null: false
     t.string "city", limit: 30, null: false
     t.string "state", limit: 2, null: false
@@ -28,8 +33,10 @@ ActiveRecord::Schema.define(version: 2020_09_04_195551) do
     t.boolean "partner_page", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cnpj"], name: "index_partners_on_cnpj", unique: true
     t.index ["email"], name: "index_partners_on_email", unique: true
     t.index ["name"], name: "index_partners_on_name", unique: true
+    t.index ["official_name"], name: "index_partners_on_official_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
