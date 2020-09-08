@@ -4,7 +4,6 @@ RSpec.describe Purchase, type: :model do
   subject { build(:purchase) }
   it { is_expected.to validate_presence_of(:price) }
   it { is_expected.to validate_numericality_of(:price) }
-  it { is_expected.to validate_presence_of(:limited_quantity) }
   it { is_expected.to validate_numericality_of(:quantity).only_integer }
   it {
     is_expected.to validate_inclusion_of(:status).in_array(
