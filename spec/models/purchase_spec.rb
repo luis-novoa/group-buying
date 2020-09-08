@@ -12,5 +12,6 @@ RSpec.describe Purchase, type: :model do
   }
   it { is_expected.to validate_numericality_of(:total) }
   it { is_expected.to validate_length_of(:message).is_at_most(500).allow_nil }
-  it { is_expected.to validate_presence_of(:product_id) }
+
+  it { is_expected.to belong_to(:product).required }
 end

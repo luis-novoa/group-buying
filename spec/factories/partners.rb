@@ -13,13 +13,18 @@ FactoryBot.define do
     address { brazilian_address }
     city { Faker::Address.city }
     state { state_creator }
-    supplier { false }
+    supplier { true }
     partner_page { false }
+    user { nil }
+
+    trait :delivery_type do
+      user { association :user, account_type: 'Ponto de Entrega' }
+    end
   end
 end
 
 def cnpj_generator
-  "#{Faker::Number.number(digits: 2)}.#{Faker::Number.number(digits: 3)}." +
+  "#{Faker::Number.number(digits: 2)}.#{Faker::Number.number(digits: 3)}." \
     "#{Faker::Number.number(digits: 3)}/#{Faker::Number.number(digits: 4)}-" +
     Faker::Number.number(digits: 2).to_s
 end

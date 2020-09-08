@@ -75,51 +75,17 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_inclusion_of(:account_type).in_array(['Comprador', 'Voluntário', 'Ponto de Entrega']) }
 
   context ".account_type == 'Comprador'" do
-    it { is_expected.to validate_absence_of(:instagram) }
-    it { is_expected.to validate_absence_of(:facebook) }
-    it { is_expected.to validate_absence_of(:lattes) }
-    it { is_expected.to validate_absence_of(:institution) }
-    it { is_expected.to validate_absence_of(:degree) }
-    it { is_expected.to validate_absence_of(:unemat_bond) }
-    it { is_expected.to validate_absence_of(:cpf_cnpj) }
+    it { is_expected.to validate_absence_of(:cpf) }
   end
 
   context ".account_type == 'Ponto de Entrega'" do
     subject { build(:delivery) }
-    it { is_expected.to validate_absence_of(:instagram) }
-    it { is_expected.to validate_absence_of(:facebook) }
-    it { is_expected.to validate_absence_of(:lattes) }
-    it { is_expected.to validate_absence_of(:institution) }
-    it { is_expected.to validate_absence_of(:degree) }
-    it { is_expected.to validate_absence_of(:unemat_bond) }
-
-    it { is_expected.to validate_presence_of(:cpf_cnpj) }
-    it { is_expected.to validate_uniqueness_of(:cpf_cnpj).case_insensitive }
-    it { is_expected.to validate_length_of(:cpf_cnpj).is_at_least(13).is_at_most(19) }
-  end
-
-  context ".account_type == 'Voluntário'" do
-    subject { build(:volunteer) }
-    it { is_expected.to allow_value(nil).for(:instagram) }
-    it { is_expected.to validate_length_of(:instagram).is_at_least(2).is_at_most(75) }
-
-    it { is_expected.to allow_value(nil).for(:facebook) }
-    it { is_expected.to validate_length_of(:facebook).is_at_least(2).is_at_most(75) }
-
-    it { is_expected.to allow_value(nil).for(:lattes) }
-    it { is_expected.to validate_length_of(:lattes).is_at_least(2).is_at_most(75) }
-
-    it { is_expected.to validate_presence_of(:institution) }
-    it { is_expected.to validate_length_of(:institution).is_at_least(2).is_at_most(75) }
-
-    it { is_expected.to validate_presence_of(:degree) }
-    it { is_expected.to validate_length_of(:degree).is_at_least(2).is_at_most(75) }
-
-    it { is_expected.to validate_presence_of(:unemat_bond) }
-    it { is_expected.to validate_inclusion_of(:unemat_bond).in_array(['Professor', 'Aluno', 'Colaborador Externo']) }
-
-    it { is_expected.to validate_absence_of(:cpf_cnpj) }
+    it { is_expected.to validate_presence_of(:cpf) }
+    it { is_expected.to validate_uniqueness_of(:cpf).case_insensitive }
+    it { is_expected.to validate_length_of(:cpf).is_at_least(13).is_at_most(19) }
   end
 
   it { is_expected.to have_many(:orders) }
+  it { is_expected.to have_one(:partner) }
+  it { is_expected.to have_one(:volunteer_info) }
 end

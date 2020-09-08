@@ -84,4 +84,5 @@ RSpec.describe Partner, type: :model do
   }
 
   it { is_expected.to have_many(:products) }
+  it { is_expected.to belong_to(:user).conditions(account_type: 'Ponto de Entrega').optional }
 end

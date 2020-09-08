@@ -5,5 +5,5 @@ class Product < ApplicationRecord
   validates :partner_id, presence: true
 
   has_many :purchases, dependent: false
-  belongs_to :partner
+  belongs_to :partner, -> { where(supplier: true) }, inverse_of: :products
 end

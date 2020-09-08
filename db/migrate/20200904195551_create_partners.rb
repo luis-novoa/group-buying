@@ -16,6 +16,7 @@ class CreatePartners < ActiveRecord::Migration[6.0]
       t.string :state, null: false, limit: 2
       t.boolean :supplier, default: false
       t.boolean :partner_page, default: false
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

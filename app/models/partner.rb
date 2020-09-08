@@ -48,4 +48,5 @@ class Partner < ApplicationRecord
             }
 
   has_many :products, dependent: false
+  belongs_to :user, -> { where(account_type: 'Ponto de Entrega') }, optional: true, inverse_of: :partner
 end
