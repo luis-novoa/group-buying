@@ -34,13 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :phone2, limit: 19
       t.string :phone2_type
       t.string :account_type, default: 'Comprador'
-      t.string :cpf_cnpj, limit: 19, unique: true
-      t.string :instagram, limit: 75
-      t.string :facebook, limit: 75
-      t.string :lattes, limit: 75
-      t.string :institution, limit: 75
-      t.string :degree, limit: 75
-      t.string :unemat_bond
+      t.string :cpf, limit: 14, unique: true
       t.boolean :super_user, default: false
       t.boolean :moderator, default: false
       t.boolean :waiting_approval, default: false
@@ -50,7 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
     add_index :users, :name, unique: true
     add_index :users, :email,                unique: true
-    add_index :users, :cpf_cnpj, unique: true
+    add_index :users, :cpf, unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true

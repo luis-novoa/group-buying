@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_162414) do
+ActiveRecord::Schema.define(version: 2020_09_08_201101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_162414) do
   create_table "partners", force: :cascade do |t|
     t.string "name", limit: 75, null: false
     t.string "official_name", limit: 75, null: false
-    t.string "cnpj", limit: 19, null: false
+    t.string "cnpj", limit: 18, null: false
     t.text "description", null: false
     t.string "website", limit: 75
     t.string "email", limit: 75, null: false
@@ -93,27 +93,35 @@ ActiveRecord::Schema.define(version: 2020_09_08_162414) do
     t.string "phone2", limit: 19
     t.string "phone2_type"
     t.string "account_type", default: "Comprador"
-    t.string "cpf_cnpj", limit: 19
-    t.string "instagram", limit: 75
-    t.string "facebook", limit: 75
-    t.string "lattes", limit: 75
-    t.string "institution", limit: 75
-    t.string "degree", limit: 75
-    t.string "unemat_bond"
+    t.string "cpf", limit: 14
     t.boolean "super_user", default: false
     t.boolean "moderator", default: false
     t.boolean "waiting_approval", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["cpf_cnpj"], name: "index_users_on_cpf_cnpj", unique: true
+    t.index ["cpf"], name: "index_users_on_cpf", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "volunteer_infos", force: :cascade do |t|
+    t.string "instagram", limit: 75
+    t.string "facebook", limit: 75
+    t.string "lattes", limit: 75
+    t.string "institution", limit: 75, null: false
+    t.string "degree", limit: 75, null: false
+    t.string "unemat_bond", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_volunteer_infos_on_user_id"
   end
 
   add_foreign_key "orders", "purchases"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "partners"
   add_foreign_key "purchases", "products"
+  add_foreign_key "volunteer_infos", "users"
 end
