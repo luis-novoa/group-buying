@@ -120,4 +120,6 @@ RSpec.describe User, type: :model do
 
     it { is_expected.to validate_absence_of(:cpf_cnpj) }
   end
+
+  it { is_expected.to have_many(:orders) }
 end

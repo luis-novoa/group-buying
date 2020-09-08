@@ -7,8 +7,7 @@ FactoryBot.define do
     status { create_status }
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }
     message { nil }
-    product_id { create(:product).id }
-    # product { association :product }
+    product { association :product }
   end
 end
 

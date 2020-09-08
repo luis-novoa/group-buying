@@ -55,6 +55,8 @@ class User < ApplicationRecord
             length: { minimum: 13, maximum: 19 },
             if: -> { account_type == 'Ponto de Entrega' }
 
+  has_many :orders, dependent: false
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

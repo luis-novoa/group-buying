@@ -5,4 +5,7 @@ class Purchase < ApplicationRecord
   validates :total, presence: true, numericality: true
   validates :message, length: { maximum: 500 }, allow_nil: true
   validates :product_id, presence: true
+
+  has_many :orders, dependent: false
+  belongs_to :product
 end
