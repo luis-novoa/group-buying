@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_223001) do
+ActiveRecord::Schema.define(version: 2020_09_06_012523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 2020_09_04_223001) do
     t.index ["partner_id"], name: "index_products_on_partner_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.boolean "limited_quantity", default: false
+    t.integer "quantity", default: 0
+    t.boolean "active", default: true
+    t.string "status", limit: 25, default: "Aberta"
+    t.decimal "total", precision: 8, scale: 2, default: "0.0"
+    t.text "message", default: ""
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_purchases_on_product_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_223001) do
     t.string "phone1_type", null: false
     t.string "phone2", limit: 19
     t.string "phone2_type"
-    t.string "account_type", default: "Consumidor"
+    t.string "account_type", default: "Comprador"
     t.string "cpf_cnpj", limit: 19
     t.string "instagram", limit: 75
     t.string "facebook", limit: 75
