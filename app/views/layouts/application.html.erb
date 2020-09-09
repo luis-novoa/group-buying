@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <nav class='useful-links'>
+      <span class='sign-up'>
+        <%= link_to 'Registrar-se', new_user_registration_path %>
+      </span>
+      <span class='log-in'>
+        <%= link_to 'Fazer Login', new_user_session_path %>
+      </span>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,104 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render 'devise/shared/error_messages', resource: resource %>
+
+  <span class='warning'>Campos marcados com asterísco (*) são obrigatórios.</span>
+
+  <div class='field'>
+    <%= f.label :email, 'Email*' %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :password, 'Senha*' %>
+    <% if @minimum_password_length %>
+    <em>(Composta de, no mínimo, <%= @minimum_password_length %> caracteres)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: 'new-password' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :password_confirmation, 'Digite a senha novamente*' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :name, 'Nome Completo*' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :address, 'Endereço*' %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class='field'>
+    <%= label_tag :address_number, 'Número*' %><br />
+    <%= text_field_tag :address_number %>
+  </div>
+
+  <div class='field'>
+    <%= label_tag :address_additional_info, 'Complemento' %><br />
+    <%= text_field_tag :address_additional_info %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :city, 'Cidade*' %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :state, 'Estado*' %><br />
+    <%= f.select :state, [
+      %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
+      %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
+      %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
+      ]
+    %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone1, 'Telefone*' %> (
+    <%= telephone_field_tag :ddd1, nil, maxlength: 2, size: 2 %>
+    ) <%= telephone_field_tag :phone1_first_half, nil, maxlength: 5, size: 5 %> -
+    <%= telephone_field_tag :phone1_second_half, nil, maxlength: 4, size: 4 %>
+    <% f.telephone_field :phone1, disabled: true %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone1_type, 'Tipo de Telefone*' %><br />
+    <%= f.select :phone1_type, [
+      %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+      ]
+    %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone2, 'Telefone Adicional' %> (
+    <%= telephone_field_tag :ddd2, nil, maxlength: 2, size: 2 %>
+    ) <%= telephone_field_tag :phone2_first_half, nil, maxlength: 5, size: 5 %> -
+    <%= telephone_field_tag :phone2_second_half, nil, maxlength: 4, size: 4 %>
+    <% f.telephone_field :phone2, disabled: true %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone2_type, 'Tipo de Telefone' %><br />
+    <%= f.select :phone2_type, [
+      %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+      ]
+    %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone2_type, 'Tipo de Conta' %><br />
+    <%= f.select :phone2_type, [
+      %w[Comprador Comprador], %w[Voluntário Voluntário], ['Ponto de Entrega', 'Ponto de Entrega']
+      ]
+    %>
+  </div>
+
+  <div class='actions'>
+    <%= f.submit 'Registrar-se' %>
+  </div>
+<% end %>

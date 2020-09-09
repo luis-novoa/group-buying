@@ -1,0 +1,9 @@
+<section class="active-purchases">
+  <% @purchases.each do |purchase| %>
+    <article class="purchase-preview">
+      <img src="" alt="" class="image-to-be-implemented">
+      <%= link_to purchase.product.name, purchase_path(purchase), class: 'purchase-name purchase-link' %>
+      <span class="purchase-price">R$ <%= format('%<price>.2f', price: purchase.price) %></span>
+    </article>
+  <% end %>
+</section>
