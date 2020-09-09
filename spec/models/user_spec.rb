@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
   it 'automatically capitalize names' do
     subject.name = 'fulano do da dos das e silva neto'
     subject.save
+    p subject.errors unless subject.errors.empty?
     expect(subject.name).to eq('Fulano do da dos das e Silva Neto')
   end
 
