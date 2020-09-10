@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :address,
             presence: true,
             length: { minimum: 2, maximum: 75 },
-            format: %r{\A(\w+ )+(\w+), (\d+|s/n)(\z|.+\z)}i
+            format: %r{\A.+, (\d+|s/n)(\z|.+\z)}i
   validates :city, presence: true, length: { minimum: 2, maximum: 30 }
   validates :state,
             presence: true,
@@ -47,5 +47,5 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable # , :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable
 end

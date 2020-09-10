@@ -47,6 +47,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params[:user][:address] += ", #{params[:address_number]}"
     params[:user][:address] += ", #{params[:address_additional_info]}" unless params[:address_additional_info] == ''
     params[:user][:phone1] = "(#{params[:ddd1]}) #{params[:phone1_first_half]}-#{params[:phone1_second_half]}"
+    params[:user][:waiting_approval] = true unless params[:user][:account_type] == 'Comprador'
+
     return if params[:ddd2] == '' && params[:phone2_first_half] == '' && params[:phone2_second_half] == ''
 
     params[:user][:phone2] = "(#{params[:ddd2]}) #{params[:phone2_first_half]}-#{params[:phone2_second_half]}"
@@ -56,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type]
+      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type waiting_approval]
     )
   end
 

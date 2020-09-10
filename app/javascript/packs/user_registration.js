@@ -15,7 +15,6 @@ sendButton.addEventListener('click', () => {
   const phone1SecondHalf = document.getElementById('phone1_second_half');
   let phone1 = document.getElementById('user_phone1');
   phone1 = `(${ddd1}) ${phone1FirstHalf}-${phone1SecondHalf}`;
-  console.log(phone1)
 
   const ddd2 = document.getElementById('ddd2');
   const phone2FirstHalf = document.getElementById('phone2_fist_half');
