@@ -85,20 +85,22 @@
   <div class='field'>
     <%= f.label :phone2_type, 'Tipo de Telefone' %><br />
     <%= f.select :phone2_type, [
-      %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+      ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
       ]
     %>
   </div>
 
   <div class='field'>
-    <%= f.label :phone2_type, 'Tipo de Conta' %><br />
-    <%= f.select :phone2_type, [
+    <%= f.label :account_type, 'Tipo de Conta*' %><br />
+    <%= f.select :account_type, [
       %w[Comprador Comprador], %w[Voluntário Voluntário], ['Ponto de Entrega', 'Ponto de Entrega']
       ]
     %>
   </div>
 
   <div class='actions'>
-    <%= f.submit 'Registrar-se' %>
+    <%= f.submit 'Enviar', id: 'send' %>
   </div>
 <% end %>
+
+<#= javascript_pack_tag 'user_registration.js' %>
