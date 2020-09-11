@@ -59,11 +59,11 @@
   </div>
 
   <div class='field'>
-    <%= f.label :phone1, 'Telefone*' %> (
+    <%= f.label :phone1, 'Telefone*' %> 
+    <%= f.telephone_field :phone1 %> <br> (
     <%= telephone_field_tag :ddd1, nil, maxlength: 2, size: 2 %>
     ) <%= telephone_field_tag :phone1_first_half, nil, maxlength: 5, size: 5 %> -
     <%= telephone_field_tag :phone1_second_half, nil, maxlength: 4, size: 4 %>
-    <% f.telephone_field :phone1, disabled: true %>
   </div>
 
   <div class='field'>
@@ -103,4 +103,4 @@
   </div>
 <% end %>
 
-<#= javascript_pack_tag 'user_registration.js' %>
+<%= javascript_pack_tag 'user_registration' %>

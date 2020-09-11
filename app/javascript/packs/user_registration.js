@@ -1,24 +1,25 @@
-const sendButton = document.getElementById('send');
+const phone1 = document.getElementById('user_phone1');
 
-sendButton.addEventListener('click', () => {
-  let address = document.getElementById('user_address');
-  const addressNumber = document.getElementById('address_number');
-  const addressAddInfo = document.getElementById('address_additional_info');
-  address += `, ${addressNumber}`;
-  if (addressAddInfo != '') {
-    address += `, ${addressAddInfo}`
+const countNumbers = (string) => {
+  const regex = /\d/g
+  return (string.match(regex) || []).length
+}
+
+phone1.addEventListener('keyup', (event) => {
+  let input = phone1.value
+  let inputNumbers = countNumbers(input)
+
+  if (inputNumbers == 2 && input.length == 2) {
+    phone1.value = `(${phone1.value}) `
+  } else if (input.length < 4) {
+    phone1.value.replace(/(\(|\))/g, '')
+  } else if (input.length == 9 && inputNumbers == 6 && event.key != 'Backspace') {
+    phone1.value += '-'
+  } else if (input.length == 15 && inputNumbers == 11) {
+    phone1.value = phone1.value.replace(/-/g, '')
+    phone1.value = phone1.value.substring(0, 10) + '-' + phone1.value.substring(10, 14)
+  } else if (input.length == 14 && inputNumbers == 10) {
+    phone1.value = phone1.value.replace(/-/g, '')
+    phone1.value = phone1.value.substring(0, 9) + '-' + phone1.value.substring(9, 13)
   }
-
-
-  const ddd1 = document.getElementById('ddd1');
-  const phone1FirstHalf = document.getElementById('phone1_fist_half');
-  const phone1SecondHalf = document.getElementById('phone1_second_half');
-  let phone1 = document.getElementById('user_phone1');
-  phone1 = `(${ddd1}) ${phone1FirstHalf}-${phone1SecondHalf}`;
-
-  const ddd2 = document.getElementById('ddd2');
-  const phone2FirstHalf = document.getElementById('phone2_fist_half');
-  const phone2SecondHalf = document.getElementById('phone2_second_half');
-  let phone2 = document.getElementById('user_phone2');
-  phone2 = `(${ddd2}) ${phone2FirstHalf}-${phone2SecondHalf}`;
 });

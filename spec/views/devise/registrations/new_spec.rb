@@ -20,12 +20,19 @@ RSpec.describe 'UserRegistration#new', type: :feature do
     it { is_expected.to have_field :ddd1 }
     it { is_expected.to have_field :phone1_first_half }
     it { is_expected.to have_field :phone1_second_half }
-    it { is_expected.to have_select 'Tipo de Telefone*', with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp'] }
+    it {
+      is_expected.to have_select 'Tipo de Telefone*',
+                                 with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']
+    }
     it { is_expected.to have_field :ddd2 }
     it { is_expected.to have_field :phone2_first_half }
     it { is_expected.to have_field :phone2_second_half }
-    it { is_expected.to have_select 'Tipo de Telefone', with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp'] }
+    it {
+      is_expected.to have_select 'Tipo de Telefone',
+                                 with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']
+    }
     it { is_expected.to have_select 'Tipo de Conta*', with_options: ['Comprador', 'Voluntário', 'Ponto de Entrega'] }
+    it { is_expected.to have_field 'CPF (Obrigatório para contas do tipo "Ponto de Entrega")' }
   end
 
   # context 'additional fields for volunteer' do
