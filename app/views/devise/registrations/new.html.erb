@@ -30,17 +30,18 @@
 
   <div class='field'>
     <%= f.label :address, 'Endereço*' %><br />
-    <%= f.text_field :address %>
+    <%= text_field_tag :address_street %>
   </div>
-
   <div class='field'>
     <%= label_tag :address_number, 'Número*' %><br />
     <%= text_field_tag :address_number %>
   </div>
-
   <div class='field'>
     <%= label_tag :address_additional_info, 'Complemento' %><br />
     <%= text_field_tag :address_additional_info %>
+  </div>
+  <div class='field'>
+    <%= f.text_field :address %>
   </div>
 
   <div class='field'>

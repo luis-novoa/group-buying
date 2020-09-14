@@ -24,5 +24,31 @@ function phoneFormat(phone) {
   });
 }
 
+function addressFormat(address, addressStreet, addressNumber, addressInfo) {
+  function updateAddress() {
+    if (addressInfo.value.length == 0) {
+      address.value = `${addressStreet.value}, ${addressNumber.value}`;
+    } else {
+      address.value = `${addressStreet.value}, ${addressNumber.value}, ${addressInfo.value}`;
+    }
+  }
+
+  addressStreet.addEventListener('keyup', () => {
+    if (addressStreet.value.length > 0) {
+      addressStreet.value = addressStreet.value.charAt(0).toUpperCase() + addressStreet.value.slice(1);
+    }
+    updateAddress();
+  });
+
+  addressNumber.addEventListener('keyup', () => {
+    updateAddress();
+  });
+
+  addressInfo.addEventListener('keyup', () => {
+    updateAddress();
+  });
+}
+
 exports.phoneFormat = phoneFormat;
 exports.countNumbers = countNumbers;
+exports.addressFormat = addressFormat;

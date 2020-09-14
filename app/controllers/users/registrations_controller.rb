@@ -44,14 +44,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # rubocop:disable Metrics/AbcSize
   def adjust_address_and_phone
+    p params[:user][:address]
     params[:user][:address] += ", #{params[:address_number]}"
     params[:user][:address] += ", #{params[:address_additional_info]}" unless params[:address_additional_info] == ''
-    params[:user][:phone1] = "(#{params[:ddd1]}) #{params[:phone1_first_half]}-#{params[:phone1_second_half]}"
     params[:user][:waiting_approval] = true unless params[:user][:account_type] == 'Comprador'
-
-    return if params[:ddd2] == '' && params[:phone2_first_half] == '' && params[:phone2_second_half] == ''
-
-    params[:user][:phone2] = "(#{params[:ddd2]}) #{params[:phone2_first_half]}-#{params[:phone2_second_half]}"
   end
   # rubocop:enable Metrics/AbcSize
 
