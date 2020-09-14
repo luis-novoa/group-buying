@@ -1,0 +1,2 @@
+module VolunteerInfosHelper
+end
