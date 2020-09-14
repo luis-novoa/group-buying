@@ -4,7 +4,6 @@ function countNumbers(string) {
 }
 
 function phoneFormat(phone) {
-
   phone.addEventListener('keyup', (event) => {
     let input = phone.value
     let inputNumbers = countNumbers(input)
@@ -26,3 +25,4 @@ function phoneFormat(phone) {
 }
 
 exports.phoneFormat = phoneFormat;
+exports.countNumbers = countNumbers;

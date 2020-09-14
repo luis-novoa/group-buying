@@ -60,7 +60,7 @@
 
   <div class='field'>
     <%= f.label :phone1, 'Telefone*' %> 
-    <%= f.telephone_field :phone1 %>
+    <%= f.telephone_field :phone1, maxlength: 15 %>
   </div>
 
   <div class='field'>
@@ -73,7 +73,7 @@
 
   <div class='field'>
     <%= f.label :phone2, 'Telefone Adicional' %>
-    <%= f.telephone_field :phone2 %>
+    <%= f.telephone_field :phone2, maxlength: 15 %>
   </div>
 
   <div class='field'>
@@ -94,7 +94,7 @@
 
   <div class="field" id='cpf_field'>
     <%= f.label :cpf, 'CPF*' %>
-    <%= f.text_field :cpf %>
+    <%= f.text_field :cpf, maxlength: 14 %>
   </div>
 
   <div class='actions'>
