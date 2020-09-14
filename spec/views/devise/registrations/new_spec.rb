@@ -17,16 +17,12 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       is_expected.to have_select 'Estado*', with_options:
       %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
     }
-    it { is_expected.to have_field :ddd1 }
-    it { is_expected.to have_field :phone1_first_half }
-    it { is_expected.to have_field :phone1_second_half }
+    it { is_expected.to have_field 'Telefone*' }
     it {
       is_expected.to have_select 'Tipo de Telefone*',
                                  with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']
     }
-    it { is_expected.to have_field :ddd2 }
-    it { is_expected.to have_field :phone2_first_half }
-    it { is_expected.to have_field :phone2_second_half }
+    it { is_expected.to have_field 'Telefone Adicional' }
     it {
       is_expected.to have_select 'Tipo de Telefone',
                                  with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']
@@ -61,9 +57,7 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       fill_in 'Número*', with: Faker::Number.between(from: 1, to: 10_000)
       fill_in 'Cidade*', with: Faker::Address.city
       select state_creator, from: 'Estado*'
-      fill_in :ddd1, with: Faker::Number.between(from: 11, to: 99)
-      fill_in :phone1_first_half, with: Faker::Number.between(from: 9_000, to: 99_999)
-      fill_in :phone1_second_half, with: Faker::Number.number(digits: 4)
+      fill_in 'Telefone*', with: phone_creator
       select phone_type_creator, from: :user_phone1_type
     end
 
@@ -71,9 +65,7 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       before(:each) { select 'Comprador', from: 'Tipo de Conta*' }
       it 'with everything filled up' do
         fill_in 'Complemento', with: Faker::Address.secondary_address
-        fill_in :ddd2, with: Faker::Number.between(from: 11, to: 99)
-        fill_in :phone2_first_half, with: Faker::Number.between(from: 9_000, to: 99_999)
-        fill_in :phone2_second_half, with: Faker::Number.number(digits: 4)
+        fill_in 'Telefone Adicional', with: phone_creator
         select phone_type_creator, from: :user_phone2_type
         click_on 'Enviar'
         expect(User.count).to eq(1)
