@@ -28,7 +28,7 @@ RSpec.describe 'UserRegistration#new', type: :feature do
                                  with_options: ['Fixo', 'Celular com Whatsapp', 'Celular sem Whatsapp']
     }
     it { is_expected.to have_select 'Tipo de Conta*', with_options: ['Comprador', 'Voluntário', 'Ponto de Entrega'] }
-    it { is_expected.to have_field 'CPF (Obrigatório para contas do tipo "Ponto de Entrega")' }
+    it { is_expected.to have_field 'CPF*' }
   end
 
   # context 'additional fields for volunteer' do

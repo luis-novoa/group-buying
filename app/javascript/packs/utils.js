@@ -1,8 +1,9 @@
+function countNumbers(string) {
+  const regex = /\d/g
+  return (string.match(regex) || []).length
+}
+
 function phoneFormat(phone) {
-  const countNumbers = (string) => {
-    const regex = /\d/g
-    return (string.match(regex) || []).length
-  }
 
   phone.addEventListener('keyup', (event) => {
     let input = phone.value
