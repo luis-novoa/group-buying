@@ -41,15 +41,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-
-  # rubocop:disable Metrics/AbcSize
   def adjust_address_and_phone
-    p params[:user][:address]
-    params[:user][:address] += ", #{params[:address_number]}"
-    params[:user][:address] += ", #{params[:address_additional_info]}" unless params[:address_additional_info] == ''
     params[:user][:waiting_approval] = true unless params[:user][:account_type] == 'Comprador'
   end
-  # rubocop:enable Metrics/AbcSize
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(

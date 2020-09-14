@@ -10,8 +10,6 @@ RSpec.describe 'UserRegistration#new', type: :feature do
     it { is_expected.to have_field 'Digite a senha novamente*' }
     it { is_expected.to have_field 'Nome Completo*' }
     it { is_expected.to have_field 'Endereço*' }
-    it { is_expected.to have_field 'Número*' }
-    it { is_expected.to have_field 'Complemento' }
     it { is_expected.to have_field 'Cidade*' }
     it {
       is_expected.to have_select 'Estado*', with_options:
@@ -53,8 +51,7 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       fill_in 'Senha*', with: password
       fill_in 'Digite a senha novamente*', with: password
       fill_in 'Nome Completo*', with: Faker::Name.name
-      fill_in 'Endereço*', with: Faker::Address.street_name
-      fill_in 'Número*', with: Faker::Number.between(from: 1, to: 10_000)
+      fill_in 'Endereço*', with: brazilian_address
       fill_in 'Cidade*', with: Faker::Address.city
       select state_creator, from: 'Estado*'
       fill_in 'Telefone*', with: phone_creator
@@ -64,7 +61,6 @@ RSpec.describe 'UserRegistration#new', type: :feature do
     context 'as buyer' do
       before(:each) { select 'Comprador', from: 'Tipo de Conta*' }
       it 'with everything filled up' do
-        fill_in 'Complemento', with: Faker::Address.secondary_address
         fill_in 'Telefone Adicional', with: phone_creator
         select phone_type_creator, from: :user_phone2_type
         click_on 'Enviar'
