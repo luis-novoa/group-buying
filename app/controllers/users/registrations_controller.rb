@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type] #  waiting_approval
+      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type cpf]
     )
   end
 
@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
-  #   super(resource)
+  #   # super(resource)
   # end
 
   # The path used after sign up for inactive accounts.

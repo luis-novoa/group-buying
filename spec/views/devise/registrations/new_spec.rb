@@ -29,20 +29,6 @@ RSpec.describe 'UserRegistration#new', type: :feature do
     it { is_expected.to have_field 'CPF*' }
   end
 
-  # context 'additional fields for volunteer' do
-  #   before(:each) do
-  #     visit new_user_registration_path
-  #     select 'Voluntário', from: 'Tipo de Conta*'
-  #   end
-
-  #   it { is_expected.to have_field 'Instagram' }
-  #   it { is_expected.to have_field 'Facebook' }
-  #   it { is_expected.to have_field 'Lattes' }
-  #   it { is_expected.to have_field 'Instituição*' }
-  #   it { is_expected.to have_field 'Curso* (em andamento ou concluído)' }
-  #   it { is_expected.to have_select 'Vínculo com a UNEMAT*', with_options: ['Professor', 'Aluno', 'Colaborador Externo'] }
-  # end
-
   context 'successful sign up' do
     let(:password) { Faker::Lorem.characters(number: 6) }
     before(:each) do
@@ -86,7 +72,6 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       it 'need admin approval' do
         expect(User.all.first.waiting_approval).to eq(true)
       end
-      it { is_expected.to have_current_path(new_volunteer_info_path) }
     end
 
     context 'as delivery point' do
@@ -98,7 +83,6 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       it 'need admin approval' do
         expect(User.all.first.waiting_approval).to eq(true)
       end
-      it { is_expected.to have_current_path(new_partner_path) }
     end
   end
 end

@@ -38,12 +38,12 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             length: { minimum: 13, maximum: 19 },
-            format: /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/,
+            format: /\d{3}\.\d{3}\.\d{3}-\d{2}/,
             if: -> { account_type == 'Ponto de Entrega' }
 
   has_many :orders, dependent: false
   has_one :partner, dependent: false
-  has_one :volunteer_info, dependent: false
+  has_one :volunteer_info, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
