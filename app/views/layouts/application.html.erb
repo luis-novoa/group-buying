@@ -11,11 +11,19 @@
 
   <body>
     <nav class='useful-links'>
-      <span class='sign-up'>
-        <%= link_to 'Registrar-se', new_user_registration_path %>
-      </span>
-      <span class='log-in'>
-        <%= link_to 'Fazer Login', new_user_session_path %>
+      <div class='left'>
+        <span class='home'>
+          <%= link_to 'Início', root_path %>
+        </span>
+        <span class='about'>
+          <%= link_to 'Sobre o Projeto', about_path %>
+        </span>
+        <span class='partners'>
+          <%= link_to 'Parceiros', partners_path %>
+        </span>
+      </div>
+      <span class='right'>
+        <%= mutable_links %>
       </span>
     </nav>
     <p class="notice"><%= notice %></p>

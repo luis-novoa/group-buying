@@ -1,0 +1,23 @@
+<%= form_for @volunteer_info do |f| %>
+  <%= f.label :institution, 'Instituição/Empresa*' %>
+  <%= f.text_field :institution %>
+
+  <%= f.label :degree, 'Área de Estudo/Trabalho*' %>
+  <%= f.text_field :degree %>
+
+  <%= f.label :unemat_bond, 'Vínculo com a UNEMAT*' %>
+  <%= f.select :unemat_bond, [ 
+    %w[Professor Professor], %[Aluno Aluno], ['Colaborador Externo', 'Colaborador Externo']
+    ] %>
+
+  <%= f.label :instagram %>
+  <%= f.text_field :instagram %>
+
+  <%= f.label :facebook %>
+  <%= f.text_field :facebook %>
+
+  <%= f.label :lattes %>
+  <%= f.text_field :lattes %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>
