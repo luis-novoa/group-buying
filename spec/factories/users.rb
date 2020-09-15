@@ -21,6 +21,7 @@ FactoryBot.define do
 
     trait :deliver_type do
       account_type { 'Ponto de Entrega' }
+      cpf { generate_cpf }
     end
 
     factory :volunteer, traits: [:volunteer_type]

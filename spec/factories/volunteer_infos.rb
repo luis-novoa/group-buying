@@ -6,7 +6,7 @@ FactoryBot.define do
     institution { Faker::Lorem.characters(number: 25) }
     degree { Faker::Lorem.characters(number: 25) }
     unemat_bond { bond_generator }
-    user { association :user }
+    user { association :volunteer }
   end
 end
 

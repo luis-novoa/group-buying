@@ -1,24 +1,6 @@
-# README
+# Pages ready for styling
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Root page (please add fake posts on app/views/purchases/index.html.erb)
+- Sign up page (app/views/devise/registrations/new.html.erb)
+- Log in page (app/views/devise/sessions/new.html.erb)
+- New volunteer info page (app/views/volunteer_infos/new.html.erb)

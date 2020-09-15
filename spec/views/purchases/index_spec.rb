@@ -17,9 +17,4 @@ RSpec.describe 'Purchases#index', type: :feature do
   it { is_expected.to have_text format('%<price>.2f', price: purchases[0].price) }
   it { is_expected.to have_text format('%<price>.2f', price: purchases[1].price) }
   it { is_expected.to_not have_text format('%<price>.2f', price: inactive_purchase.price) }
-
-  context 'with user not logged' do
-    it { is_expected.to have_link 'Fazer Login', href: new_user_session_path }
-    it { is_expected.to have_link 'Registrar-se', href: new_user_registration_path }
-  end
 end

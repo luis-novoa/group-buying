@@ -88,5 +88,5 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:orders) }
   it { is_expected.to have_one(:partner) }
-  it { is_expected.to have_one(:volunteer_info) }
+  it { is_expected.to have_one(:volunteer_info).dependent(:destroy) }
 end

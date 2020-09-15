@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def check_volunteer_info
     return unless current_user.volunteer_info.nil?
 
-    flash[:notice] = 'Complete seu cadastro para prosseguir'
+    flash[:notice] = ['Complete seu cadastro para prosseguir']
     redirect_to new_volunteer_info_path
   end
 end
