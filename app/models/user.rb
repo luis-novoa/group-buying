@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save :capitalize_first_letter
+  before_save :capitalize_first_letter, :set_need_for_approval
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: false },
@@ -38,6 +38,7 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             length: { minimum: 13, maximum: 19 },
+            format: /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/,
             if: -> { account_type == 'Ponto de Entrega' }
 
   has_many :orders, dependent: false
@@ -48,4 +49,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+
+  def set_need_for_approval
+    self.waiting_approval = true unless account_type == 'Comprador'
+  end
 end

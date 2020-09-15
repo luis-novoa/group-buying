@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :adjust_address_and_phone, :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -41,14 +41,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def adjust_address_and_phone
-    params[:user][:waiting_approval] = true unless params[:user][:account_type] == 'Comprador'
-  end
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type waiting_approval]
+      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type] #  waiting_approval
     )
   end
 

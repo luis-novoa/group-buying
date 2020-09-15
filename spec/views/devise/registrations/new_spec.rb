@@ -88,5 +88,17 @@ RSpec.describe 'UserRegistration#new', type: :feature do
       end
       it { is_expected.to have_current_path(new_volunteer_info_path) }
     end
+
+    context 'as delivery point' do
+      before(:each) do
+        select 'Ponto de Entrega', from: 'Tipo de Conta*'
+        fill_in 'CPF*', with: generate_cpf
+        click_on 'Enviar'
+      end
+      it 'need admin approval' do
+        expect(User.all.first.waiting_approval).to eq(true)
+      end
+      it { is_expected.to have_current_path(new_partner_path) }
+    end
   end
 end

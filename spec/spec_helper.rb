@@ -43,3 +43,8 @@ def state_creator
              RN RO RS RR SC SE SP TO]
   types[Faker::Number.between(from: 0, to: 26)]
 end
+
+def generate_cpf
+  "#{Faker::Number.number(digits: 3)}.#{Faker::Number.number(digits: 3)}."\
+  "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 2)}"
+end

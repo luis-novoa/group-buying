@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :check_volunteer_info, if: -> { current_user && current_user.account_type == 'Voluntário' }
 
-  private
-
   def check_volunteer_info
     return unless current_user.volunteer_info.nil?
 
