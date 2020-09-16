@@ -54,7 +54,6 @@ RSpec.describe 'VolunteerInfos#new', type: :feature do
       fill_in 'Instagram',	with: volunteer_info.instagram
       fill_in 'Facebook',	with: volunteer_info.facebook
       fill_in 'Lattes',	with: volunteer_info.lattes
-      sleep(5)
       click_on 'Enviar'
     end
     it('adds informations to the database') { expect(VolunteerInfo.all.count).to eq(1) }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../app/assets/stylesheets/static_pages.scss"
+    ],
+    "names": [],
+    "file": "static_pages.css"
+}

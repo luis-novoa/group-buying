@@ -29,7 +29,7 @@ module ApplicationHelper
     cart = tag.span(cart_link, class: 'cart')
     account_link = link_to 'Minha Conta', user_path(current_user)
     account = tag.span(account_link, class: 'account')
-    log_out_link = link_to 'Sair', destroy_user_session_path
+    log_out_link = link_to 'Sair', destroy_user_session_path, method: :delete
     log_out = tag.span(log_out_link, class: 'log-out')
     cart + account + log_out
   end
