@@ -37,7 +37,7 @@ RSpec.describe 'VolunteerInfo#new', type: :feature do
     }
   end
 
-  context 'succesful creation', js: true do
+  context 'succesful creation' do
     let(:volunteer_info) { build(:volunteer_info) }
     let(:volunteer) { create(:volunteer) }
     before(:each) do

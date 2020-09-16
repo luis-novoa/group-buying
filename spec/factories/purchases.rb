@@ -3,6 +3,7 @@ FactoryBot.define do
     price { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
     limited_quantity { false }
     quantity { 0 }
+    offer_city { 'Ambas' }
     active { true }
     status { create_status }
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }

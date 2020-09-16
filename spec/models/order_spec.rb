@@ -9,6 +9,9 @@ RSpec.describe Order, type: :model do
   it { is_expected.to validate_presence_of(:total) }
   it { is_expected.to validate_numericality_of(:total) }
 
+  it { is_expected.to validate_presence_of(:delivery_city) }
+  it { is_expected.to validate_inclusion_of(:delivery_city).in_array(%w[Sinop Cuiabá]) }
+
   it { is_expected.to belong_to(:user).required }
   it { is_expected.to belong_to(:purchase).required }
 end
