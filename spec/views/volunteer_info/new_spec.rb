@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe 'VolunteerInfos#new', type: :feature do
   subject { page }
 
+  context 'attempt to access from unlogged user' do
+    before(:each) { visit new_volunteer_info_path }
+    it('redirects user to root') { is_expected.to have_current_path(root_path) }
+    it('displays warning') { is_expected.to have_text 'Página disponível apenas para usuários cadastrados.' }
+  end
+
   context 'attempt to access from buyer' do
     let(:buyer) { create(:user) }
     before(:each) do
@@ -24,8 +30,8 @@ RSpec.describe 'VolunteerInfos#new', type: :feature do
   end
 
   context 'structure' do
-    before(:each) { login(volunteer) }
     let(:volunteer) { create(:volunteer) }
+    before(:each) { login(volunteer) }
     it { is_expected.to have_field 'Instagram' }
     it { is_expected.to have_field 'Facebook' }
     it { is_expected.to have_field 'Lattes' }
