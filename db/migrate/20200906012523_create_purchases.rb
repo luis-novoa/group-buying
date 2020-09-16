@@ -4,6 +4,7 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
       t.decimal :price, null: false, precision: 8, scale: 2
       t.boolean :limited_quantity, default: false
       t.integer :quantity, default: 0
+      t.string :offer_city, default: 'Ambas'
       t.boolean :active, default: true
       t.string :status, limit: 25, default: 'Aberta'
       t.decimal :total, precision: 8, scale: 2, default: 0.00

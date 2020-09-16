@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_201101) do
     t.integer "quantity", null: false
     t.decimal "total", precision: 8, scale: 2, null: false
     t.boolean "paid", default: false
+    t.string "delivery_city", null: false
     t.bigint "user_id", null: false
     t.bigint "purchase_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_201101) do
     t.decimal "price", precision: 8, scale: 2, null: false
     t.boolean "limited_quantity", default: false
     t.integer "quantity", default: 0
+    t.string "offer_city", default: "Ambas"
     t.boolean "active", default: true
     t.string "status", limit: 25, default: "Aberta"
     t.decimal "total", precision: 8, scale: 2, default: "0.0"
