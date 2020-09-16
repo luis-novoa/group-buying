@@ -19,10 +19,7 @@ class VolunteerInfosController < ApplicationController
   private
 
   def check_volunteer_account
-    return if current_user.account_type == 'Voluntário'
-
-    flash[:alert] = ['O acesso a esta página não é permitido para sua conta.']
-    redirect_to root_path
+    unauthorized unless current_user.account_type == 'Voluntário'
   end
 
   def volunteer_info_params

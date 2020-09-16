@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'UserRegistration#new', type: :feature do
+RSpec.describe 'UserRegistrations#new', type: :feature do
   subject { page }
 
   context 'structure' do

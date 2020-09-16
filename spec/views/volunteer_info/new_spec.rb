@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'VolunteerInfo#new', type: :feature do
+RSpec.describe 'VolunteerInfos#new', type: :feature do
   subject { page }
 
   context 'attempt to access from buyer' do

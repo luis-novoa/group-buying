@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def unauthorized
+    flash[:alert] = ['O acesso a esta página não é permitido para sua conta.']
+    redirect_to root_path
+  end
+
   def check_volunteer_info
     return unless current_user.volunteer_info.nil?
 
