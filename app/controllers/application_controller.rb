@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
 
   def unauthorized
     flash[:alert] = if current_user
-                      ['O acesso a esta página não é permitido para sua conta.']
+                      'O acesso a esta página não é permitido para sua conta.'
                     else
-                      ['Página disponível apenas para usuários cadastrados.']
+                      'Página disponível apenas para usuários cadastrados.'
                     end
     redirect_to root_path
   end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def check_volunteer_info
     return unless current_user.volunteer_info.nil?
 
-    flash[:notice] = ['Complete seu cadastro para prosseguir']
+    flash[:notice] = 'Complete seu cadastro para prosseguir'
     redirect_to new_volunteer_info_path
   end
 end

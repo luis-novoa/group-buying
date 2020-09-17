@@ -7,6 +7,22 @@ FactoryBot.define do
     degree { Faker::Lorem.characters(number: 25) }
     unemat_bond { bond_generator }
     user { association :volunteer }
+
+    trait :pending do
+      user { association :pending_volunteer }
+    end
+
+    trait :mod do
+      user { association :moderator }
+    end
+
+    trait :adm do
+      user { association :administrator }
+    end
+
+    factory :pending_volunteer_info, traits: [:pending]
+    factory :adm_info, traits: [:adm]
+    factory :mod_info, traits: [:mod]
   end
 end
 

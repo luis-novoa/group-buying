@@ -14,6 +14,9 @@ FactoryBot.define do
     phone2 { phone_creator }
     phone2_type { phone_type_creator }
     account_type { 'Comprador' }
+    waiting_approval { false }
+    super_user { false }
+    moderator { false }
 
     trait :volunteer_type do
       account_type { 'Voluntário' }
@@ -24,7 +27,23 @@ FactoryBot.define do
       cpf { generate_cpf }
     end
 
-    factory :volunteer, traits: [:volunteer_type]
-    factory :delivery, traits: [:deliver_type]
+    trait :pending do
+      waiting_approval { true }
+    end
+
+    trait :mod do
+      moderator { true }
+    end
+
+    trait :adm do
+      super_user { true }
+    end
+
+    factory :volunteer, traits: %i[volunteer_type]
+    factory :moderator, traits: %i[volunteer_type mod]
+    factory :administrator, traits: %i[volunteer_type adm]
+    factory :pending_volunteer, traits: %i[volunteer_type pending]
+    factory :delivery, traits: %i[deliver_type]
+    factory :pending_delivery, traits: %i[deliver_type pending]
   end
 end
