@@ -6,6 +6,7 @@ RSpec.describe 'Users#index', type: :feature do
   let(:pending_delivery) { create(:delivery, waiting_approval: true) }
   let(:accepted_volunteer) { create(:volunteer) }
   let(:pending_volunteer) { create(:pending_volunteer_info).user }
+  let(:moderator) { create(:mod_info).user }
   subject { page }
 
   context 'attempt to access from unlogged user' do
@@ -165,7 +166,6 @@ RSpec.describe 'Users#index', type: :feature do
   end
 
   context 'access with moderator account' do
-    let(:moderator) { create(:mod_info).user }
     before(:each) do
       login(moderator)
       visit users_path
@@ -200,5 +200,20 @@ RSpec.describe 'Users#index', type: :feature do
         have_link 'Não', user_path(id: pending_volunteer.id, waiting_approval: false, account_type: 'Comprador')
       end
     }
+  end
+
+  context 'access with administrator account' do
+    let(:administrator) { create(:adm_info).user }
+    before(:each) do
+      login(administrator)
+      visit users_path
+    end
+    it { is_expected.to have_text 'Ações' }
+    it { is_expected.to have_link 'Tornar Voluntário', user_path(id: buyer1.id, account_type: 'Voluntário') }
+    it { is_expected.to have_link 'Tornar Ponto de Venda', user_path(id: buyer1.id, account_type: 'Ponto de Venda') }
+    it { is_expected.to have_link 'Tornar Comprador', user_path(id: accepted_volunteer.id, account_type: 'Comprador') }
+    it { is_expected.to have_link 'Tornar Comprador', user_path(id: accepted_delivery.id, account_type: 'Comprador') }
+    it { is_expected.to have_link 'Tornar Moderador', user_path(id: accepted_volunteer.id, moderator: true) }
+    it { is_expected.to have_link 'Revogar Moderador', user_path(id: accepted_volunteer.id, moderator: false) }
   end
 end
