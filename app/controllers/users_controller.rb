@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :check_current_user, only: %i[show]
-  before_action :check_approval, only: %i[index]
+  before_action :show_restrictions, only: %i[show]
+  before_action :index_restrictions, only: %i[index]
   def show
     @user = User.find(params[:id])
   end
@@ -15,16 +15,15 @@ class UsersController < ApplicationController
 
   private
 
-  def check_current_user
-    unauthorized('O acesso a esta página não é permitido para sua conta.') unless current_user.id == params[:id].to_i
+  def show_restrictions
+    return if current_user.id == params[:id].to_i
+
+    index_restrictions
   end
 
-  def check_approval
-    return unless current_user.waiting_approval
+  def index_restrictions
+    return unauthorized(:forbidden) if current_user.account_type == 'Comprador'
 
-    unauthorized(
-      'Sua conta precisa ser aprovada por um membro da equipe Terra Limpa '\
-      'para que você possa acessar esta página.'
-    )
+    unauthorized(:need_approval) if current_user.waiting_approval
   end
 end

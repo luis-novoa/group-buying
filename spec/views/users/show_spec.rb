@@ -11,14 +11,51 @@ RSpec.describe 'Users#show', type: :feature do
   end
 
   context 'attempt to access from another user' do
-    let(:user1) { create(:user) }
     let(:user2) { create(:user) }
-    before(:each) do
-      login(user1)
-      visit user_path(user2)
+
+    context 'buyer' do
+      let(:user1) { create(:user) }
+      before(:each) do
+        login(user1)
+        visit user_path(user2)
+      end
+      it('redirects user to root') { is_expected.to have_current_path(root_path) }
+      it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
     end
-    it('redirects user to root') { is_expected.to have_current_path(root_path) }
-    it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
+
+    context 'volunteer' do
+      let(:user1) { create(:volunteer_info).user }
+      before(:each) do
+        user1.update(waiting_approval: false)
+        login(user1)
+        visit user_path(user2)
+      end
+      it { is_expected.to have_current_path(user_path(user2)) }
+    end
+
+    context 'delivery point' do
+      let(:user1) { create(:delivery) }
+      before(:each) do
+        user1.update(waiting_approval: false)
+        login(user1)
+        visit user_path(user2)
+      end
+      it { is_expected.to have_current_path(user_path(user2)) }
+    end
+
+    context 'pending user' do
+      let(:user1) { create(:delivery) }
+      before(:each) do
+        login(user1)
+        visit user_path(user2)
+      end
+      it('redirects user to root') { is_expected.to have_current_path(root_path) }
+      it('displays warning') {
+        is_expected.to have_text(
+          'Sua conta precisa ser aprovada por um membro da equipe Terra Limpa para que você possa acessar esta página.'
+        )
+      }
+    end
   end
 
   context 'access from any account' do

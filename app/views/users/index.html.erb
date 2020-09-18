@@ -1,5 +1,6 @@
-<%= pending_users(current_user, @pending_users) %>
+<%= pending_users(@pending_users) %>
 <section class='buyers'>
+  <h2>Compradores</h2>
   <table>
     <tr>
       <td>Nome</td>
@@ -8,7 +9,7 @@
     </tr>
     <% @buyers.each do |buyer| %>
       <tr>
-        <td><%= buyer.name %></td>
+        <td><%= link_to buyer.name, user_path(buyer) %></td>
         <td><%= buyer.email %></td>
         <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
       </tr>
@@ -16,6 +17,7 @@
   </table>
 </section>
 <section class='volunteers'>
+  <h2>Voluntários</h2>
   <table>
     <tr>
       <td>Nome</td>
@@ -24,7 +26,7 @@
     </tr>
       <% @volunteers.each do |volunteer| %>
       <tr>
-        <td><%= volunteer.name %></td>
+        <td><%= link_to volunteer.name, user_path(volunteer) %></td>
         <td><%= volunteer.email %></td>
         <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
       </tr>
@@ -32,6 +34,7 @@
   </table>
 </section>
 <section class='delivery-points'>
+  <h2>Pontos de Entrega</h2>
   <table>
     <tr>
       <td>Nome</td>
@@ -40,7 +43,7 @@
     </tr>
     <% @delivery_points.each do |delivery_point| %>
       <tr>
-        <td><%= delivery_point.name %></td>
+        <td><%= link_to delivery_point.name, user_path(delivery_point) %></td>
         <td><%= delivery_point.email %></td>
         <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
       </tr>

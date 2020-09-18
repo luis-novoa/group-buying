@@ -30,19 +30,28 @@ module UsersHelper
     tag.li("Telefone 2: #{user.phone2} - #{user.phone2_type}") if user.phone2
   end
 
-  def pending_users(c_user, users_list)
-    return unless c_user.moderator
+  def pending_users(users_list)
+    return unless current_user.moderator
 
     tag.section(class: 'pending-users') do
-      tag.table do
-        users_list.each do |user|
-          tag.tr do
-            tag.td(user.name) +
-              tag.td(user.email) +
-              tag.td("#{user.phone1} (#{user.phone1_type})")
+      tag.h2('Usuários Pendentes') +
+        tag.table do
+          rows = tag.td('Nome') + tag.td('Email') + tag.td('Telefone 1') + tag.td('Tipo') + tag.td('Aprovar?')
+          concat(tag.tr(rows))
+          users_list.each do |user|
+            user_link = link_to user.name, user_path(user)
+            approval_link = link_to 'Sim', user_path(user, waiting_approval: false), method: :put
+            reject_link = link_to 'Não',
+                                  user_path(user, account_type: 'Comprador', waiting_approval: false), method: :put
+            rows = tag.td(user_link) +
+                   tag.td(user.email) +
+                   tag.td("#{user.phone1} (#{user.phone1_type})") +
+                   tag.td(user.account_type) +
+                   tag.td(approval_link) +
+                   tag.td(reject_link)
+            concat(tag.tr(rows))
           end
         end
-      end
     end
   end
 end

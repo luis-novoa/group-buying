@@ -5,11 +5,17 @@ class ApplicationController < ActionController::Base
   private
 
   def check_session
-    unauthorized('Página disponível apenas para usuários cadastrados.') unless current_user
+    unauthorized(:not_logged) unless current_user
   end
 
   def unauthorized(message)
-    flash[:alert] = message
+    messages = {
+      not_logged: 'Página disponível apenas para usuários cadastrados.',
+      need_approval: 'Sua conta precisa ser aprovada por um membro da equipe Terra Limpa '\
+      'para que você possa acessar esta página.',
+      forbidden: 'O acesso a esta página não é permitido para sua conta.'
+    }
+    flash[:alert] = messages[message]
     redirect_to root_path
   end
 
