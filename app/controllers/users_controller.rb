@@ -13,7 +13,18 @@ class UsersController < ApplicationController
     @pending_users = User.all.where(waiting_approval: true)
   end
 
+  def update
+    User.find(params[:id]).update(mod_params)
+    flash[:notice] = 'Ação concluída com sucesso!'
+    redirect_back(fallback_location: users_path)
+  end
+
   private
+
+  def mod_params
+    params[:waiting_approval] = params[:waiting_approval] == 'true'
+    params.permit(:account_type, :waiting_approval)
+  end
 
   def show_restrictions
     return if current_user.id == params[:id].to_i

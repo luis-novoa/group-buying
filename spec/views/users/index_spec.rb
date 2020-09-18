@@ -211,20 +211,22 @@ RSpec.describe 'Users#index', type: :feature do
     }
     context 'accepts pending user' do
       before(:each) do
+        pending_delivery.destroy
+        visit users_path
         click_on 'Sim'
-        pending_volunteer.reload
       end
-      it("doesn't change account type") { expect(pending_volunteer.account_type).to eq('Voluntário') }
-      it('change waiting_approval') { expect(pending_volunteer.waiting_approval).to eq(false) }
+      it("doesn't change account type") { expect(pending_volunteer.reload.account_type).to eq('Voluntário') }
+      it('change waiting_approval') { expect(pending_volunteer.reload.waiting_approval).to eq(false) }
     end
 
     context 'rejects pending user' do
       before(:each) do
+        pending_delivery.destroy
+        visit users_path
         click_on 'Não'
-        pending_volunteer.reload
       end
-      it('change account type') { expect(pending_volunteer.account_type).to eq('Comprador') }
-      it('change waiting_approval') { expect(pending_volunteer.waiting_approval).to eq(false) }
+      it('change account type') { expect(pending_volunteer.reload.account_type).to eq('Comprador') }
+      it('change waiting_approval') { expect(pending_volunteer.reload.waiting_approval).to eq(false) }
     end
   end
 

@@ -6,7 +6,7 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { minimum: 2, maximum: 50 }
   validates :email, format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :password, length: { minimum: 6, maximum: 50 }
+  validates :password, length: { minimum: 6, maximum: 50 }, on: :create
   validates :address,
             presence: true,
             length: { minimum: 2, maximum: 75 },
