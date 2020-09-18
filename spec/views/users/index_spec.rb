@@ -209,21 +209,43 @@ RSpec.describe 'Users#index', type: :feature do
                                  href: "/users/#{pending_volunteer.id}?account_type=Comprador&waiting_approval=false"
       end
     }
+    context 'accepts pending user' do
+      before(:each) do
+        click_on 'Sim'
+        pending_volunteer.reload
+      end
+      it("doesn't change account type") { expect(pending_volunteer.account_type).to eq('Voluntário') }
+      it('change waiting_approval') { expect(pending_volunteer.waiting_approval).to eq(false) }
+    end
+
+    context 'rejects pending user' do
+      before(:each) do
+        click_on 'Não'
+        pending_volunteer.reload
+      end
+      it('change account type') { expect(pending_volunteer.account_type).to eq('Comprador') }
+      it('change waiting_approval') { expect(pending_volunteer.waiting_approval).to eq(false) }
+    end
   end
 
-  # context 'access with administrator account' do
-  #   let(:administrator) { create(:adm_info).user }
-  #   before(:each) do
-  #     administrator.update(waiting_approval: false)
-  #     login(administrator)
-  #     visit users_path
-  #   end
-  #   it { is_expected.to have_text 'Ações' }
-  #   it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer1.id}?account_type=Voluntário" }
-  #   it { is_expected.to have_link 'Tornar Ponto de Venda', href: "/users/#{buyer1.id}?account_type=Ponto de Entrega" }
-  #   it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_volunteer.id}?account_type=Comprador" }
-  #   it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_delivery.id}?account_type=Comprador" }
-  #   it { is_expected.to have_link 'Tornar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=true" }
-  #   it { is_expected.to have_link 'Revogar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=false" }
-  # end
+  context 'access with administrator account' do
+    let(:administrator) { create(:adm_info).user }
+    before(:each) do
+      administrator.update(waiting_approval: false)
+      login(administrator)
+      visit users_path
+    end
+    it { is_expected.to have_text 'Ações', count: 3 }
+    it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer1.id}?account_type=Volunt%C3%A1rio" }
+    it { is_expected.to have_link 'Tornar Ponto de Entrega', href: "/users/#{buyer1.id}?account_type=Ponto+de+Entrega" }
+    it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_volunteer.id}?account_type=Comprador" }
+    it {
+      is_expected.to have_link 'Tornar Ponto de Entrega',
+                               href: "/users/#{accepted_volunteer.id}?account_type=Ponto+de+Entrega"
+    }
+    it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_delivery.id}?account_type=Comprador" }
+    it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{accepted_delivery.id}?account_type=Volunt%C3%A1rio" }
+    it { is_expected.to have_link 'Tornar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=true" }
+    it { is_expected.to have_link 'Revogar Moderador', href: "/users/#{moderator.id}?moderator=false" }
+  end
 end

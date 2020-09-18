@@ -47,11 +47,48 @@ module UsersHelper
                    tag.td(user.email) +
                    tag.td("#{user.phone1} (#{user.phone1_type})") +
                    tag.td(user.account_type) +
-                   tag.td(approval_link) +
-                   tag.td(reject_link)
+                   tag.td(approval_link + reject_link)
             concat(tag.tr(rows))
           end
         end
     end
+  end
+
+  def adm_actions(user = nil)
+    return unless current_user.super_user
+    return tag.td('Ações') unless user
+
+    links = []
+    unless user.account_type == 'Voluntário'
+      become_volunteer = link_to 'Tornar Voluntário', user_path(user, account_type: 'Voluntário'), method: :put
+      links << become_volunteer
+    end
+    unless user.account_type == 'Comprador'
+      become_buyer = link_to 'Tornar Comprador', user_path(user, account_type: 'Comprador'), method: :put
+      links << become_buyer
+    end
+    unless user.account_type == 'Ponto de Entrega'
+      become_delivery_point = link_to 'Tornar Ponto de Entrega',
+                                      user_path(user, account_type: 'Ponto de Entrega'), method: :put
+      links << become_delivery_point
+    end
+    if user.account_type == 'Voluntário'
+      mod = if user.moderator
+              link_to 'Revogar Moderador', user_path(user, moderator: false), method: :put
+            else
+              link_to 'Tornar Moderador', user_path(user, moderator: true), method: :put
+            end
+      links << mod
+    end
+
+    links = links.sum
+    tag.td(links)
+  end
+
+  def mod_reveal(user = nil)
+    return unless current_user.super_user
+    return tag.td('Moderador?') unless user
+
+    user.moderator ? tag.td('Sim') : tag.td('Não')
   end
 end
