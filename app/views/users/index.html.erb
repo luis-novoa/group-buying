@@ -1,0 +1,49 @@
+<%= pending_users(current_user, @pending_users) %>
+<section class='buyers'>
+  <table>
+    <tr>
+      <td>Nome</td>
+      <td>Email</td>
+      <td>Telefone 1</td>
+    </tr>
+    <% @buyers.each do |buyer| %>
+      <tr>
+        <td><%= buyer.name %></td>
+        <td><%= buyer.email %></td>
+        <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+<section class='volunteers'>
+  <table>
+    <tr>
+      <td>Nome</td>
+      <td>Email</td>
+      <td>Telefone 1</td>
+    </tr>
+      <% @volunteers.each do |volunteer| %>
+      <tr>
+        <td><%= volunteer.name %></td>
+        <td><%= volunteer.email %></td>
+        <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+<section class='delivery-points'>
+  <table>
+    <tr>
+      <td>Nome</td>
+      <td>Email</td>
+      <td>Telefone 1</td>
+    </tr>
+    <% @delivery_points.each do |delivery_point| %>
+      <tr>
+        <td><%= delivery_point.name %></td>
+        <td><%= delivery_point.email %></td>
+        <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
