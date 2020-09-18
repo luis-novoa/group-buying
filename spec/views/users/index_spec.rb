@@ -3,11 +3,16 @@ require 'rails_helper'
 RSpec.describe 'Users#index', type: :feature do
   let(:buyer1) { create(:user) }
   let(:accepted_delivery) { create(:delivery) }
-  let(:pending_delivery) { create(:delivery, waiting_approval: true) }
+  let(:pending_delivery) { create(:delivery) }
   let(:accepted_volunteer) { create(:volunteer) }
   let(:pending_volunteer) { create(:pending_volunteer_info).user }
   let(:moderator) { create(:mod_info).user }
   subject { page }
+
+  before(:each) do
+    accepted_delivery.update(waiting_approval: false)
+    accepted_volunteer.update(waiting_approval: false)
+  end
 
   context 'attempt to access from unlogged user' do
     before(:each) { visit users_path }
@@ -40,6 +45,7 @@ RSpec.describe 'Users#index', type: :feature do
   context 'access with delivery point account' do
     let(:delivery) { create(:delivery) }
     before(:each) do
+      delivery.update(waiting_approval: false)
       login(delivery)
       visit users_path
     end
@@ -92,7 +98,7 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
-    it { within('.delivery_points') { is_expected.to have_link href: user_path(accepted_delivery) } }
+    it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2 } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2_type } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.address } }
@@ -104,6 +110,7 @@ RSpec.describe 'Users#index', type: :feature do
   context 'access with volunteer account' do
     let(:volunteer) { create(:volunteer_info).user }
     before(:each) do
+      volunteer.update(waiting_approval: false)
       login(volunteer)
       visit users_path
     end
@@ -156,7 +163,7 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
-    it { within('.delivery_points') { is_expected.to have_link href: user_path(accepted_delivery) } }
+    it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2 } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2_type } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.address } }
@@ -167,6 +174,7 @@ RSpec.describe 'Users#index', type: :feature do
 
   context 'access with moderator account' do
     before(:each) do
+      moderator.update(waiting_approval: false)
       login(moderator)
       visit users_path
     end
@@ -191,13 +199,13 @@ RSpec.describe 'Users#index', type: :feature do
     it {
       within('.pending_users') do
         is_expected.to
-        have_link 'Sim', user_path(id: pending_volunteer.id, waiting_approval: false)
+        have_link 'Sim', href: "/users/#{pending_volunteer.id}?waiting_approval=false"
       end
     }
     it {
       within('.pending_users') do
         is_expected.to
-        have_link 'Não', user_path(id: pending_volunteer.id, waiting_approval: false, account_type: 'Comprador')
+        have_link 'Não', href: "/users/#{pending_volunteer.id}?account_type=Comprador&waiting_approval=false"
       end
     }
   end
@@ -205,15 +213,16 @@ RSpec.describe 'Users#index', type: :feature do
   context 'access with administrator account' do
     let(:administrator) { create(:adm_info).user }
     before(:each) do
+      administrator.update(waiting_approval: false)
       login(administrator)
       visit users_path
     end
     it { is_expected.to have_text 'Ações' }
-    it { is_expected.to have_link 'Tornar Voluntário', user_path(id: buyer1.id, account_type: 'Voluntário') }
-    it { is_expected.to have_link 'Tornar Ponto de Venda', user_path(id: buyer1.id, account_type: 'Ponto de Venda') }
-    it { is_expected.to have_link 'Tornar Comprador', user_path(id: accepted_volunteer.id, account_type: 'Comprador') }
-    it { is_expected.to have_link 'Tornar Comprador', user_path(id: accepted_delivery.id, account_type: 'Comprador') }
-    it { is_expected.to have_link 'Tornar Moderador', user_path(id: accepted_volunteer.id, moderator: true) }
-    it { is_expected.to have_link 'Revogar Moderador', user_path(id: accepted_volunteer.id, moderator: false) }
+    it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer1.id}?account_type=Voluntário" }
+    it { is_expected.to have_link 'Tornar Ponto de Venda', href: "/users/#{buyer1.id}?account_type=Ponto de Entrega" }
+    it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_volunteer.id}?account_type=Comprador" }
+    it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_delivery.id}?account_type=Comprador" }
+    it { is_expected.to have_link 'Tornar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=true" }
+    it { is_expected.to have_link 'Revogar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=false" }
   end
 end

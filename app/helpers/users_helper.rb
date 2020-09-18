@@ -29,4 +29,20 @@ module UsersHelper
   def phone2(user)
     tag.li("Telefone 2: #{user.phone2} - #{user.phone2_type}") if user.phone2
   end
+
+  def pending_users(c_user, users_list)
+    return unless c_user.moderator
+
+    tag.section(class: 'pending-users') do
+      tag.table do
+        users_list.each do |user|
+          tag.tr do
+            tag.td(user.name) +
+              tag.td(user.email) +
+              tag.td("#{user.phone1} (#{user.phone1_type})")
+          end
+        end
+      end
+    end
+  end
 end

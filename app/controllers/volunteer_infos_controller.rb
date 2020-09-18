@@ -19,7 +19,9 @@ class VolunteerInfosController < ApplicationController
   private
 
   def check_volunteer_account
-    unauthorized unless current_user.account_type == 'Voluntário'
+    return if current_user.account_type == 'Voluntário'
+
+    unauthorized('O acesso a esta página não é permitido para sua conta.')
   end
 
   def volunteer_info_params

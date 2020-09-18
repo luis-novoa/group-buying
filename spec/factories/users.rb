@@ -41,7 +41,7 @@ FactoryBot.define do
 
     factory :volunteer, traits: %i[volunteer_type]
     factory :moderator, traits: %i[volunteer_type mod]
-    factory :administrator, traits: %i[volunteer_type adm]
+    factory :administrator, traits: %i[volunteer_type adm mod]
     factory :pending_volunteer, traits: %i[volunteer_type pending]
     factory :delivery, traits: %i[deliver_type]
     factory :pending_delivery, traits: %i[deliver_type pending]

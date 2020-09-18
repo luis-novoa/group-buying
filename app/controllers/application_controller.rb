@@ -5,15 +5,11 @@ class ApplicationController < ActionController::Base
   private
 
   def check_session
-    unauthorized unless current_user
+    unauthorized('Página disponível apenas para usuários cadastrados.') unless current_user
   end
 
-  def unauthorized
-    flash[:alert] = if current_user
-                      'O acesso a esta página não é permitido para sua conta.'
-                    else
-                      'Página disponível apenas para usuários cadastrados.'
-                    end
+  def unauthorized(message)
+    flash[:alert] = message
     redirect_to root_path
   end
 
