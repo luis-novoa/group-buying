@@ -117,4 +117,52 @@ RSpec.describe 'Users#show', type: :feature do
     it { is_expected.to have_css('.delivery-point-greeting') }
     it { is_expected.to have_link href: users_path }
   end
+
+  context 'access with administrator account' do
+    let(:administrator) { create(:adm_info).user }
+    before(:each) do
+      administrator.update(waiting_approval: false)
+      login(administrator)
+    end
+
+    context "to a buyer's account" do
+      let(:buyer) { create(:user) }
+      it do
+        visit user_path(buyer)
+        is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer.id}?account_type=Volunt%C3%A1rio"
+      end
+    end
+
+    context "to a delivery point's account" do
+      let(:delivery) { create(:delivery) }
+      before(:each) do
+        delivery.update(waiting_approval: false)
+        visit user_path(delivery)
+      end
+      it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{delivery.id}?account_type=Comprador" }
+      it {
+        is_expected.to have_link 'Tornar Voluntário',
+                                 href: "/users/#{delivery.id}?account_type=Volunt%C3%A1rio"
+      }
+    end
+
+    context 'to moderator account' do
+      let(:moderator) { create(:mod_info).user }
+      before(:each) do
+        moderator.update(waiting_approval: false)
+        visit user_path(moderator)
+      end
+      it { is_expected.to have_link 'Revogar Moderador', href: "/users/#{moderator.id}?moderator=false" }
+    end
+
+    context 'to volunteer account' do
+      let(:volunteer) { create(:volunteer_info).user }
+      before(:each) do
+        volunteer.update(waiting_approval: false)
+        visit user_path(volunteer)
+      end
+      it { is_expected.to have_link 'Tornar Moderador', href: "/users/#{volunteer.id}?moderator=true" }
+      it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{volunteer.id}?account_type=Comprador" }
+    end
+  end
 end

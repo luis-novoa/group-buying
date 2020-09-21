@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :show_restrictions, only: %i[show]
   before_action :index_restrictions, only: %i[index]
+  before_action :update_restrictions, only: %i[update]
   def show
     @user = User.find(params[:id])
   end
@@ -14,8 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    p user.errors unless user.update(mod_params)
+    User.find(params[:id]).update(mod_params)
     flash[:notice] = 'Ação concluída com sucesso!'
     redirect_back(fallback_location: users_path)
   end
@@ -41,5 +41,9 @@ class UsersController < ApplicationController
     return unauthorized(:forbidden) if current_user.account_type == 'Comprador'
 
     unauthorized(:need_approval) if current_user.waiting_approval
+  end
+
+  def update_restrictions
+    unauthorized(:forbidden) unless current_user.moderator || current_user.super_user
   end
 end

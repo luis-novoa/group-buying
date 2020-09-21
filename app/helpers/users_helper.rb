@@ -2,6 +2,8 @@ module UsersHelper
   private
 
   def greeting_message(user)
+    return unless current_user == user
+
     case user.account_type
     when 'Comprador'
       message = 'Nesta área, você pode consultar detalhes sobre todas as suas compras e gerenciar seus dados.'

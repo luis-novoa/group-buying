@@ -1,7 +1,10 @@
-<h1>Olá, <%= @user.name %>!</h1>
+<h1>Conta de <%= @user.name %></h1>
 <%= greeting_message(@user) %>
 <nav class='user-utilities'>
   <%= link_to_users_index %>
+  <tr>
+    <%= adm_actions(@user) %>
+  </tr>
 </nav>
 <section class='user-information'>
   <h2>Minhas Informações</h2>
