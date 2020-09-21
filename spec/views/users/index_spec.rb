@@ -239,15 +239,43 @@ RSpec.describe 'Users#index', type: :feature do
     end
     it { is_expected.to have_text 'Ações', count: 3 }
     it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer1.id}?account_type=Volunt%C3%A1rio" }
-    it { is_expected.to have_link 'Tornar Ponto de Entrega', href: "/users/#{buyer1.id}?account_type=Ponto+de+Entrega" }
+    # it { is_expected.to have_link 'Tornar Ponto de Entrega', href: "/users/#{buyer1.id}?account_type=Ponto+de+Entrega" }
     it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_volunteer.id}?account_type=Comprador" }
-    it {
-      is_expected.to have_link 'Tornar Ponto de Entrega',
-                               href: "/users/#{accepted_volunteer.id}?account_type=Ponto+de+Entrega"
-    }
+    # it {
+    #   is_expected.to have_link 'Tornar Ponto de Entrega',
+    #                            href: "/users/#{accepted_volunteer.id}?account_type=Ponto+de+Entrega"
+    # }
     it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_delivery.id}?account_type=Comprador" }
-    it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{accepted_delivery.id}?account_type=Volunt%C3%A1rio" }
+    it {
+      is_expected.to have_link 'Tornar Voluntário',
+                               href: "/users/#{accepted_delivery.id}?account_type=Volunt%C3%A1rio"
+    }
     it { is_expected.to have_link 'Tornar Moderador', href: "/users/#{accepted_volunteer.id}?moderator=true" }
     it { is_expected.to have_link 'Revogar Moderador', href: "/users/#{moderator.id}?moderator=false" }
+
+    it 'turns another user into volunteer' do
+      within("#buyer-#{buyer1.id}") { click_on 'Tornar Voluntário' }
+      expect(buyer1.reload.account_type).to eq('Voluntário')
+    end
+
+    # it 'turns another user into delivery point' do
+    #   within("#buyer-#{buyer1.id}") { click_on 'Tornar Ponto de Entrega' }
+    #   expect(buyer1.reload.account_type).to eq('Ponto de Entrega')
+    # end
+
+    it 'turns another user into buyer' do
+      within("#volunteer-#{accepted_volunteer.id}") { click_on 'Tornar Comprador' }
+      expect(accepted_volunteer.reload.account_type).to eq('Comprador')
+    end
+
+    it 'turns a volunteer into a moderator' do
+      within("#volunteer-#{accepted_volunteer.id}") { click_on 'Tornar Moderador' }
+      expect(accepted_volunteer.reload.moderator).to eq(true)
+    end
+
+    it 'revokes moderator' do
+      within("#volunteer-#{moderator.id}") { click_on 'Revogar Moderador' }
+      expect(moderator.reload.moderator).to eq(false)
+    end
   end
 end

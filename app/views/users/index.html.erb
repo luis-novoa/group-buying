@@ -9,7 +9,7 @@
       <%= adm_actions %>
     </tr>
     <% @buyers.each do |buyer| %>
-      <tr>
+      <tr id=<%= "buyer-#{buyer.id}" %>>
         <td><%= link_to buyer.name, user_path(buyer) %></td>
         <td><%= buyer.email %></td>
         <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
@@ -29,7 +29,7 @@
       <%= adm_actions %>
     </tr>
       <% @volunteers.each do |volunteer| %>
-      <tr>
+      <tr id=<%= "volunteer-#{volunteer.id}" %>>
         <td><%= link_to volunteer.name, user_path(volunteer) %></td>
         <td><%= volunteer.email %></td>
         <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
@@ -49,7 +49,7 @@
       <%= adm_actions %>
     </tr>
     <% @delivery_points.each do |delivery_point| %>
-      <tr>
+      <tr id=<%= "delivery-#{delivery_point.id}" %>>
         <td><%= link_to delivery_point.name, user_path(delivery_point) %></td>
         <td><%= delivery_point.email %></td>
         <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>

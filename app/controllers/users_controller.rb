@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    User.find(params[:id]).update(mod_params)
+    user = User.find(params[:id])
+    p user.errors unless user.update(mod_params)
     flash[:notice] = 'Ação concluída com sucesso!'
     redirect_back(fallback_location: users_path)
   end
@@ -23,7 +24,11 @@ class UsersController < ApplicationController
 
   def mod_params
     params[:waiting_approval] = params[:waiting_approval] == 'true'
-    params.permit(:account_type, :waiting_approval)
+    if current_user.super_user
+      params.permit(:account_type, :waiting_approval, :moderator)
+    else
+      params.permit(:account_type, :waiting_approval)
+    end
   end
 
   def show_restrictions

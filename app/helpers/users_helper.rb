@@ -67,11 +67,11 @@ module UsersHelper
       become_buyer = link_to 'Tornar Comprador', user_path(user, account_type: 'Comprador'), method: :put
       links << become_buyer
     end
-    unless user.account_type == 'Ponto de Entrega'
-      become_delivery_point = link_to 'Tornar Ponto de Entrega',
-                                      user_path(user, account_type: 'Ponto de Entrega'), method: :put
-      links << become_delivery_point
-    end
+    # unless user.account_type == 'Ponto de Entrega'
+    #   become_delivery_point = link_to 'Tornar Ponto de Entrega',
+    #                                   user_path(user, account_type: 'Ponto de Entrega'), method: :put
+    #   links << become_delivery_point
+    # end
     if user.account_type == 'Voluntário'
       mod = if user.moderator
               link_to 'Revogar Moderador', user_path(user, moderator: false), method: :put
