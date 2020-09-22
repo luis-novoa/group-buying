@@ -18,8 +18,10 @@ FactoryBot.define do
     user { nil }
 
     trait :delivery_type do
-      user { association :user, account_type: 'Ponto de Entrega' }
+      user { association :delivery }
     end
+
+    factory :partner_user, traits: [:delivery_type]
   end
 end
 

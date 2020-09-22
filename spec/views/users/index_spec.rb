@@ -67,11 +67,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.buyers') { is_expected.to have_text buyer1.phone1 } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1_type } }
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.phone2 } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.phone2_type } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.address } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.city } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.state } }
     # it { within('.volunteers') { is_expected.to have_text 'Instagram' } }
     # it { within('.volunteers') { is_expected.to have_text 'Facebook' } }
     # it { within('.volunteers') { is_expected.to have_text 'Lattes' } }
@@ -83,11 +78,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone2 } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone2_type } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.address } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.city } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.state } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.instagram } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.facebook } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.lattes } }
@@ -101,11 +91,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2 } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2_type } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.address } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.city } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.state } }
     # it { within('.delivery-points') { is_expected.to_not have_text accepted_delivery.cpf } }
   end
 
@@ -132,11 +117,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.buyers') { is_expected.to have_text buyer1.phone1 } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1_type } }
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.phone2 } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.phone2_type } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.address } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.city } }
-    # it { within('.buyers') { is_expected.to have_text buyer1.state } }
     # it { within('.volunteers') { is_expected.to have_text 'Instagram' } }
     # it { within('.volunteers') { is_expected.to have_text 'Facebook' } }
     # it { within('.volunteers') { is_expected.to have_text 'Lattes' } }
@@ -148,11 +128,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone2 } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone2_type } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.address } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.city } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.state } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.instagram } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.facebook } }
     # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.lattes } }
@@ -166,11 +141,6 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2 } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone2_type } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.address } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.city } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.state } }
     # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.cpf } }
   end
 

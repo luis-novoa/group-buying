@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :orders, only: %i[index]
-  resources :partners, only: %i[index]
+  resources :partners, only: %i[index show create new update edit]
   resources :purchases, only: %i[index show]
   resources :volunteer_infos, only: %i[new create]
   get '/cart' => 'orders#index', paid: false

@@ -93,4 +93,12 @@ module UsersHelper
 
     user.moderator ? tag.td('Sim') : tag.td('Não')
   end
+
+  def partner_links
+    return unless current_user.account_type == 'Voluntário'
+
+    new_partner = tag.span(link_to('Adicionar Parceiro', new_partner_path))
+    partners = tag.span(link_to('Todos os Parceiros', partners_path))
+    tag.nav(new_partner + partners, class: 'partner-links')
+  end
 end
