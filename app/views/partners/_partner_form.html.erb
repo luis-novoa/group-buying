@@ -62,6 +62,13 @@
     ]
   %>
 
+  <% if partner.image.attached? %>
+    <%= image_tag partner.image, style: 'width: 200px; display: block' %>
+  <% end %>
+
+  <%= f.label :image, 'Adicionar/Modificar Imagem' %>
+  <%= f.file_field :image %>
+
   <%= f.submit 'Enviar', id: 'send' %>
 <% end %>
 
