@@ -15,7 +15,7 @@
   <%= f.text_area :description %>
 
   <%= f.label :cnpj, 'CNPJ*' %>
-  <%= f.text_field :cnpj %>
+  <%= f.text_field :cnpj, maxlength: 18 %>
 
   <%= f.label :address, 'Endereço*' %><br />
   <%= f.text_field :address %>
@@ -64,3 +64,5 @@
 
   <%= f.submit 'Enviar', id: 'send' %>
 <% end %>
+
+<%= javascript_pack_tag 'partner_form' %>

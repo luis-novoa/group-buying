@@ -64,13 +64,14 @@ RSpec.describe 'Partners#new', type: :feature do
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
   end
 
-  context 'form' do
+  context 'form', js: true do
     let(:partner) { build(:partner) }
 
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
       visit new_partner_path
+      sleep(120)
       fill_in 'Razão Social*',	with: partner.name
       fill_in 'Nome Fantasia*',	with: partner.official_name
       fill_in 'CNPJ*',	with: partner.cnpj
