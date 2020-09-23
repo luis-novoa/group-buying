@@ -76,13 +76,13 @@ RSpec.describe 'Partners#new', type: :feature do
       fill_in 'CNPJ*',	with: partner.cnpj
       fill_in 'Endereço*',	with: partner.address
       fill_in 'Cidade*',	with: partner.city
-      fill_in 'Estado*',	with: partner.state
+      select partner.state, from: 'Estado*'
       fill_in 'Descrição*',	with: partner.description
       fill_in 'Website',	with: partner.website
       fill_in 'Email*',	with: partner.email
-      fill_in 'Telefone 1*',	with: partner.phone1
+      fill_in 'Telefone*',	with: partner.phone1
       select partner.phone1_type, from: :partner_phone1_type
-      fill_in 'Telefone 2',	with: partner.phone2
+      fill_in 'Telefone Adicional',	with: partner.phone2
       select partner.phone2_type, from: :partner_phone2_type
       choose 'Fornecedor'
       click_on 'Enviar'

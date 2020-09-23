@@ -1,3 +1,66 @@
 <%= form_for(partner) do |f| %>
+  <%= f.label :supplier, 'Tipo de Parceiro' %>
+  <%= f.radio_button :supplier, true, checked: true %>
+  <%= f.label :supplier, 'Fornecedor', value: 'true' %>
+  <%= f.radio_button :supplier, false %>
+  <%= f.label :supplier, 'Ponto de Entrega', value: 'false' %>
 
+  <%= f.label :name, 'Razão Social*' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :official_name, 'Nome Fantasia*' %>
+  <%= f.text_field :official_name %>
+
+  <%= f.label :description, 'Descrição*' %>
+  <%= f.text_area :description %>
+
+  <%= f.label :cnpj, 'CNPJ*' %>
+  <%= f.text_field :cnpj %>
+
+  <%= f.label :address, 'Endereço*' %><br />
+  <%= f.text_field :address %>
+  <%= text_field_tag :address_street %> <!-- please apply display: none on this text field -->
+
+  <%= label_tag :address_number, 'Número*' %><br /> <!-- please apply display: none on this field -->
+  <%= text_field_tag :address_number %>
+
+  <%= label_tag :address_additional_info, 'Complemento' %><br /> <!-- please apply display: none on this text field -->
+  <%= text_field_tag :address_additional_info %>
+
+  <%= f.label :city, 'Cidade*' %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state, 'Estado*' %><br />
+  <%= f.select :state, [
+    %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
+    %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
+    %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
+    ]
+  %>
+
+  <%= f.label :website %>
+  <%= f.text_field :website %>
+
+  <%= f.label :email, 'Email*' %>
+  <%= f.text_field :email %>
+
+  <%= f.label :phone1, 'Telefone*' %> 
+  <%= f.telephone_field :phone1, maxlength: 15 %>
+
+  <%= f.label :phone1_type, 'Tipo de Telefone*' %><br />
+  <%= f.select :phone1_type, [
+    %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+    ]
+  %>
+
+  <%= f.label :phone2, 'Telefone Adicional' %>
+  <%= f.telephone_field :phone2, maxlength: 15 %>
+
+  <%= f.label :phone2_type, 'Tipo de Telefone' %><br />
+  <%= f.select :phone2_type, [
+    ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+    ]
+  %>
+
+  <%= f.submit 'Enviar', id: 'send' %>
 <% end %>
