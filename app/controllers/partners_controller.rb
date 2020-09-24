@@ -20,7 +20,10 @@ class PartnersController < ApplicationController
     end
   end
 
-  def index; end
+  def index
+    @suppliers = Partner.all.where(supplier: true)
+    @delivery_points = Partner.all.where(supplier: false)
+  end
 
   def show; end
 

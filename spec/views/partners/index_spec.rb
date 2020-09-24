@@ -46,8 +46,8 @@ RSpec.describe 'Partners#index', type: :feature do
   end
 
   context 'access with volunteer account' do
-    let(:partner1) { create(:partner) }
-    let(:partner2) { create(:partner_user) }
+    let!(:partner1) { create(:partner) }
+    let!(:partner2) { create(:partner_user) }
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
@@ -57,15 +57,15 @@ RSpec.describe 'Partners#index', type: :feature do
     it { is_expected.to have_link href: new_partner_path }
     it { is_expected.to have_link href: edit_partner_path(partner1) }
     it { is_expected.to have_link href: edit_partner_path(partner2) }
-    it { is_expected.to have_link href: show_partner_path(partner1) }
-    it { is_expected.to have_link href: show_partner_path(partner2) }
+    it { is_expected.to have_link href: partner_path(partner1) }
+    it { is_expected.to have_link href: partner_path(partner2) }
     it { is_expected.to have_text partner1.name }
     it { is_expected.to have_text partner1.email }
     it { is_expected.to have_text partner1.phone1 }
-    it { is_expected.to have_text partner1.phone_type }
+    it { is_expected.to have_text partner1.phone1_type }
     it { is_expected.to have_text partner2.name }
     it { is_expected.to have_text partner2.email }
     it { is_expected.to have_text partner2.phone1 }
-    it { is_expected.to have_text partner2.phone_type }
+    it { is_expected.to have_text partner2.phone1_type }
   end
 end
