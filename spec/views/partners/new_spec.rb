@@ -71,8 +71,8 @@ RSpec.describe 'Partners#new', type: :feature do
       volunteer.update(waiting_approval: false)
       login(volunteer)
       visit new_partner_path
-      fill_in 'Razão Social*',	with: partner.name
-      fill_in 'Nome Fantasia*',	with: partner.official_name
+      fill_in 'Nome Fantasia*',	with: partner.name
+      fill_in 'Razão Social*',	with: partner.official_name
       fill_in 'CNPJ*',	with: partner.cnpj
       fill_in 'Endereço*',	with: partner.address
       fill_in 'Cidade*',	with: partner.city

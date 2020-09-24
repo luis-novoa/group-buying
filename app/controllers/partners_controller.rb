@@ -1,7 +1,7 @@
 class PartnersController < ApplicationController
-  before_action :user_filter, only: %i[new create index show edit]
+  before_action :user_filter, only: %i[new create index show edit update]
   before_action :check_delivery_user, only: %i[new]
-  before_action :only_volunteers, only: %i[index show edit]
+  before_action :only_volunteers, only: %i[index show edit update]
 
   def new
     @partner = Partner.new
@@ -13,7 +13,7 @@ class PartnersController < ApplicationController
     @partner = Partner.new(parameters)
     if @partner.save
       flash[:success] = 'Parceiro adicionado!'
-      redirect_to partners_path
+      redirect_to partner_path(@partner)
     else
       flash[:alert] = @partner.errors.full_messages
       render :new
@@ -29,7 +29,22 @@ class PartnersController < ApplicationController
     @partner = Partner.find(params[:id])
   end
 
-  def edit; end
+  def edit
+    @partner = Partner.find(params[:id])
+  end
+
+  def update
+    parameters = partner_params
+    compress_image(parameters[:image]) if parameters[:image]
+    @partner = Partner.find(params[:id])
+    if @partner.update(parameters)
+      flash[:success] = 'Parceiro adicionado!'
+      redirect_to partner_path(@partner)
+    else
+      flash[:alert] = @partner.errors.full_messages
+      render :edit
+    end
+  end
 
   private
 

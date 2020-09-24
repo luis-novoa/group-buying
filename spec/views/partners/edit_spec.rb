@@ -53,5 +53,10 @@ RSpec.describe 'Partners#edit', type: :feature do
       visit edit_partner_path(partner)
     end
     it { is_expected.to have_current_path(edit_partner_path(partner)) }
+    it 'changes partner info' do
+      fill_in 'Nome Fantasia*',	with: 'New Name'
+      click_on 'Enviar'
+      expect(partner.reload.name).to eq('New Name')
+    end
   end
 end

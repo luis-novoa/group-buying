@@ -27,7 +27,7 @@
     <td>Telefone 1</td>
     <td>Ações</td>
   </tr>
-  <%= @delivery_points.each do |delivery_point| %>
+  <% @delivery_points.each do |delivery_point| %>
     <tr>
       <td><%= link_to delivery_point.name, partner_path(delivery_point) %></td>
       <td><%= delivery_point.email %></td>
