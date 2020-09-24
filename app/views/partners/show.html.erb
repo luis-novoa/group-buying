@@ -3,7 +3,7 @@
 <%= link_to 'Editar este Parceiro', edit_partner_path(@partner) %>
 
 <% if @partner.image.attached? %>
-  <%= image_tag message.image %>
+  <%= image_tag @partner.image %>
 <% end %>
 
 <ul>

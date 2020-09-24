@@ -8,7 +8,7 @@
     <td>Telefone 1</td>
     <td>Ações</td>
   </tr>
-  <%= @suppliers.each do |supplier| %>
+  <% @suppliers.each do |supplier| %>
     <tr>
       <td><%= link_to supplier.name, partner_path(supplier) %></td>
       <td><%= supplier.email %></td>

@@ -27,7 +27,9 @@ class ApplicationController < ActionController::Base
   end
 
   def compress_image(image)
-    image_optim = ImageOptim.new(allow_lossy: true, nice: 19, jpegoptim: { max_quality: 25 })
+    image_optim = ImageOptim.new(
+      allow_lossy: true, nice: 19, jpegoptim: { max_quality: 25 }, pngout: false, svgo: false
+    )
     image_optim.optimize_image!(image.tempfile.path)
   end
 end
