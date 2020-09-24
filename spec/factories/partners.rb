@@ -18,6 +18,7 @@ FactoryBot.define do
     user { nil }
 
     trait :delivery_type do
+      supplier { false }
       user { association :delivery }
     end
 
