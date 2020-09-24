@@ -1,13 +1,16 @@
 class PartnersController < ApplicationController
-  before_action :user_filter, only: %i[new create]
+  before_action :user_filter, only: %i[new create index show edit]
   before_action :check_delivery_user, only: %i[new]
+  before_action :only_volunteers, only: %i[index show edit]
 
   def new
     @partner = Partner.new
   end
 
   def create
-    @partner = Partner.new(partner_params)
+    parameters = partner_params
+    compress_image(parameters[:image]) if parameters[:image]
+    @partner = Partner.new(parameters)
     if @partner.save
       flash[:success] = 'Parceiro adicionado!'
       redirect_to partners_path
@@ -18,6 +21,10 @@ class PartnersController < ApplicationController
   end
 
   def index; end
+
+  def show; end
+
+  def edit; end
 
   private
 
@@ -31,12 +38,16 @@ class PartnersController < ApplicationController
     unauthorized(:forbidden) if current_user.account_type == 'Ponto de Entrega' && !current_user.partner.nil?
   end
 
+  def only_volunteers
+    unauthorized(:forbidden) unless current_user.account_type == 'Voluntário'
+  end
+
   def partner_params
     params
       .require(:partner)
       .permit(
         :name, :official_name, :supplier, :description, :cnpj, :address, :city, :state,
-        :website, :email, :phone1, :phone1_type, :phone2, :phone2_type
+        :website, :email, :phone1, :phone1_type, :phone2, :phone2_type, :image
       )
   end
 end

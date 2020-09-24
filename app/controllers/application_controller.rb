@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
     flash[:notice] = 'Complete seu cadastro para prosseguir'
     redirect_to new_volunteer_info_path
   end
+
+  def compress_image(image)
+    image_optim = ImageOptim.new(allow_lossy: true, nice: 19, jpegoptim: { max_quality: 25 })
+    image_optim.optimize_image!(image.tempfile.path)
+  end
 end
