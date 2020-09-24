@@ -37,4 +37,8 @@ module ApplicationHelper
     log_out = tag.span(log_out_link, class: 'log-out')
     cart + account + log_out
   end
+
+  def phone2(object)
+    tag.li("Telefone Adicional: #{object.phone2} (#{object.phone2_type})") if object.phone2
+  end
 end

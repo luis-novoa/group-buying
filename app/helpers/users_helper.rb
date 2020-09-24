@@ -28,10 +28,6 @@ module UsersHelper
     tag.span(link_to('Todos os Usuários', users_path), class: 'users_index')
   end
 
-  def phone2(user)
-    tag.li("Telefone 2: #{user.phone2} - #{user.phone2_type}") if user.phone2
-  end
-
   def pending_users(users_list)
     return unless current_user.moderator
 

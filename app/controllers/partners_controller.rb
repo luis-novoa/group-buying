@@ -25,7 +25,9 @@ class PartnersController < ApplicationController
     @delivery_points = Partner.all.where(supplier: false)
   end
 
-  def show; end
+  def show
+    @partner = Partner.find(params[:id])
+  end
 
   def edit; end
 

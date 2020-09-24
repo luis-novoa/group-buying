@@ -1,0 +1,19 @@
+<h1><%= @partner.name %></h1>
+<%= link_to 'Lista de Parceiros', partners_path %>
+<%= link_to 'Editar este Parceiro', edit_partner_path(@partner) %>
+
+<% if @partner.image.attached? %>
+  <%= image_tag message.image %>
+<% end %>
+
+<ul>
+  <li>Razão Social: <%= @partner.official_name %></li> 
+  <li>CNPJ: <%= @partner.cnpj %></li>
+  <li>Descrição: <%= @partner.description %></li>
+  <li>Website: <%= @partner.website %></li>
+  <li>Email: <%= @partner.email %></li>
+  <li>Telefone: <%= @partner.phone1 %> (<%= @partner.phone1_type %>)</li>
+  <%= phone2(@partner) %>
+  <li>Endereço: <%= @partner.address %>, <%= @partner.city %> - <%= @partner.state %></li>
+  <li>Tipo: <%= supplier?(@partner) %></li>
+</ul>

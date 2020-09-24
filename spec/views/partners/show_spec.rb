@@ -53,5 +53,21 @@ RSpec.describe 'Partners#show', type: :feature do
       visit partner_path(partner)
     end
     it { is_expected.to have_current_path(partner_path(partner)) }
+    it { is_expected.to have_link href: partners_path }
+    it { is_expected.to have_link href: edit_partner_path(partner) }
+    it { is_expected.to have_text partner.name }
+    it { is_expected.to have_text partner.official_name }
+    it { is_expected.to have_text partner.cnpj }
+    it { is_expected.to have_text partner.description }
+    it { is_expected.to have_text partner.website }
+    it { is_expected.to have_text partner.email }
+    it { is_expected.to have_text partner.phone1 }
+    it { is_expected.to have_text partner.phone1_type }
+    it { is_expected.to have_text partner.phone2 }
+    it { is_expected.to have_text partner.phone2_type }
+    it { is_expected.to have_text partner.address }
+    it { is_expected.to have_text partner.city }
+    it { is_expected.to have_text partner.state }
+    it { is_expected.to have_text 'Fornecedor' }
   end
 end
