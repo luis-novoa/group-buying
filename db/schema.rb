@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_203921) do
+ActiveRecord::Schema.define(version: 2020_09_25_221714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2020_09_23_203921) do
     t.boolean "paid", default: false
     t.string "delivery_city", null: false
     t.bigint "user_id", null: false
-    t.bigint "purchase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["purchase_id"], name: "index_orders_on_purchase_id"
+    t.bigint "purchase_product_id"
+    t.index ["purchase_product_id"], name: "index_orders_on_purchase_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_203921) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", limit: 75, null: false
+    t.string "short_description", limit: 75, null: false
     t.text "description", null: false
     t.bigint "partner_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -84,19 +85,28 @@ ActiveRecord::Schema.define(version: 2020_09_23_203921) do
     t.index ["partner_id"], name: "index_products_on_partner_id"
   end
 
-  create_table "purchases", force: :cascade do |t|
+  create_table "purchase_products", force: :cascade do |t|
+    t.string "name", limit: 75, null: false
     t.decimal "price", precision: 8, scale: 2, null: false
-    t.boolean "limited_quantity", default: false
-    t.integer "quantity", default: 0
+    t.integer "quantity", default: 99999
     t.string "offer_city", default: "Ambas"
+    t.bigint "purchase_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_purchase_products_on_product_id"
+    t.index ["purchase_id"], name: "index_purchase_products_on_purchase_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
     t.boolean "active", default: true
     t.string "status", limit: 25, default: "Aberta"
     t.decimal "total", precision: 8, scale: 2, default: "0.0"
     t.text "message", default: ""
-    t.bigint "product_id", null: false
+    t.bigint "partner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_purchases_on_product_id"
+    t.index ["partner_id"], name: "index_purchases_on_partner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,10 +155,12 @@ ActiveRecord::Schema.define(version: 2020_09_23_203921) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "purchases"
+  add_foreign_key "orders", "purchase_products"
   add_foreign_key "orders", "users"
   add_foreign_key "partners", "users"
   add_foreign_key "products", "partners"
-  add_foreign_key "purchases", "products"
+  add_foreign_key "purchase_products", "products"
+  add_foreign_key "purchase_products", "purchases"
+  add_foreign_key "purchases", "partners"
   add_foreign_key "volunteer_infos", "users"
 end

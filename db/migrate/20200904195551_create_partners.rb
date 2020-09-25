@@ -4,7 +4,7 @@ class CreatePartners < ActiveRecord::Migration[6.0]
       t.string :name, null: false, limit: 75, unique: true
       t.string :official_name, null: false, limit: 75, unique: true
       t.string :cnpj, null: false, limit: 18, unique: true
-      t.text :description, null: false, limit: 500
+      t.text :description, null: false, limit: 5000
       t.string :website, limit: 75
       t.string :email, null: false, limit: 75, unique: true
       t.string :phone1, null: false, limit: 18

@@ -35,8 +35,11 @@ class PartnersController < ApplicationController
 
   def update
     parameters = partner_params
-    compress_image(parameters[:image]) if parameters[:image]
     @partner = Partner.find(params[:id])
+    if parameters[:image]
+      @partner.image.purge
+      compress_image(parameters[:image])
+    end
     if @partner.update(parameters)
       flash[:success] = 'Parceiro adicionado!'
       redirect_to partner_path(@partner)
