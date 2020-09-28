@@ -23,7 +23,7 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to_not allow_values('aa.aaa.aaaa/aaaa-aa', 'a' * 18).for(:cnpj) }
 
   it { is_expected.to validate_presence_of(:description) }
-  it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(500) }
+  it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(5000) }
 
   it { is_expected.to validate_length_of(:website).is_at_least(2).is_at_most(75).allow_nil }
 
@@ -84,5 +84,6 @@ RSpec.describe Partner, type: :model do
   }
 
   it { is_expected.to have_many(:products) }
+  it { is_expected.to have_many(:purchases) }
   it { is_expected.to belong_to(:user).conditions(account_type: 'Ponto de Entrega').optional }
 end

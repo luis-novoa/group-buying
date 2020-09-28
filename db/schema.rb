@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
     t.string "name", limit: 75, null: false
     t.string "short_description", limit: 75, null: false
     t.text "description", null: false
+    t.decimal "last_price", precision: 8, scale: 2, default: "0.0"
+    t.integer "last_quantity", default: 0
     t.bigint "partner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

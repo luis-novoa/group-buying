@@ -13,5 +13,5 @@ RSpec.describe Order, type: :model do
   it { is_expected.to validate_inclusion_of(:delivery_city).in_array(%w[Sinop Cuiabá]) }
 
   it { is_expected.to belong_to(:user).required }
-  it { is_expected.to belong_to(:purchase).required }
+  it { is_expected.to belong_to(:purchase_products).required }
 end
