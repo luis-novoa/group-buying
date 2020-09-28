@@ -13,7 +13,7 @@ class Partner < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { is: 18 },
             format: %r{\A\d{2}.\d{3}.\d{3}/\d{4}-\d{2}\z}
-  validates :description, presence: true, length: { minimum: 2, maximum: 500 }
+  validates :description, presence: true, length: { minimum: 2, maximum: 5000 }
   validates :website, allow_nil: true, length: { minimum: 2, maximum: 75 }
   validates :email,
             presence: true,
@@ -47,6 +47,7 @@ class Partner < ApplicationRecord
               in: %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
             }
 
+  has_many :purchases, dependent: false
   has_many :products, dependent: false
   has_one_attached :image
   belongs_to :user, -> { where(account_type: 'Ponto de Entrega') }, optional: true, inverse_of: :partner
