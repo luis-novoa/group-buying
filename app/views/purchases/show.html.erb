@@ -6,6 +6,7 @@
 <ul>
   <li>Fornecedor: <%= link_to @purchase.partner.name, partner_path(@purchase.partner) %> </li>
   <li>Status: <%= @purchase.status %></li>
+  <li>Valor total das compras: R$ <%= @purchase.total %></li>
   <li>Mensagem aos compradores: <%= @purchase.message %></li>
   <li>Data de Criação: <%= @purchase.created_at.to_date %></li>
   <li>Última Atualização: <%= @purchase.updated_at.to_date %></li>

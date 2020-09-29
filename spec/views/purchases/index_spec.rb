@@ -46,6 +46,8 @@ RSpec.describe 'Purchases#index', type: :feature do
     it { is_expected.to have_link purchases[1].id, href: purchase_path(purchases[1]) }
     it { is_expected.to have_text purchases[0].partner.name }
     it { is_expected.to have_text purchases[1].partner.name }
+    it { is_expected.to have_text purchases[0].total }
+    it { is_expected.to have_text purchases[1].total }
     it { is_expected.to have_text purchases[0].created_at.to_date }
     it { is_expected.to have_text purchases[1].created_at.to_date }
     it { is_expected.to have_link href: edit_purchase_path(purchases[0]) }

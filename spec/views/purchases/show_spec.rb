@@ -49,6 +49,7 @@ RSpec.describe 'Purchases#show', type: :feature do
     it { is_expected.to have_text purchase.status }
     it { is_expected.to have_text purchase.message }
     it { is_expected.to have_text purchase.id }
+    it { is_expected.to have_text purchase.total }
     it { is_expected.to have_text purchase.partner.name }
     it { is_expected.to have_text purchase.created_at.to_date }
     it { is_expected.to have_text purchase.updated_at.to_date }

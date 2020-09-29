@@ -4,6 +4,7 @@
   <ul>
     <li><%= link_to purchase.id, purchase_path(purchase) %></li>
     <li><%= purchase.partner.name %></li>
+    <li><%= purchase.total %></li>
     <li><%= purchase.created_at.to_date %></li>
     <li><%= edit_purchase(purchase) %></li>
   </ul>
@@ -13,6 +14,7 @@
   <ul>
     <li><%= link_to purchase.id, purchase_path(purchase) %></li>
     <li><%= purchase.partner.name %></li>
+    <li><%= purchase.total %></li>
     <li><%= purchase.created_at.to_date %></li>
     <li><%= edit_purchase(purchase) %></li>
   </ul>
