@@ -1,9 +1,10 @@
-<h1>Compra Coletiva <%= @purchase.id %> - <%= @purchase.partner.name %></h1>
+<h1>Compra Coletiva <%= @purchase.id %></h1>
 
 <%= link_to 'Todas as Compras Coletivas', purchases_path %>
 <%= edit_purchase(@purchase) %>
 
 <ul>
+  <li>Fornecedor: <%= link_to @purchase.partner.name, partner_path(@purchase.partner) %> </li>
   <li>Status: <%= @purchase.status %></li>
   <li>Mensagem aos compradores: <%= @purchase.message %></li>
   <li>Data de Criação: <%= @purchase.created_at.to_date %></li>

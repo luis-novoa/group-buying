@@ -1,0 +1,19 @@
+<h1>Todas as Compras Coletivas</h1>
+<h2>Compras Ativas</h2>
+<% @active_purchases.each do |purchase| %>
+  <ul>
+    <li><%= link_to purchase.id, purchase_path(purchase) %></li>
+    <li><%= purchase.partner.name %></li>
+    <li><%= purchase.created_at.to_date %></li>
+    <li><%= edit_purchase(purchase) %></li>
+  </ul>
+<% end %>
+<h2>Compras Inativas</h2>
+<% @inactive_purchases.each do |purchase| %>
+  <ul>
+    <li><%= link_to purchase.id, purchase_path(purchase) %></li>
+    <li><%= purchase.partner.name %></li>
+    <li><%= purchase.created_at.to_date %></li>
+    <li><%= edit_purchase(purchase) %></li>
+  </ul>
+<% end %>

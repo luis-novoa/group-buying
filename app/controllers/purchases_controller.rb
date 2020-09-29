@@ -13,7 +13,10 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
   end
 
-  def index; end
+  def index
+    @active_purchases = Purchase.all.where(active: true).order(created_at: :desc).includes(:partner)
+    @inactive_purchases = Purchase.all.where(active: false).order(created_at: :desc).includes(:partner)
+  end
 
   def edit; end
 

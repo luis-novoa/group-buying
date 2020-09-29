@@ -45,6 +45,7 @@ RSpec.describe 'Purchases#show', type: :feature do
     it { is_expected.to have_current_path(purchase_path(purchase)) }
     it { is_expected.to have_link href: edit_purchase_path(purchase) }
     it { is_expected.to have_link href: purchases_path }
+    it { is_expected.to have_link href: partner_path(purchase.partner) }
     it { is_expected.to have_text purchase.status }
     it { is_expected.to have_text purchase.message }
     it { is_expected.to have_text purchase.id }
