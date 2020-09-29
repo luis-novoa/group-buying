@@ -1,0 +1,20 @@
+<h2>Editar Compra Coletiva</h2>
+
+<%= form_for @purchase do |f| %>
+  <%= f.label :active, 'A compra está' %>
+  <%= f.radio_button :active, true %>
+  <%= f.label :active, 'Ativa', value: 'true' %>
+  <%= f.radio_button :active, false %>
+  <%= f.label :active, 'Inativa', value: 'false' %>
+
+  <%= f.label :status, 'Etapa da Compra' %><br />
+  <%= f.select :status, [
+    %w[Aberta Aberta], ['Solicitada ao Fornecedor', 'Solicitada ao Fornecedor'], ['Pronto para Retirada', 'Pronto para Retirada'], %w[Finalizada Finalizada]
+    ]
+  %>
+
+  <%= f.label :message, 'Mensagem aos compradores' %>
+  <%= f.text_area :message %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>

@@ -56,6 +56,7 @@ class PartnersController < ApplicationController
   end
 
   def partner_params
+    params[:supplier] = params[:supplier] == 'true'
     params
       .require(:partner)
       .permit(

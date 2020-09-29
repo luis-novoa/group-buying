@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
       compress_image(parameters[:image])
     end
     if @product.update(parameters)
-      flash[:success] = 'Produto adicionado!'
+      flash[:success] = 'Produto atualizado!'
       redirect_to product_path(@product)
     else
       flash[:alert] = @product.errors.full_messages
