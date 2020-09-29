@@ -1,5 +1,5 @@
 class PartnersController < ApplicationController
-  before_action :user_filter, :only_approved_users
+  before_action :except_buyers, :only_approved_users
   before_action :check_delivery_user, only: %i[new]
   before_action :only_volunteers, only: %i[index show edit update]
 
@@ -50,10 +50,6 @@ class PartnersController < ApplicationController
   end
 
   private
-
-  def user_filter
-    unauthorized(:forbidden) if current_user.account_type == 'Comprador'
-  end
 
   def check_delivery_user
     unauthorized(:forbidden) if current_user.account_type == 'Ponto de Entrega' && !current_user.partner.nil?

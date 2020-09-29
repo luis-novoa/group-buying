@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
   def only_approved_users
     unauthorized(:need_approval) if current_user.waiting_approval
   end
+
+  def except_buyers
+    unauthorized(:forbidden) if current_user.account_type == 'Comprador'
+  end
 end
