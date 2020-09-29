@@ -101,6 +101,7 @@ RSpec.describe 'Users#show', type: :feature do
   context 'access with volunteer account' do
     let(:volunteer) { create(:volunteer_info).user }
     before(:each) do
+      volunteer.update(waiting_approval: false)
       login(volunteer)
       click_on 'Minha Conta'
     end
@@ -112,6 +113,7 @@ RSpec.describe 'Users#show', type: :feature do
   context 'access with delivery point account' do
     let(:delivery) { create(:delivery) }
     before(:each) do
+      delivery.update(waiting_approval: false)
       login(delivery)
       click_on 'Minha Conta'
     end

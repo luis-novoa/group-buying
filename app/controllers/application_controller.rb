@@ -32,4 +32,12 @@ class ApplicationController < ActionController::Base
     )
     image_optim.optimize_image!(image.tempfile.path)
   end
+
+  def only_volunteers
+    unauthorized(:forbidden) unless current_user.account_type == 'Voluntário'
+  end
+
+  def only_approved_users
+    unauthorized(:need_approval) if current_user.waiting_approval
+  end
 end

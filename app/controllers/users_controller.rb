@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :only_approved_users
   before_action :show_restrictions, only: %i[show]
   before_action :index_restrictions, only: %i[index]
   before_action :update_restrictions, only: %i[update]
@@ -32,15 +33,11 @@ class UsersController < ApplicationController
   end
 
   def show_restrictions
-    return if current_user.id == params[:id].to_i
-
-    index_restrictions
+    index_restrictions unless current_user.id == params[:id].to_i
   end
 
   def index_restrictions
-    return unauthorized(:forbidden) if current_user.account_type == 'Comprador'
-
-    unauthorized(:need_approval) if current_user.waiting_approval
+    unauthorized(:forbidden) if current_user.account_type == 'Comprador'
   end
 
   def update_restrictions

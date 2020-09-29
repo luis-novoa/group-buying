@@ -1,6 +1,6 @@
 class VolunteerInfosController < ApplicationController
   skip_before_action :check_volunteer_info
-  before_action :check_volunteer_account
+  before_action :only_volunteers
 
   def new
     @volunteer_info = VolunteerInfo.new
@@ -17,10 +17,6 @@ class VolunteerInfosController < ApplicationController
   end
 
   private
-
-  def check_volunteer_account
-    unauthorized(:forbidden) unless current_user.account_type == 'Voluntário'
-  end
 
   def volunteer_info_params
     params.require(:volunteer_info).permit(:institution, :degree, :unemat_bond, :instagram, :facebook, :lattes)
