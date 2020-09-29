@@ -4,7 +4,7 @@ RSpec.describe 'Purchases#show', type: :feature do
   subject { page }
 
   let(:volunteer) { create(:volunteer_info).user }
-  let(:purchase) { create(:purchase) }
+  let(:purchase) { create(:purchase, message: 'Hello') }
   context 'attempt to access from unlogged user' do
     before(:each) { visit purchase_path(purchase) }
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
@@ -38,10 +38,19 @@ RSpec.describe 'Purchases#show', type: :feature do
   context 'access with volunteer account' do
     before(:each) do
       volunteer.update(waiting_approval: false)
+      purchase.update(updated_at: Time.current.change(month: 10))
       login(volunteer)
       visit purchase_path(purchase)
     end
     it { is_expected.to have_current_path(purchase_path(purchase)) }
+    it { is_expected.to have_link href: edit_purchase_path(purchase) }
+    it { is_expected.to have_link href: purchases_path }
+    it { is_expected.to have_text purchase.status }
+    it { is_expected.to have_text purchase.message }
+    it { is_expected.to have_text purchase.id }
+    it { is_expected.to have_text purchase.partner.name }
+    it { is_expected.to have_text purchase.created_at.to_date }
+    it { is_expected.to have_text purchase.updated_at.to_date }
   end
 
   context 'access with delivery point account' do
@@ -52,5 +61,6 @@ RSpec.describe 'Purchases#show', type: :feature do
       visit purchase_path(purchase)
     end
     it { is_expected.to have_current_path(purchase_path(purchase)) }
+    it { is_expected.to_not have_link href: edit_purchase_path(purchase) }
   end
 end

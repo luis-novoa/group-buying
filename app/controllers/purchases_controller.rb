@@ -4,10 +4,14 @@ class PurchasesController < ApplicationController
   before_action :only_volunteers, except: %i[show index]
 
   def create
-    Purchase.new(purchase_params).save
+    new_purchase = Purchase.new(purchase_params)
+    new_purchase.save
+    redirect_to purchase_path(new_purchase)
   end
 
-  def show; end
+  def show
+    @purchase = Purchase.find(params[:id])
+  end
 
   def index; end
 
