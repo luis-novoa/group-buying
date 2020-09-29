@@ -5,6 +5,12 @@ FactoryBot.define do
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }
     message { nil }
     partner { association :partner }
+
+    trait :inactive do
+      active { false }
+    end
+
+    factory :inactive_purchase, traits: [:inactive]
   end
 end
 
