@@ -90,19 +90,30 @@ module UsersHelper
     user.moderator ? tag.td('Sim') : tag.td('Não')
   end
 
-  def partner_links
-    return unless current_user.account_type == 'Voluntário'
+  def volunteer_actions(new_purchase, partner_select)
+    return unless current_user.account_type == 'Voluntário' && current_user.id == params[:id].to_i
 
+    partner_links + product_links + purchase_links(new_purchase, partner_select)
+  end
+
+  def partner_links
     new_partner = tag.span(link_to('Adicionar Parceiro', new_partner_path))
     partners = tag.span(link_to('Todos os Parceiros', partners_path))
     tag.nav(new_partner + partners, class: 'partner-links')
   end
 
   def product_links
-    return unless current_user.account_type == 'Voluntário'
-
     new_product = tag.span(link_to('Adicionar Produto', new_product_path))
     products = tag.span(link_to('Todos os Produtos', products_path))
     tag.nav(new_product + products, class: 'product-links')
+  end
+
+  def purchase_links(new_purchase, partner_select)
+    purchase_form = form_for(new_purchase) do |f|
+      concat(f.select(:partner_id, options_for_select(partner_select)))
+      concat(f.submit('Criar Compra Coletiva com este Fornecedor'))
+    end
+    purchases = tag.span(link_to('Todas as Compras Coletivas', purchases_path))
+    tag.div(purchase_form + purchases)
   end
 end

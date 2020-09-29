@@ -34,6 +34,8 @@ class UsersController < ApplicationController
 
   def check_user_id
     except_buyers unless current_user.id == params[:id].to_i
+    suppliers_list
+    @new_purchase = Purchase.new
   end
 
   def only_privileged_users

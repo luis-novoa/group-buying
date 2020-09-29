@@ -44,4 +44,12 @@ class ApplicationController < ActionController::Base
   def except_buyers
     unauthorized(:forbidden) if current_user.account_type == 'Comprador'
   end
+
+  def suppliers_list
+    partners = Partner.all.where(supplier: true)
+    @partner_select = []
+    partners.each do |partner|
+      @partner_select.push([partner.name, partner.id])
+    end
+  end
 end

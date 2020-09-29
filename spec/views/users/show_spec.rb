@@ -31,10 +31,9 @@ RSpec.describe 'Users#show', type: :feature do
         visit user_path(user2)
       end
       it { is_expected.to have_current_path(user_path(user2)) }
-      it { is_expected.to have_link href: new_partner_path }
-      it { is_expected.to have_link href: partners_path }
-      it { is_expected.to have_link href: new_product_path }
-      it { is_expected.to have_link href: products_path }
+      it { is_expected.to_not have_link href: new_partner_path }
+      it { is_expected.to_not have_link href: new_product_path }
+      it { is_expected.to_not have_link href: products_path }
     end
 
     context 'delivery point' do
@@ -102,6 +101,7 @@ RSpec.describe 'Users#show', type: :feature do
 
   context 'access with volunteer account' do
     let(:volunteer) { create(:volunteer_info).user }
+    let!(:partner) { create(:partner) }
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
@@ -110,6 +110,16 @@ RSpec.describe 'Users#show', type: :feature do
     it { is_expected.to have_current_path(user_path(volunteer)) }
     it { is_expected.to have_css('.volunteer-greeting') }
     it { is_expected.to have_link href: users_path }
+    it { is_expected.to have_link href: new_partner_path }
+    it { is_expected.to have_link href: partners_path }
+    it { is_expected.to have_link href: new_product_path }
+    it { is_expected.to have_link href: products_path }
+    it { is_expected.to have_link href: purchases_path }
+    it 'can open a collective purchase from the volunteer panel' do
+      select partner.name, from: 'purchase_partner_id'
+      click_on 'Criar Compra Coletiva com este Fornecedor'
+      expect(Purchase.all.first.partner).to eq(partner)
+    end
   end
 
   context 'access with delivery point account' do

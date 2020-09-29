@@ -59,12 +59,4 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :short_description, :description, :partner_id, :image)
   end
-
-  def suppliers_list
-    partners = Partner.all.where(supplier: true)
-    @partner_select = []
-    partners.each do |partner|
-      @partner_select.push([partner.name, partner.id])
-    end
-  end
 end
