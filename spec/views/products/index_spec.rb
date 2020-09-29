@@ -35,12 +35,19 @@ RSpec.describe 'Products#index', type: :feature do
   end
 
   context 'access with volunteer account' do
+    let!(:products) { create_list(:product, 2) }
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
       visit products_path
     end
     it { is_expected.to have_current_path(products_path) }
+    it { is_expected.to have_link products[0].name, href: product_path(products[0])  }
+    it { is_expected.to have_link products[1].name, href: product_path(products[1])  }
+    it { is_expected.to have_link products[0].partner.name, href: partner_path(products[0].partner)  }
+    it { is_expected.to have_link products[1].partner.name, href: partner_path(products[1].partner)  }
+    it { is_expected.to have_link href: edit_product_path(products[0]) }
+    it { is_expected.to have_link href: edit_product_path(products[1]) }
   end
 
   context 'access with delivery point account' do

@@ -1,0 +1,8 @@
+<h1>Todos os Produtos</h1>
+
+<%= @products.each do |product| %>
+  <span><%= link_to product.name, product_path(product) %></span>
+  <span><%= link_to product.partner.name, partner_path(product.partner) %></span>
+  <span><%= link_to 'Editar Produto', edit_product_path(product) %></span>
+  <span><%= link_to 'Apagar Produto', product_path(product), method: :delete %></span>
+<% end %>
