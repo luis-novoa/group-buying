@@ -97,4 +97,12 @@ module UsersHelper
     partners = tag.span(link_to('Todos os Parceiros', partners_path))
     tag.nav(new_partner + partners, class: 'partner-links')
   end
+
+  def product_links
+    return unless current_user.account_type == 'Voluntário'
+
+    new_product = tag.span(link_to('Adicionar Produto', new_product_path))
+    products = tag.span(link_to('Todos os Produtos', products_path))
+    tag.nav(new_product + products, class: 'product-links')
+  end
 end

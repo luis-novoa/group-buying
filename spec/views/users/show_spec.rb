@@ -33,6 +33,8 @@ RSpec.describe 'Users#show', type: :feature do
       it { is_expected.to have_current_path(user_path(user2)) }
       it { is_expected.to have_link href: new_partner_path }
       it { is_expected.to have_link href: partners_path }
+      it { is_expected.to have_link href: new_product_path }
+      it { is_expected.to have_link href: products_path }
     end
 
     context 'delivery point' do
