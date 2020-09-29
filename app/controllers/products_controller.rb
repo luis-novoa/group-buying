@@ -21,9 +21,26 @@ class ProductsController < ApplicationController
 
   def index; end
 
-  def edit; end
+  def edit
+    suppliers_list
+    @product = Product.find(params[:id])
+  end
 
-  def update; end
+  def update
+    parameters = product_params
+    @product = Product.find(params[:id])
+    if parameters[:image]
+      @product.image.purge
+      compress_image(parameters[:image])
+    end
+    if @product.update(parameters)
+      flash[:success] = 'Produto adicionado!'
+      redirect_to product_path(@product)
+    else
+      flash[:alert] = @product.errors.full_messages
+      render :edit
+    end
+  end
 
   def destroy; end
 

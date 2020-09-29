@@ -5,7 +5,7 @@ RSpec.describe 'Products#index', type: :feature do
 
   let(:volunteer) { create(:volunteer_info).user }
   context 'attempt to access from unlogged user' do
-    before(:each) { visit new_product_path }
+    before(:each) { visit products_path }
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'Página disponível apenas para usuários cadastrados.' }
   end
@@ -14,7 +14,7 @@ RSpec.describe 'Products#index', type: :feature do
     let(:pending_volunteer) { create(:volunteer_info).user }
     before(:each) do
       login(pending_volunteer)
-      visit new_product_path
+      visit products_path
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') {
@@ -28,7 +28,7 @@ RSpec.describe 'Products#index', type: :feature do
     let(:buyer) { create(:user) }
     before(:each) do
       login(buyer)
-      visit new_product_path
+      visit products_path
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
@@ -38,9 +38,9 @@ RSpec.describe 'Products#index', type: :feature do
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
-      visit new_product_path
+      visit products_path
     end
-    it { is_expected.to have_current_path(new_product_path) }
+    it { is_expected.to have_current_path(products_path) }
   end
 
   context 'access with delivery point account' do
@@ -48,7 +48,7 @@ RSpec.describe 'Products#index', type: :feature do
     before(:each) do
       delivery.update(waiting_approval: false)
       login(delivery)
-      visit new_product_path
+      visit products_path
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }

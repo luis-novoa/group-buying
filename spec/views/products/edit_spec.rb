@@ -4,8 +4,9 @@ RSpec.describe 'Products#edit', type: :feature do
   subject { page }
 
   let(:volunteer) { create(:volunteer_info).user }
+  let(:product) { create(:product) }
   context 'attempt to access from unlogged user' do
-    before(:each) { visit new_product_path }
+    before(:each) { visit edit_product_path(product) }
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'Página disponível apenas para usuários cadastrados.' }
   end
@@ -14,7 +15,7 @@ RSpec.describe 'Products#edit', type: :feature do
     let(:pending_volunteer) { create(:volunteer_info).user }
     before(:each) do
       login(pending_volunteer)
-      visit new_product_path
+      visit edit_product_path(product)
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') {
@@ -28,7 +29,7 @@ RSpec.describe 'Products#edit', type: :feature do
     let(:buyer) { create(:user) }
     before(:each) do
       login(buyer)
-      visit new_product_path
+      visit edit_product_path(product)
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
@@ -38,9 +39,14 @@ RSpec.describe 'Products#edit', type: :feature do
     before(:each) do
       volunteer.update(waiting_approval: false)
       login(volunteer)
-      visit new_product_path
+      visit edit_product_path(product)
     end
-    it { is_expected.to have_current_path(new_product_path) }
+    it { is_expected.to have_current_path(edit_product_path(product)) }
+    it 'changes partner info' do
+      fill_in 'Nome*',	with: 'New Name'
+      click_on 'Enviar'
+      expect(product.reload.name).to eq('New Name')
+    end
   end
 
   context 'access with delivery point account' do
@@ -48,7 +54,7 @@ RSpec.describe 'Products#edit', type: :feature do
     before(:each) do
       delivery.update(waiting_approval: false)
       login(delivery)
-      visit new_product_path
+      visit edit_product_path(product)
     end
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
