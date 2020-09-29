@@ -1,0 +1,23 @@
+<%= form_for(product) do |f| %>
+
+  <%= f.label :partner_id, 'Fornecedor*' %><br />
+  <%= f.select :partner_id, options_for_select(@partner_select, params[:id]) %>
+
+  <%= f.label :name, 'Nome*' %>
+  <%= f.text_field :name %>
+
+    <%= f.label :short_description, 'Peso e/ou Detalhes*' %>
+  <%= f.text_field :short_description %>
+
+    <%= f.label :description, 'Descrição Completa*' %>
+  <%= f.text_field :description %>
+
+  <% if product.image.attached? %>
+    <%= image_tag product.image, style: 'width: 200px; display: block' %>
+  <% end %>
+
+  <%= f.label :image, 'Adicionar/Modificar Imagem' %>
+  <%= f.file_field :image %>
+
+  <%= f.submit 'Enviar', id: 'send' %>
+<% end %>

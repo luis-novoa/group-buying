@@ -53,4 +53,22 @@ RSpec.describe 'Products#new', type: :feature do
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
   end
+
+  context 'form' do
+    let(:product) { build(:product) }
+    let(:partner) { product.partner }
+
+    it 'creates new instance of product associated to partner' do
+      partner.save
+      volunteer.update(waiting_approval: false)
+      login(volunteer)
+      visit new_product_path
+      select partner.name, from: 'Fornecedor*'
+      fill_in 'Nome*',	with: product.name
+      fill_in 'Peso e/ou Detalhes*',	with: product.short_description
+      fill_in 'Descrição Completa*',	with: product.description
+      click_on 'Enviar'
+      expect(partner.products.count).to eq(1)
+    end
+  end
 end

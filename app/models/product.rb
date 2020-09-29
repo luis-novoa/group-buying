@@ -6,5 +6,6 @@ class Product < ApplicationRecord
   validates :partner_id, presence: true
 
   has_many :purchase_products, dependent: false
+  has_one_attached :image
   belongs_to :partner, -> { where(supplier: true) }, inverse_of: :products
 end
