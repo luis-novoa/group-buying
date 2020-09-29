@@ -19,6 +19,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def index; end
 
   def edit
@@ -42,7 +46,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    Product.find(params[:id]).delete
+    flash[:success] = 'Produto apagado!'
+    redirect_to products_path
+  end
 
   private
 

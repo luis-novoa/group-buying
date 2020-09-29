@@ -42,6 +42,16 @@ RSpec.describe 'Products#show', type: :feature do
       visit product_path(product)
     end
     it { is_expected.to have_current_path(product_path(product)) }
+    it { is_expected.to have_link href: products_path }
+    it { is_expected.to have_link href: edit_product_path(product) }
+    it { is_expected.to have_link product.partner.name, href: partner_path(product.partner) }
+    it { is_expected.to have_text product.name }
+    it { is_expected.to have_text product.short_description }
+    it { is_expected.to have_text product.description }
+    it 'has the possibility to delete the product' do
+      click_on 'Apagar este Produto'
+      expect(Product.all.count).to eq(0)
+    end
   end
 
   context 'access with delivery point account' do

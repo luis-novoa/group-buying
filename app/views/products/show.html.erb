@@ -1,0 +1,14 @@
+<h1><%= @product.name %></h1>
+<%= link_to 'Lista de Produtos', products_path %>
+<%= link_to 'Editar este Produto', edit_product_path(@product) %>
+<%= link_to 'Apagar este Produto', product_path(@product), method: :delete %>
+
+<% if @product.image.attached? %>
+  <%= image_tag @product.image %>
+<% end %>
+
+<ul>
+  <li>Peso e/ou Detalhes: <%= @product.short_description %></li> 
+  <li>Descrição Completa: <%= @product.description %></li>
+  <li>Fornecedor: <%= link_to @product.partner.name, partner_path(@product.partner) %></li>
+</ul>
