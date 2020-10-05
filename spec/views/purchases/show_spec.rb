@@ -35,6 +35,17 @@ RSpec.describe 'Purchases#show', type: :feature do
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
   end
 
+  context 'access with delivery point account' do
+    let(:delivery) { create(:partner_user).user }
+    before(:each) do
+      delivery.update(waiting_approval: false)
+      login(delivery)
+      visit purchase_path(purchase)
+    end
+    it { is_expected.to have_current_path(purchase_path(purchase)) }
+    it { is_expected.to_not have_link href: edit_purchase_path(purchase) }
+  end
+
   context 'access with volunteer account' do
     before(:each) do
       volunteer.update(waiting_approval: false)
@@ -53,16 +64,5 @@ RSpec.describe 'Purchases#show', type: :feature do
     it { is_expected.to have_text purchase.partner.name }
     it { is_expected.to have_text purchase.created_at.to_date }
     it { is_expected.to have_text purchase.updated_at.to_date }
-  end
-
-  context 'access with delivery point account' do
-    let(:delivery) { create(:partner_user).user }
-    before(:each) do
-      delivery.update(waiting_approval: false)
-      login(delivery)
-      visit purchase_path(purchase)
-    end
-    it { is_expected.to have_current_path(purchase_path(purchase)) }
-    it { is_expected.to_not have_link href: edit_purchase_path(purchase) }
   end
 end

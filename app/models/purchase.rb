@@ -3,6 +3,6 @@ class Purchase < ApplicationRecord
   validates :total, presence: true, numericality: true
   validates :message, length: { maximum: 500 }, allow_nil: true
 
-  has_many :purchase_products, dependent: false
+  has_many :purchase_products, dependent: :destroy
   belongs_to :partner
 end

@@ -1,0 +1,21 @@
+<%= form_for @new_purchase_product do |f| %>
+  <%= f.label :purchase_id, 'Compra Coletiva' %>
+  <%= f.number_field :purchase_id, readonly: true %>
+
+  <%= f.label :product_id, 'Produto*' %>
+  <%= f.select :product_id, options_for_select(@product_select) %>
+
+  <%= f.label :price, "Preço*" %>
+  <%= f.number_field :price, step: 0.05 %>
+
+  <%= f.label :quantity, "Quantidade" %>
+  <%= f.number_field :quantity, step: 1 %>
+
+  <%= f.label :offer_city, 'Disponível em*' %>
+  <%= f.select :offer_city, [
+    %w[Sinop Sinop], %w[Cuiabá Cuiabá], ['Sinop e Cuiabá', 'Sinop e Cuiabá']
+    ]
+  %>
+
+  <%= f.submit 'Oferecer Produto', disable_with: 'Criando Oferta' %>
+<% end %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :partners, only: %i[index show create new update edit]
   resources :products
   resources :purchases, except: %i[new destroy]
-  resources :purchase_products, only: %i[index show]
+  resources :purchase_products, expect: %i[edit]
   resources :volunteer_infos, only: %i[new create]
   get '/cart' => 'orders#index', paid: false
   get '/about' => 'static_pages#show', page: 'about'
