@@ -3,7 +3,7 @@ FactoryBot.define do
     name { product.name }
     price { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
     quantity { Faker::Number.between(from: 100, to: 1000) }
-    offer_city { 'Ambas' }
+    offer_city { 'Sinop e Cuiabá' }
     purchase { association :purchase }
     product { association :product }
 

@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
   create_table "orders", force: :cascade do |t|
     t.integer "quantity", null: false
     t.decimal "total", precision: 8, scale: 2, null: false
-    t.boolean "paid", default: false
+    t.string "status", default: "Carrinho"
     t.string "delivery_city", null: false
+    t.string "payment_code"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", limit: 75, null: false
-    t.string "short_description", limit: 75, null: false
+    t.integer "weigth", null: false
     t.text "description", null: false
     t.decimal "last_price", precision: 8, scale: 2, default: "0.0"
     t.integer "last_quantity", default: 0
@@ -91,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
     t.string "name", limit: 75, null: false
     t.decimal "price", precision: 8, scale: 2, null: false
     t.integer "quantity", default: 99999
-    t.string "offer_city", default: "Ambas"
+    t.string "offer_city", default: "Sinop e Cuiabá"
     t.bigint "purchase_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false

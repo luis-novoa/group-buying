@@ -8,7 +8,7 @@
 <% end %>
 
 <ul>
-  <li>Peso e/ou Detalhes: <%= @product.short_description %></li> 
+  <li>Peso: <%= @product.weigth %></li> 
   <li>Descrição Completa: <%= @product.description %></li>
   <li>Fornecedor: <%= link_to @product.partner.name, partner_path(@product.partner) %></li>
 </ul>
