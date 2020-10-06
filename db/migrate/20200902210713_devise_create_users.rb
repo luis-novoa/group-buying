@@ -26,9 +26,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       t.string :name, null: false, limit: 75, unique: true
-      t.string :address, null: false, limit: 75
-      t.string :city, null: false, limit: 30
-      t.string :state, null: false, limit: 2
       t.string :phone1, null: false, limit: 19
       t.string :phone1_type, null: false
       t.string :phone2, limit: 19

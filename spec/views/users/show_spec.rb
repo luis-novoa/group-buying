@@ -71,9 +71,6 @@ RSpec.describe 'Users#show', type: :feature do
 
     it { is_expected.to have_text user.name }
     it { is_expected.to have_text user.email }
-    it { is_expected.to have_text user.address }
-    it { is_expected.to have_text user.city }
-    it { is_expected.to have_text user.state }
     it { is_expected.to have_text user.phone1 }
     it { is_expected.to have_text user.phone1_type }
     it { is_expected.to have_text user.phone2 }

@@ -7,16 +7,6 @@ class User < ApplicationRecord
             length: { minimum: 2, maximum: 50 }
   validates :email, format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :password, length: { minimum: 6, maximum: 50 }, on: :create
-  validates :address,
-            presence: true,
-            length: { minimum: 2, maximum: 75 },
-            format: %r{\A.+, (\d+|s/n)(\z|.+\z)}i
-  validates :city, presence: true, length: { minimum: 2, maximum: 30 }
-  validates :state,
-            presence: true,
-            inclusion: {
-              in: %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
-            }
   validates :phone1,
             presence: true,
             length: { minimum: 14, maximum: 15 },

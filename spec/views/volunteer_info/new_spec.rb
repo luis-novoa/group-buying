@@ -32,6 +32,12 @@ RSpec.describe 'VolunteerInfos#new', type: :feature do
   context 'structure' do
     let(:volunteer) { create(:volunteer) }
     before(:each) { login(volunteer) }
+    it { is_expected.to have_field 'Endereço*' }
+    it { is_expected.to have_field 'Cidade*' }
+    it {
+      is_expected.to have_select 'Estado*', with_options:
+      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
+    }
     it { is_expected.to have_field 'Instagram' }
     it { is_expected.to have_field 'Facebook' }
     it { is_expected.to have_field 'Lattes' }
@@ -48,6 +54,9 @@ RSpec.describe 'VolunteerInfos#new', type: :feature do
     let(:volunteer) { create(:volunteer) }
     before(:each) do
       login(volunteer)
+      fill_in 'Endereço*', with: brazilian_address
+      fill_in 'Cidade*', with: Faker::Address.city
+      select state_creator, from: 'Estado*'
       fill_in 'Instituição/Empresa*',	with: volunteer_info.institution
       fill_in 'Área de Estudo/Trabalho*',	with: volunteer_info.degree
       select volunteer_info.unemat_bond, from: 'Vínculo com a UNEMAT*'

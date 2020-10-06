@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :volunteer_info do
+    address { brazilian_address }
+    city { Faker::Address.city }
+    state { state_creator }
     instagram { Faker::Lorem.characters(number: 25) }
     facebook { Faker::Lorem.characters(number: 25) }
     lattes { Faker::Lorem.characters(number: 25) }

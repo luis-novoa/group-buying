@@ -22,21 +22,6 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:password).is_at_least(6).is_at_most(50) }
   it { is_expected.to validate_confirmation_of(:password) }
 
-  it { is_expected.to validate_presence_of(:address) }
-  it { is_expected.to validate_length_of(:address).is_at_least(2).is_at_most(75) }
-  it { is_expected.to allow_values('bla bla, 78', 'bla bla, s/n', 'bla bla, 98, ap 200').for(:address) }
-  it { is_expected.to_not allow_values('bla bla bla bla', 'bla bla bla bla 78').for(:address) }
-
-  it { is_expected.to validate_presence_of(:city) }
-  it { is_expected.to validate_length_of(:city).is_at_least(2).is_at_most(30) }
-
-  it { is_expected.to validate_presence_of(:state) }
-  it {
-    is_expected.to validate_inclusion_of(:state).in_array(
-      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
-    )
-  }
-
   it { is_expected.to validate_presence_of(:phone1) }
   it { is_expected.to validate_length_of(:phone1).is_at_least(14).is_at_most(15) }
   it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone1) }

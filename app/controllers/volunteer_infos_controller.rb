@@ -19,6 +19,6 @@ class VolunteerInfosController < ApplicationController
   private
 
   def volunteer_info_params
-    params.require(:volunteer_info).permit(:institution, :degree, :unemat_bond, :instagram, :facebook, :lattes)
+    params.require(:volunteer_info).permit(:address, :city, :state, :institution, :degree, :unemat_bond, :instagram, :facebook, :lattes)
   end
 end

@@ -9,12 +9,6 @@ RSpec.describe 'UserRegistrations#new', type: :feature do
     it { is_expected.to have_field 'Senha*' }
     it { is_expected.to have_field 'Digite a senha novamente*' }
     it { is_expected.to have_field 'Nome Completo*' }
-    it { is_expected.to have_field 'Endereço*' }
-    it { is_expected.to have_field 'Cidade*' }
-    it {
-      is_expected.to have_select 'Estado*', with_options:
-      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
-    }
     it { is_expected.to have_field 'Telefone*' }
     it {
       is_expected.to have_select 'Tipo de Telefone*',
@@ -37,9 +31,6 @@ RSpec.describe 'UserRegistrations#new', type: :feature do
       fill_in 'Senha*', with: password
       fill_in 'Digite a senha novamente*', with: password
       fill_in 'Nome Completo*', with: Faker::Name.name
-      fill_in 'Endereço*', with: brazilian_address
-      fill_in 'Cidade*', with: Faker::Address.city
-      select state_creator, from: 'Estado*'
       fill_in 'Telefone*', with: phone_creator
       select phone_type_creator, from: :user_phone1_type
       fill_in 'CPF*', with: generate_cpf

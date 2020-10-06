@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type cpf]
+      keys: %i[name phone1 phone1_type phone2 phone2_type account_type cpf]
     )
   end
 

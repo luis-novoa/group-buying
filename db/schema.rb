@@ -122,9 +122,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name", limit: 75, null: false
-    t.string "address", limit: 75, null: false
-    t.string "city", limit: 30, null: false
-    t.string "state", limit: 2, null: false
     t.string "phone1", limit: 19, null: false
     t.string "phone1_type", null: false
     t.string "phone2", limit: 19
@@ -144,6 +141,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
   end
 
   create_table "volunteer_infos", force: :cascade do |t|
+    t.string "address", limit: 75, null: false
+    t.string "city", limit: 30, null: false
+    t.string "state", limit: 2, null: false
     t.string "instagram", limit: 75
     t.string "facebook", limit: 75
     t.string "lattes", limit: 75
