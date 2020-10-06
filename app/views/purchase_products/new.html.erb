@@ -6,10 +6,10 @@
   <%= f.select :product_id, options_for_select(@product_select) %>
 
   <%= f.label :price, "Preço*" %>
-  <%= f.number_field :price, step: 0.05 %>
+  <%= f.number_field :price, step: 0.05, min: 0 %>
 
   <%= f.label :quantity, "Quantidade" %>
-  <%= f.number_field :quantity, step: 1 %>
+  <%= f.number_field :quantity, step: 1, min: 0 %>
 
   <%= f.label :offer_city, 'Disponível em*' %>
   <%= f.select :offer_city, [

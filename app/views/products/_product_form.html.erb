@@ -7,9 +7,9 @@
   <%= f.text_field :name %>
 
   <%= f.label :weigth, 'Peso*' %>
-  <%= f.text_field :weigth %>
+  <%= f.number_field :weigth, min: 0 %>
 
-    <%= f.label :description, 'Descrição Completa*' %>
+  <%= f.label :description, 'Descrição Completa*' %>
   <%= f.text_field :description %>
 
   <% if product.image.attached? %>
