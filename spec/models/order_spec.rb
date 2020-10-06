@@ -12,6 +12,9 @@ RSpec.describe Order, type: :model do
   it { is_expected.to validate_presence_of(:delivery_city) }
   it { is_expected.to validate_inclusion_of(:delivery_city).in_array(%w[Sinop Cuiabá]) }
 
+  it { is_expected.to validate_presence_of(:status) }
+  it { is_expected.to validate_inclusion_of(:status).in_array(%w[Carrinho Processando Pago Entregue]) }
+
   it { is_expected.to belong_to(:user).required }
   it { is_expected.to belong_to(:purchase_product).required }
 end
