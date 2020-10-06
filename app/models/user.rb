@@ -34,13 +34,11 @@ class User < ApplicationRecord
             unless: -> { phone2.blank? }
   validates :phone2_type, absence: true, if: -> { phone2.blank? }
   validates :account_type, presence: true, inclusion: { in: ['Comprador', 'Voluntário', 'Ponto de Entrega'] }
-  validates :cpf, absence: true, if: -> { account_type == 'Comprador' || account_type == 'Voluntário' }
   validates :cpf,
             presence: true,
             uniqueness: { case_sensitive: false },
             length: { minimum: 13, maximum: 19 },
-            format: /\d{3}\.\d{3}\.\d{3}-\d{2}/,
-            if: -> { account_type == 'Ponto de Entrega' }
+            format: /\d{3}\.\d{3}\.\d{3}-\d{2}/
 
   has_many :orders, dependent: false
   has_one :partner, dependent: false

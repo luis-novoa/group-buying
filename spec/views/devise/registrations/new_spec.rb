@@ -42,6 +42,7 @@ RSpec.describe 'UserRegistrations#new', type: :feature do
       select state_creator, from: 'Estado*'
       fill_in 'Telefone*', with: phone_creator
       select phone_type_creator, from: :user_phone1_type
+      fill_in 'CPF*', with: generate_cpf
     end
 
     context 'as buyer' do
@@ -77,7 +78,6 @@ RSpec.describe 'UserRegistrations#new', type: :feature do
     context 'as delivery point' do
       before(:each) do
         select 'Ponto de Entrega', from: 'Tipo de Conta*'
-        fill_in 'CPF*', with: generate_cpf
         click_on 'Enviar'
       end
       it 'need admin approval' do

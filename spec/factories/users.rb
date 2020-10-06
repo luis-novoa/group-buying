@@ -17,6 +17,7 @@ FactoryBot.define do
     waiting_approval { false }
     super_user { false }
     moderator { false }
+    cpf { generate_cpf }
 
     trait :volunteer_type do
       account_type { 'Voluntário' }
@@ -24,7 +25,6 @@ FactoryBot.define do
 
     trait :deliver_type do
       account_type { 'Ponto de Entrega' }
-      cpf { generate_cpf }
     end
 
     trait :pending do
