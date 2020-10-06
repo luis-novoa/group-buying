@@ -10,7 +10,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
-    @purchase = Purchase.find(params[:id])
+    @purchase = Purchase.includes(:purchase_products).find(params[:id])
   end
 
   def index

@@ -36,6 +36,7 @@ RSpec.describe 'Purchases#show', type: :feature do
   end
 
   context 'access with delivery point account' do
+    let!(:purchase_product) { create(:purchase_product, purchase: purchase) }
     let(:delivery) { create(:partner_user).user }
     before(:each) do
       delivery.update(waiting_approval: false)
@@ -44,9 +45,16 @@ RSpec.describe 'Purchases#show', type: :feature do
     end
     it { is_expected.to have_current_path(purchase_path(purchase)) }
     it { is_expected.to_not have_link href: edit_purchase_path(purchase) }
+    it { is_expected.to have_text purchase_product.name }
+    it { is_expected.to have_text purchase_product.price }
+    it { is_expected.to have_text purchase_product.quantity }
+    it { is_expected.to have_text purchase_product.offer_city }
+    it { is_expected.to_not have_link purchase_product_path(purchase_product) }
   end
 
   context 'access with volunteer account' do
+    let!(:purchase_product) { create(:purchase_product, purchase: purchase) }
+    let(:order) { build(:order, purchase_product: purchase_product) }
     before(:each) do
       volunteer.update(waiting_approval: false)
       purchase.update(updated_at: Time.current.change(month: 10))
@@ -64,5 +72,14 @@ RSpec.describe 'Purchases#show', type: :feature do
     it { is_expected.to have_text purchase.partner.name }
     it { is_expected.to have_text purchase.created_at.to_date }
     it { is_expected.to have_text purchase.updated_at.to_date }
+    it 'can delete purchase product without orders' do
+      click_on 'Apagar Oferta'
+      expect(PurchaseProduct.count).to eq(0)
+    end
+    it "purchase product with orders doesn't display delete link" do
+      order.save
+      visit purchase_path(purchase)
+      is_expected.to_not have_link 'Apagar Oferta'
+    end
   end
 end

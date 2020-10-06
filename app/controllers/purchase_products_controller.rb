@@ -40,7 +40,12 @@ class PurchaseProductsController < ApplicationController
 
   def update; end
 
-  def destroy; end
+  def destroy
+    purchase_product = PurchaseProduct.find(params[:id])
+    purchase_product.delete
+    flash[:success] = 'Oferta deletada!'
+    redirect_back(fallback_location: purchases_path)
+  end
 
   private
 

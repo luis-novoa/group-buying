@@ -11,3 +11,12 @@
   <li>Data de Criação: <%= @purchase.created_at.to_date %></li>
   <li>Última Atualização: <%= @purchase.updated_at.to_date %></li>
 </ul>
+
+
+<% @purchase.purchase_products.each do |purchase_product| %>
+  <%= purchase_product.name %>
+  <%= purchase_product.price %>
+  <%= purchase_product.quantity %>
+  <%= purchase_product.offer_city %>
+  <%= delete_purchase_product(purchase_product) %>
+<% end %>
