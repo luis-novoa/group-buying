@@ -46,7 +46,28 @@ RSpec.describe 'Products#show', type: :feature do
     it { is_expected.to have_link href: edit_product_path(product) }
     it { is_expected.to have_link product.partner.name, href: partner_path(product.partner) }
     it { is_expected.to have_text product.name }
-    it { is_expected.to have_text product.weigth }
+    context 'weight smaller than 1000' do
+      it do
+        product.update(weight: 777)
+        visit product_path(product)
+        is_expected.to have_text '777 g'
+      end
+    end
+
+    context 'weight bigger than 1000' do
+      it do
+        product.update(weight: 1530)
+        visit product_path(product)
+        is_expected.to have_text '1,53 Kg'
+      end
+
+      it do
+        product.update(weight: 2000)
+        visit product_path(product)
+        is_expected.to have_text '2 Kg'
+      end
+    end
+
     it { is_expected.to have_text product.description }
     it 'has the possibility to delete the product' do
       click_on 'Apagar este Produto'

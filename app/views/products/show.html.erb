@@ -8,7 +8,7 @@
 <% end %>
 
 <ul>
-  <li>Peso: <%= @product.weigth %></li> 
+  <li>Peso: <%= format_weight(@product.weight, @product.weight_type) %></li> 
   <li>Descrição Completa: <%= @product.description %></li>
   <li>Fornecedor: <%= link_to @product.partner.name, partner_path(@product.partner) %></li>
 </ul>

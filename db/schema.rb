@@ -78,7 +78,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", limit: 75, null: false
-    t.integer "weigth", null: false
+    t.integer "weight", null: false
+    t.string "weight_type", null: false
     t.text "description", null: false
     t.decimal "last_price", precision: 8, scale: 2, default: "0.0"
     t.integer "last_quantity", default: 0

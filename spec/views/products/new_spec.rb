@@ -65,7 +65,8 @@ RSpec.describe 'Products#new', type: :feature do
       visit new_product_path
       select partner.name, from: 'Fornecedor*'
       fill_in 'Nome*',	with: product.name
-      fill_in 'Peso*',	with: product.weigth
+      fill_in 'Peso*',	with: product.weight
+      choose 'Gramas'
       fill_in 'Descrição Completa*',	with: product.description
       click_on 'Enviar'
       expect(partner.products.count).to eq(1)

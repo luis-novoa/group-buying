@@ -6,8 +6,13 @@
   <%= f.label :name, 'Nome*' %>
   <%= f.text_field :name %>
 
-  <%= f.label :weigth, 'Peso*' %>
-  <%= f.number_field :weigth, min: 0 %>
+  <%= f.label :weight, 'Peso*' %>
+  <%= f.number_field :weight, min: 0 %>
+
+  <%= f.radio_button :weight_type, 'g', checked: true %>
+  <%= f.label :weight_type, 'Gramas', value: 'g' %>
+  <%= f.radio_button :weight_type, 'mL' %>
+  <%= f.label :weight_type, 'Mililitros', value: 'mL' %>
 
   <%= f.label :description, 'Descrição Completa*' %>
   <%= f.text_field :description %>

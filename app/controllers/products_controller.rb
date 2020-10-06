@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@new_product)
     else
       flash[:alert] = @new_product.errors.full_messages
+      suppliers_list
       render :new
     end
   end
@@ -44,6 +45,7 @@ class ProductsController < ApplicationController
       redirect_to product_path(@product)
     else
       flash[:alert] = @product.errors.full_messages
+      suppliers_list
       render :edit
     end
   end
@@ -57,6 +59,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :weigth, :description, :partner_id, :image)
+    params.require(:product).permit(:name, :weight, :weight_type, :description, :partner_id, :image)
   end
 end
