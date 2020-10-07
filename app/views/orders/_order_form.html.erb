@@ -1,11 +1,14 @@
-<%= form_for(order) do |f| %>
-  <%= f.label :quantity, 'Quantidade' %>
-  <%= f.number_field :quantity, min: 0 %>
+<div id=<%= "product-#{product.id}" %>>
+  <%= form_for(order) do |f| %>
+    <%= f.number_field :user_id, readonly: true %>
+    <%= f.number_field :purchase_product_id, readonly: true %>
 
-  <%= f.label :delivery_city, 'Cidade' %>
-  <%= f.select :delivery_city, [
-    %w[Sinop Sinop], %w[Cuiabá Cuiabá]
-    ]
-  %>
-  <%= f.submit button_text, disable_with: 'Processando...' %>
-<% end %>
+    <%= f.label :quantity, 'Quantidade' %>
+    <%= f.number_field :quantity, min: 1 %>
+
+    <%= f.label :delivery_city, 'Cidade' %>
+    <%= f.select :delivery_city, city_options(product)
+    %>
+    <%= f.submit button_text, disable_with: 'Processando...' %>
+  <% end %>
+</div>

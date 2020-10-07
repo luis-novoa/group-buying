@@ -26,11 +26,18 @@ RSpec.describe 'Purchase_products#index', type: :feature do
     let!(:order) { create(:order, user: user, purchase_product: purchase_products[1]) }
 
     before(:each) do
+      purchase_products[0].update(offer_city: 'Sinop')
       login(user)
       visit root_path
     end
 
     it { is_expected.to have_button 'Adicionar ao Carrinho' }
     it { is_expected.to have_button 'Modificar' }
+    it { within("#product-#{purchase_products[0].id}") { is_expected.to_not have_text 'Cuiabá' } }
+    it 'creates new order' do
+      within("#product-#{purchase_products[0].id}") { fill_in 'Quantidade',	with: '10' }
+      click_on 'Adicionar ao Carrinho'
+      expect(user.orders.count).to eq(2)
+    end
   end
 end

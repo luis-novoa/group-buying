@@ -12,8 +12,8 @@ class PurchaseProductsController < ApplicationController
       end
     end
     if current_user
-      @existing_orders = current_user.orders
-      @existing_orders_ids = current_user.orders.pluck(:purchase_product_id)
+      @existing_orders = current_user.orders.where(status: 'Carrinho')
+      @existing_orders_ids = @existing_orders.pluck(:purchase_product_id)
     end
     [@purchase_products, @existing_orders, @existing_orders_ids]
   end
