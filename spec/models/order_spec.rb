@@ -8,6 +8,11 @@ RSpec.describe Order, type: :model do
 
   it { is_expected.to validate_presence_of(:total) }
   it { is_expected.to validate_numericality_of(:total) }
+  it('calculates total') do
+    subject.purchase_product = create(:purchase_product)
+    subject.save
+    expect(subject.total).to eq(subject.quantity * subject.purchase_product.price)
+  end
 
   it { is_expected.to validate_presence_of(:delivery_city) }
   it { is_expected.to validate_inclusion_of(:delivery_city).in_array(%w[Sinop Cuiabá]) }

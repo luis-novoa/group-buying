@@ -1,6 +1,5 @@
 <%= form_for @new_purchase_product do |f| %>
-  <%= f.label :purchase_id, 'Compra Coletiva' %>
-  <%= f.number_field :purchase_id, readonly: true %>
+  <%= f.hidden_field :purchase_id %>
 
   <%= f.label :product_id, 'Produto*' %>
   <%= f.select :product_id, options_for_select(@product_select) %>

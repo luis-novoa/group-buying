@@ -44,5 +44,12 @@ RSpec.describe 'Purchase_products#index', type: :feature do
       end
       expect(user.orders.count).to eq(4)
     end
+    it 'updates order' do
+      within("#product-#{purchase_products[1].id}") do
+        fill_in 'Quantidade',	with: '10'
+        click_on 'Modificar'
+      end
+      expect(order.reload.quantity).to eq(10)
+    end
   end
 end

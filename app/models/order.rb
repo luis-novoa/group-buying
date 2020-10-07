@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  before_save :check_city
+  before_validation :check_city, :calculate_total
 
   validates :quantity, presence: true, numericality: { only_integer: true }
   validates :total, presence: true, numericality: true
@@ -13,5 +13,9 @@ class Order < ApplicationRecord
 
   def check_city
     throw :abort if ['Sinop e Cuiabá', delivery_city].none?(purchase_product.offer_city)
+  end
+
+  def calculate_total
+    self.total = quantity * purchase_product.price
   end
 end
