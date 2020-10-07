@@ -24,6 +24,8 @@ RSpec.describe 'Purchase_products#index', type: :feature do
   context 'logged user' do
     let(:user) { create(:user) }
     let!(:order) { create(:order, user: user, purchase_product: purchase_products[1]) }
+    let!(:paid_order) { create(:order, user: user, status: 'Pago') }
+    let!(:processing_order) { create(:order, user: user, status: 'Processando') }
 
     before(:each) do
       purchase_products[0].update(offer_city: 'Sinop')
@@ -31,13 +33,16 @@ RSpec.describe 'Purchase_products#index', type: :feature do
       visit root_path
     end
 
-    it { is_expected.to have_button 'Adicionar ao Carrinho' }
+    it { is_expected.to have_button 'Adicionar ao Carrinho', count: 2 }
     it { is_expected.to have_button 'Modificar' }
+    it { is_expected.to have_text 'Processando Pedido' }
     it { within("#product-#{purchase_products[0].id}") { is_expected.to_not have_text 'Cuiabá' } }
     it 'creates new order' do
-      within("#product-#{purchase_products[0].id}") { fill_in 'Quantidade',	with: '10' }
-      click_on 'Adicionar ao Carrinho'
-      expect(user.orders.count).to eq(2)
+      within("#product-#{purchase_products[0].id}") do
+        fill_in 'Quantidade',	with: '10'
+        click_on 'Adicionar ao Carrinho'
+      end
+      expect(user.orders.count).to eq(4)
     end
   end
 end
