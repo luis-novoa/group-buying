@@ -1,0 +1,11 @@
+<%= form_for(order) do |f| %>
+  <%= f.label :quantity, 'Quantidade' %>
+  <%= f.number_field :quantity, min: 0 %>
+
+  <%= f.label :delivery_city, 'Cidade' %>
+  <%= f.select :delivery_city, [
+    %w[Sinop Sinop], %w[Cuiabá Cuiabá]
+    ]
+  %>
+  <%= f.submit button_text, disable_with: 'Processando...' %>
+<% end %>

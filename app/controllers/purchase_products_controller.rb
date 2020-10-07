@@ -11,7 +11,11 @@ class PurchaseProductsController < ApplicationController
         @purchase_products << purchase_product
       end
     end
-    @purchase_products
+    if current_user
+      @existing_orders = current_user.orders
+      @existing_orders_ids = current_user.orders.pluck(:purchase_product_id)
+    end
+    [@purchase_products, @existing_orders, @existing_orders_ids]
   end
 
   def show; end

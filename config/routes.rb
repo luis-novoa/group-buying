@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show index edit update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :orders, only: %i[index]
+  resources :orders, only: %i[create update destroy index]
   resources :partners, only: %i[index show create new update edit]
   resources :products
   resources :purchases, except: %i[new destroy]
