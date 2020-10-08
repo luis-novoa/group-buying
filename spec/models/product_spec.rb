@@ -14,7 +14,7 @@ RSpec.describe Product, type: :model do
   end
 
   it { is_expected.to validate_presence_of(:weight) }
-  it { is_expected.to validate_numericality_of(:weight).only_integer }
+  it { is_expected.to validate_numericality_of(:weight).is_greater_than(0).only_integer }
 
   it { is_expected.to validate_presence_of(:weight_type) }
   it { is_expected.to validate_inclusion_of(:weight_type).in_array(%w[g mL]) }

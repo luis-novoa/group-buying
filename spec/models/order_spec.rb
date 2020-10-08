@@ -4,10 +4,10 @@ RSpec.describe Order, type: :model do
   subject { build(:order) }
 
   it { is_expected.to validate_presence_of(:quantity) }
-  it { is_expected.to validate_numericality_of(:quantity).only_integer }
+  it { is_expected.to validate_numericality_of(:quantity).is_greater_than(0).only_integer }
 
   it { is_expected.to validate_presence_of(:total) }
-  it { is_expected.to validate_numericality_of(:total) }
+  it { is_expected.to validate_numericality_of(:total).is_greater_than(0) }
   it('calculates total') do
     subject.purchase_product = create(:purchase_product)
     subject.save

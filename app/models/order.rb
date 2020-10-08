@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
-  before_validation :check_city, :calculate_total
+  before_save :check_city, :calculate_total
 
-  validates :quantity, presence: true, numericality: { only_integer: true }
-  validates :total, presence: true, numericality: true
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :total, presence: true, numericality: { greater_than: 0 }
   validates :delivery_city, presence: true, inclusion: { in: %w[Sinop Cuiabá] }
   validates :status, presence: true, inclusion: { in: %w[Carrinho Processando Pago Entregue] }
 

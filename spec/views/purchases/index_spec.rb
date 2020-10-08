@@ -62,7 +62,7 @@ RSpec.describe 'Purchases#index', type: :feature do
       visit purchases_path
     end
     it { is_expected.to have_current_path(purchases_path) }
-    it { is_expected.to_not have_link href: edit_purchase_path(purchases[0]) }
-    it { is_expected.to_not have_link href: edit_purchase_path(purchases[1]) }
+    it { is_expected.to have_no_link href: edit_purchase_path(purchases[0]) }
+    it { is_expected.to have_no_link href: edit_purchase_path(purchases[1]) }
   end
 end

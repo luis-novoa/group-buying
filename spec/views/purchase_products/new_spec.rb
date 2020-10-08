@@ -45,7 +45,7 @@ RSpec.describe 'PurchaseProducts#new', type: :feature do
       visit new_purchase_product_path(purchase_id: purchase.id)
     end
     it { is_expected.to have_current_path(new_purchase_product_path(purchase_id: purchase.id)) }
-    it { is_expected.to_not have_text purchase_product.name }
+    it { is_expected.to have_no_text purchase_product.name }
     context 'product form' do
       before(:each) do
         select product.name, from: 'Produto*'

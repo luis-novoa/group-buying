@@ -44,12 +44,12 @@ RSpec.describe 'Purchases#show', type: :feature do
       visit purchase_path(purchase)
     end
     it { is_expected.to have_current_path(purchase_path(purchase)) }
-    it { is_expected.to_not have_link href: edit_purchase_path(purchase) }
+    it { is_expected.to have_no_link href: edit_purchase_path(purchase) }
     it { is_expected.to have_text purchase_product.name }
     it { is_expected.to have_text purchase_product.price }
     it { is_expected.to have_text purchase_product.quantity }
     it { is_expected.to have_text purchase_product.offer_city }
-    it { is_expected.to_not have_link purchase_product_path(purchase_product) }
+    it { is_expected.to have_no_link purchase_product_path(purchase_product) }
   end
 
   context 'access with volunteer account' do
@@ -79,7 +79,7 @@ RSpec.describe 'Purchases#show', type: :feature do
     it "purchase product with orders doesn't display delete link" do
       order.save
       visit purchase_path(purchase)
-      is_expected.to_not have_link 'Apagar Oferta'
+      is_expected.to have_no_link 'Apagar Oferta'
     end
   end
 end

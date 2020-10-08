@@ -29,8 +29,8 @@ RSpec.describe 'Orders#index', type: :feature do
       check_order = Order.where(id: order.id)
       expect(check_order.empty?).to eq(true)
     end
-    it { is_expected.to_not have_text paid_order.purchase_product.name }
-    it { is_expected.to_not have_text processing_order.purchase_product.name }
-    it { is_expected.to_not have_text delivered_order.purchase_product.name }
+    it { is_expected.to have_no_text paid_order.purchase_product.name }
+    it { is_expected.to have_no_text processing_order.purchase_product.name }
+    it { is_expected.to have_no_text delivered_order.purchase_product.name }
   end
 end

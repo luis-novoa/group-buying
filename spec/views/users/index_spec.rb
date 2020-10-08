@@ -54,44 +54,27 @@ RSpec.describe 'Users#index', type: :feature do
     it { is_expected.to have_text 'Compradores' }
     it { is_expected.to have_text 'Voluntários' }
     it { is_expected.to have_text 'Pontos de Entrega' }
-    it { is_expected.to_not have_text 'Usuários Pendentes' }
+    it { is_expected.to have_no_text 'Usuários Pendentes' }
     it { is_expected.to have_text 'Nome', count: 3 }
     it { is_expected.to have_text 'Telefone 1', count: 3 }
-    # it { is_expected.to have_text 'Telefone 2', count: 3 }
     it { is_expected.to have_text 'Email', count: 3 }
-    # it { is_expected.to have_text 'Endereço', count: 3 }
-    it { is_expected.to_not have_text pending_delivery.name }
-    it { is_expected.to_not have_text pending_volunteer.name }
+    it { is_expected.to have_no_text pending_delivery.name }
+    it { is_expected.to have_no_text pending_volunteer.name }
     it { within('.buyers') { is_expected.to have_text buyer1.name } }
     it { within('.buyers') { is_expected.to have_text buyer1.email } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1 } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1_type } }
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
-    # it { within('.volunteers') { is_expected.to have_text 'Instagram' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Facebook' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Lattes' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Curso/Profissão' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Instituição/Empresa' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Vínculo com a UNEMAT' } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.name } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.email } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.instagram } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.facebook } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.lattes } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.degree } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.institution } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.unemat_bond } }
-    # it { within('.delivery-points') { is_expected.to have_text 'Parceiro Associado' } }
-    # it { within('.delivery-points') { is_expected.to_not have_text 'CPF' } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.name } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
-    # it { within('.delivery-points') { is_expected.to_not have_text accepted_delivery.cpf } }
   end
 
   context 'access with volunteer account' do
@@ -104,44 +87,27 @@ RSpec.describe 'Users#index', type: :feature do
     it { is_expected.to have_text 'Compradores' }
     it { is_expected.to have_text 'Voluntários' }
     it { is_expected.to have_text 'Pontos de Entrega' }
-    it { is_expected.to_not have_text 'Usuários Pendentes' }
+    it { is_expected.to have_no_text 'Usuários Pendentes' }
     it { is_expected.to have_text 'Nome', count: 3 }
     it { is_expected.to have_text 'Telefone 1', count: 3 }
-    # it { is_expected.to have_text 'Telefone 2', count: 3 }
     it { is_expected.to have_text 'Email', count: 3 }
-    # it { is_expected.to have_text 'Endereço', count: 3 }
-    it { is_expected.to_not have_text pending_delivery.name }
-    it { is_expected.to_not have_text pending_volunteer.name }
+    it { is_expected.to have_no_text pending_delivery.name }
+    it { is_expected.to have_no_text pending_volunteer.name }
     it { within('.buyers') { is_expected.to have_text buyer1.name } }
     it { within('.buyers') { is_expected.to have_text buyer1.email } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1 } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1_type } }
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
-    # it { within('.volunteers') { is_expected.to have_text 'Instagram' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Facebook' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Lattes' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Curso/Profissão' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Instituição/Empresa' } }
-    # it { within('.volunteers') { is_expected.to have_text 'Vínculo com a UNEMAT' } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.name } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.email } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.instagram } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.facebook } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.lattes } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.degree } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.institution } }
-    # it { within('.volunteers') { is_expected.to have_text accepted_volunteer.unemat_bond } }
-    # it { within('.delivery-points') { is_expected.to have_text 'Parceiro Associado' } }
-    # it { within('.delivery-points') { is_expected.to have_text 'CPF' } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.name } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
-    # it { within('.delivery-points') { is_expected.to have_text accepted_delivery.cpf } }
   end
 
   context 'access with moderator account' do
@@ -209,12 +175,7 @@ RSpec.describe 'Users#index', type: :feature do
     end
     it { is_expected.to have_text 'Ações', count: 3 }
     it { is_expected.to have_link 'Tornar Voluntário', href: "/users/#{buyer1.id}?account_type=Volunt%C3%A1rio" }
-    # it { is_expected.to have_link 'Tornar Ponto de Entrega', href: "/users/#{buyer1.id}?account_type=Ponto+de+Entrega" }
     it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_volunteer.id}?account_type=Comprador" }
-    # it {
-    #   is_expected.to have_link 'Tornar Ponto de Entrega',
-    #                            href: "/users/#{accepted_volunteer.id}?account_type=Ponto+de+Entrega"
-    # }
     it { is_expected.to have_link 'Tornar Comprador', href: "/users/#{accepted_delivery.id}?account_type=Comprador" }
     it {
       is_expected.to have_link 'Tornar Voluntário',
@@ -227,11 +188,6 @@ RSpec.describe 'Users#index', type: :feature do
       within("#buyer-#{buyer1.id}") { click_on 'Tornar Voluntário' }
       expect(buyer1.reload.account_type).to eq('Voluntário')
     end
-
-    # it 'turns another user into delivery point' do
-    #   within("#buyer-#{buyer1.id}") { click_on 'Tornar Ponto de Entrega' }
-    #   expect(buyer1.reload.account_type).to eq('Ponto de Entrega')
-    # end
 
     it 'turns another user into buyer' do
       within("#volunteer-#{accepted_volunteer.id}") { click_on 'Tornar Comprador' }

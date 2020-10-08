@@ -31,9 +31,9 @@ RSpec.describe 'Users#show', type: :feature do
         visit user_path(user2)
       end
       it { is_expected.to have_current_path(user_path(user2)) }
-      it { is_expected.to_not have_link href: new_partner_path }
-      it { is_expected.to_not have_link href: new_product_path }
-      it { is_expected.to_not have_link href: products_path }
+      it { is_expected.to have_no_link href: new_partner_path }
+      it { is_expected.to have_no_link href: new_product_path }
+      it { is_expected.to have_no_link href: products_path }
     end
 
     context 'delivery point' do
@@ -81,7 +81,7 @@ RSpec.describe 'Users#show', type: :feature do
       click_on 'Sair'
       login(user1)
       click_on 'Minha Conta'
-      is_expected.to_not have_text 'Telefone 2'
+      is_expected.to have_no_text 'Telefone 2'
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe 'Users#show', type: :feature do
     end
     it { is_expected.to have_current_path(user_path(buyer)) }
     it { is_expected.to have_css('.buyer-greeting') }
-    it { is_expected.to_not have_link href: users_path }
+    it { is_expected.to have_no_link href: users_path }
   end
 
   context 'access with volunteer account' do
