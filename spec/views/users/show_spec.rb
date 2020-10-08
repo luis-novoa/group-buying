@@ -64,6 +64,10 @@ RSpec.describe 'Users#show', type: :feature do
   context 'access from any account' do
     let(:user) { create(:user) }
     let(:user1) { create(:user, phone2: nil, phone2_type: nil) }
+    let!(:order) { create(:order, user: user) }
+    let!(:paid_order) { create(:order, user: user, status: 'Pago') }
+    let!(:processing_order) { create(:order, user: user, status: 'Processando') }
+    let!(:delivered_order) { create(:order, user: user, status: 'Entregue') }
     before(:each) do
       login(user)
       click_on 'Minha Conta'
@@ -83,6 +87,16 @@ RSpec.describe 'Users#show', type: :feature do
       click_on 'Minha Conta'
       is_expected.to have_no_text 'Telefone 2'
     end
+    it { is_expected.to have_no_text order.purchase_product.name }
+    it { is_expected.to have_text paid_order.purchase_product.name }
+    it { is_expected.to have_text processing_order.purchase_product.name }
+    it { is_expected.to have_text delivered_order.purchase_product.name }
+    it { is_expected.to have_text brazilian_currency(delivered_order.purchase_product.price) }
+    it { is_expected.to have_text delivered_order.quantity }
+    it { is_expected.to have_text brazilian_currency(delivered_order.total) }
+    it { is_expected.to have_text delivered_order.delivery_city }
+    it { is_expected.to have_text delivered_order.created_at.strftime('%d/%m/%Y') }
+    it { is_expected.to have_text delivered_order.status }
   end
 
   context 'access with buyer account' do

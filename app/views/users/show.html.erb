@@ -17,3 +17,14 @@
     <li>Tipo de conta: <%= @user.account_type %></li>
   </ul>
 </section>
+<section class='user-orders'>
+  <% @orders.each do |order| %>
+    <span><%= order.created_at.strftime('%d/%m/%Y') %></span>
+    <span><%= order.purchase_product.name %></span>
+    <span><%= order.status %></span>
+    <span>R$ <%= br_currency(order.purchase_product.price) %></span>
+    <span><%= order.quantity %></span>
+    <span>R$ <%= br_currency(order.total) %></span>
+    <span><%= order.delivery_city %></span>
+  <% end %>
+</section>

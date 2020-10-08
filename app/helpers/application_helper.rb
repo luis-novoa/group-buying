@@ -41,4 +41,8 @@ module ApplicationHelper
   def phone2(object)
     tag.li("Telefone Adicional: #{object.phone2} (#{object.phone2_type})") if object.phone2
   end
+
+  def br_currency(number)
+    number_to_currency(number, unit: '', separator: ',', delimiter: '', precision: 2)
+  end
 end

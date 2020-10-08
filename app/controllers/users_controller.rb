@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :except_buyers, only: %i[index]
   before_action :only_privileged_users, only: %i[update]
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(orders: :purchase_product).find(params[:id])
+    @orders = @user.orders.where.not(status: 'Carrinho')
+    [@user, @orders]
   end
 
   def index

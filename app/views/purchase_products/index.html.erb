@@ -3,7 +3,7 @@
     <article class="purchase-product-preview">
       <img src="" alt="" class="image-to-be-implemented">
       <%= link_to purchase_product.name, purchase_product_path(purchase_product), class: 'purchase-product-name purchase-product-link' %>
-      <span class="purchase-product-price">R$ <%= number_to_currency(purchase_product.price, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
+      <span class="purchase-product-price">R$ <%= br_currency(purchase_product.price) %></span>
       <div><%= order_form(purchase_product, @existing_orders, @existing_orders_ids) %></div>
     </article>
   <% end %>
