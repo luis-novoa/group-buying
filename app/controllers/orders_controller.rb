@@ -9,7 +9,14 @@ class OrdersController < ApplicationController
     order.update(order_params) if order.status == 'Carrinho'
   end
 
-  def index; end
+  def index
+    @orders = Order.includes(:purchase_product).where(status: 'Carrinho', user_id: current_user.id)
+  end
+
+  def destroy
+    order = Order.find(params[:id])
+    order.delete if order.status == 'Carrinho'
+  end
 
   private
 

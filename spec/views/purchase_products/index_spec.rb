@@ -15,9 +15,9 @@ RSpec.describe 'Purchase_products#index', type: :feature do
     it { is_expected.to have_text purchase_products[0].name }
     it { is_expected.to have_text purchase_products[1].name }
     it { is_expected.to_not have_text inactive_purchase_product.name }
-    it { is_expected.to have_text format('%<price>.2f', price: purchase_products[0].price) }
-    it { is_expected.to have_text format('%<price>.2f', price: purchase_products[1].price) }
-    it { is_expected.to_not have_text format('%<price>.2f', price: inactive_purchase_product.price) }
+    it { is_expected.to have_text brazilian_currency(purchase_products[0].price) }
+    it { is_expected.to have_text brazilian_currency(purchase_products[1].price) }
+    it { is_expected.to_not have_text brazilian_currency(inactive_purchase_product.price) }
     it { is_expected.to have_text 'Faça Login para Comprar', count: 2 }
   end
 

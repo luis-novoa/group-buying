@@ -49,6 +49,10 @@ def generate_cpf
     "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 2)}"
 end
 
+def brazilian_currency(number)
+  format('%<price>.2f', price: number).gsub(/\./, ',')
+end
+
 def login(user)
   user.confirm
   visit new_user_session_path

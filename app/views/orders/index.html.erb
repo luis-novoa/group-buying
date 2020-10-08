@@ -1,0 +1,8 @@
+<% @orders.each do |order| %>
+  <span><%= order.purchase_product.name %></span>
+  <span>R$ <%= number_to_currency(order.purchase_product.price, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
+  <span><%= order.quantity %></span>
+  <span>R$ <%= number_to_currency(order.total, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
+  <span><%= order.delivery_city %></span>
+  <span><%= link_to 'Retirar do Carrinho', order_path(order), method: :delete %></span>
+<% end %>
