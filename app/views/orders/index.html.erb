@@ -1,8 +1,12 @@
 <% @orders.each do |order| %>
-  <span><%= order.purchase_product.name %></span>
-  <span>R$ <%= number_to_currency(order.purchase_product.price, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
-  <span><%= order.quantity %></span>
-  <span>R$ <%= number_to_currency(order.total, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
-  <span><%= order.delivery_city %></span>
-  <span><%= link_to 'Retirar do Carrinho', order_path(order), method: :delete %></span>
+  <%= form_for(order) do |f| %>
+    <%= f.hidden_field :id %>
+    <span><%= order.purchase_product.name %></span>
+    <span>R$ <%= number_to_currency(order.purchase_product.price, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
+    <%= f.number_field :quantity, min: 1 %>
+    <span>R$ <%= number_to_currency(order.total, unit: '', separator: ",", delimiter: "", precision: 2) %></span>
+    <%= f.select :delivery_city, city_options(order.purchase_product) %>
+    <%= f.submit "Modificar", disable_with: 'Modificando...' %>
+    <span><%= link_to 'Retirar do Carrinho', order_path(order), method: :delete %></span>
+  <% end %>
 <% end %>

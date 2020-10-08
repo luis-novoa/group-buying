@@ -21,9 +21,15 @@ RSpec.describe 'Orders#index', type: :feature do
     end
     it { is_expected.to have_text order.purchase_product.name }
     it { is_expected.to have_text brazilian_currency(order.purchase_product.price) }
-    it { is_expected.to have_text order.quantity }
+    it { is_expected.to have_selector "input[value='#{order.quantity}']" }
     it { is_expected.to have_text brazilian_currency(order.total) }
-    it { is_expected.to have_text order.delivery_city }
+    it { is_expected.to have_select 'order_delivery_city', selected: order.delivery_city }
+    it { is_expected.to have_button 'Modificar' }
+    it 'updates order' do
+      fill_in 'order_quantity',	with: '10'
+      click_on 'Modificar'
+      expect(order.reload.quantity).to eq(10)
+    end
     it 'deletes order' do
       click_on 'Retirar do Carrinho'
       check_order = Order.where(id: order.id)

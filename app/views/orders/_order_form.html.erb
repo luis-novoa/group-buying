@@ -1,6 +1,5 @@
 <div id=<%= "product-#{product.id}" %>>
   <%= form_for(order) do |f| %>
-    <%= f.hidden_field :user_id %>
     <%= f.hidden_field :purchase_product_id %>
     <%= f.hidden_field :id %>
 
@@ -8,8 +7,7 @@
     <%= f.number_field :quantity, min: 1 %>
 
     <%= f.label :delivery_city, 'Cidade' %>
-    <%= f.select :delivery_city, city_options(product)
-    %>
+    <%= f.select :delivery_city, city_options(product) %>
     <%= f.submit button_text, disable_with: 'Processando...' %>
   <% end %>
 </div>
