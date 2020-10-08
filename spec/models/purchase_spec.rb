@@ -8,7 +8,7 @@ RSpec.describe Purchase, type: :model do
     )
   }
 
-  it { is_expected.to validate_numericality_of(:total).is_greater_than(0) }
+  it { is_expected.to validate_numericality_of(:total).is_greater_than_or_equal_to(0) }
   it { is_expected.to validate_length_of(:message).is_at_most(500).allow_nil }
 
   it { is_expected.to have_many(:purchase_products) }
