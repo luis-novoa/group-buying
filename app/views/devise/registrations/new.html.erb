@@ -29,8 +29,13 @@
   </div>
 
   <div class='field'>
+    <%= f.label :ddd1, 'DDD*' %> 
+    <%= f.number_field :ddd1, min: 11 ,max: 99 %>
+  </div>
+
+  <div class='field'>
     <%= f.label :phone1, 'Telefone*' %> 
-    <%= f.telephone_field :phone1, maxlength: 15 %>
+    <%= f.number_field :phone1, min: 10000000 ,max: 999999999 %>
   </div>
 
   <div class='field'>
@@ -42,8 +47,13 @@
   </div>
 
   <div class='field'>
+    <%= f.label :ddd2, 'DDD' %> 
+    <%= f.number_field :ddd2, min: 11 ,max: 99 %>
+  </div>
+
+  <div class='field'>
     <%= f.label :phone2, 'Telefone Adicional' %>
-    <%= f.telephone_field :phone2, maxlength: 15 %>
+    <%= f.number_field :phone2, min: 10000000 ,max: 999999999 %>
   </div>
 
   <div class='field'>

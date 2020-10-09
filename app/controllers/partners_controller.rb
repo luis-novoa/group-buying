@@ -61,7 +61,7 @@ class PartnersController < ApplicationController
       .require(:partner)
       .permit(
         :name, :official_name, :supplier, :description, :cnpj, :address, :city, :state,
-        :website, :email, :phone1, :phone1_type, :phone2, :phone2_type, :image
+        :website, :email, :ddd1, :phone1, :phone1_type, :ddd2, :phone2, :phone2_type, :image
       )
   end
 end
