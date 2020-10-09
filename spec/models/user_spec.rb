@@ -80,8 +80,13 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of(:account_type) }
   it { is_expected.to validate_inclusion_of(:account_type).in_array(['Comprador', 'Voluntário', 'Ponto de Entrega']) }
   it { is_expected.to validate_presence_of(:cpf) }
-  it { is_expected.to validate_uniqueness_of(:cpf).case_insensitive }
-  it { is_expected.to validate_length_of(:cpf).is_at_least(13).is_at_most(19) }
+  it { is_expected.to validate_uniqueness_of(:cpf) }
+  it {
+    is_expected.to validate_numericality_of(:cpf)
+      .only_integer
+      .is_greater_than(9_999_999_999)
+      .is_less_than(100_000_000_000)
+  }
   it { is_expected.to have_many(:orders) }
   it { is_expected.to have_one(:partner) }
   it { is_expected.to have_one(:volunteer_info).dependent(:destroy) }

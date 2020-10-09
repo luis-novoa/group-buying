@@ -2,13 +2,15 @@ FactoryBot.define do
   factory :partner do
     name { Faker::Name.name }
     official_name { Faker::Name.name }
-    cnpj { cnpj_generator }
+    cnpj { Faker::Number.number(digits: 14) }
     description { Faker::Lorem.characters(number: 150) }
     website { Faker::Lorem.characters(number: 25) }
     email { Faker::Internet.email }
-    phone1 { phone_creator }
+    ddd1 { Faker::Number.between(from: 11, to: 99) }
+    phone1 { Faker::Number.number(digits: 9) }
     phone1_type { phone_type_creator }
-    phone2 { phone_creator }
+    ddd2 { Faker::Number.between(from: 11, to: 99) }
+    phone2 { Faker::Number.number(digits: 9) }
     phone2_type { phone_type_creator }
     address { brazilian_address }
     city { Faker::Address.city }

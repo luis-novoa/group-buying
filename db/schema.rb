@@ -53,13 +53,15 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
   create_table "partners", force: :cascade do |t|
     t.string "name", limit: 75, null: false
     t.string "official_name", limit: 75, null: false
-    t.string "cnpj", limit: 18, null: false
+    t.bigint "cnpj", null: false
     t.text "description", null: false
     t.string "website", limit: 75
     t.string "email", limit: 75, null: false
-    t.string "phone1", limit: 18, null: false
+    t.bigint "ddd1", null: false
+    t.bigint "phone1", null: false
     t.string "phone1_type", null: false
-    t.string "phone2", limit: 19
+    t.bigint "ddd2"
+    t.bigint "phone2"
     t.string "phone2_type"
     t.string "address", limit: 75, null: false
     t.string "city", limit: 30, null: false
@@ -124,12 +126,14 @@ ActiveRecord::Schema.define(version: 2020_09_25_221714) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name", limit: 75, null: false
-    t.string "phone1", limit: 19, null: false
+    t.bigint "ddd1", null: false
+    t.bigint "phone1", null: false
     t.string "phone1_type", null: false
-    t.string "phone2", limit: 19
+    t.bigint "ddd2"
+    t.bigint "phone2"
     t.string "phone2_type"
     t.string "account_type", default: "Comprador"
-    t.string "cpf", limit: 14
+    t.bigint "cpf", null: false
     t.boolean "super_user", default: false
     t.boolean "moderator", default: false
     t.boolean "waiting_approval", default: false

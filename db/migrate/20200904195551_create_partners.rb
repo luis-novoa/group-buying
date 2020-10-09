@@ -3,13 +3,15 @@ class CreatePartners < ActiveRecord::Migration[6.0]
     create_table :partners do |t|
       t.string :name, null: false, limit: 75, unique: true
       t.string :official_name, null: false, limit: 75, unique: true
-      t.string :cnpj, null: false, limit: 18, unique: true
+      t.bigint :cnpj, null: false, unique: true
       t.text :description, null: false, limit: 5000
       t.string :website, limit: 75
       t.string :email, null: false, limit: 75, unique: true
-      t.string :phone1, null: false, limit: 18
+      t.bigint :ddd1, null: false
+      t.bigint :phone1, null: false
       t.string :phone1_type, null: false
-      t.string :phone2, limit: 19
+      t.bigint :ddd2
+      t.bigint :phone2
       t.string :phone2_type
       t.string :address, null: false, limit: 75
       t.string :city, null: false, limit: 30

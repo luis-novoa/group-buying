@@ -6,17 +6,17 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Lorem.characters(number: 6) }
     password_confirmation { password }
-    ddd1 { Faker::Number.number(digits: 2) }
+    ddd1 { Faker::Number.between(from: 11, to: 99) }
     phone1 { Faker::Number.number(digits: 9) }
     phone1_type { phone_type_creator }
-    ddd2 { Faker::Number.number(digits: 2) }
+    ddd2 { Faker::Number.between(from: 11, to: 99) }
     phone2 { Faker::Number.number(digits: 9) }
     phone2_type { phone_type_creator }
     account_type { 'Comprador' }
     waiting_approval { false }
     super_user { false }
     moderator { false }
-    cpf { generate_cpf }
+    cpf { Faker::Number.number(digits: 11) }
 
     trait :volunteer_type do
       account_type { 'Voluntário' }
