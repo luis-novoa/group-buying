@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'image_optim'
 gem 'image_optim_pack'
 
+# XML handling
+gem 'nokogiri'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
