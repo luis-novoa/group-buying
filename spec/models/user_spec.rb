@@ -22,10 +22,21 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_length_of(:password).is_at_least(6).is_at_most(50) }
   it { is_expected.to validate_confirmation_of(:password) }
 
+  it { is_expected.to validate_presence_of(:ddd1) }
+  it {
+    is_expected.to validate_numericality_of(:ddd1)
+      .only_integer
+      .is_greater_than(10)
+      .is_less_than(100)
+  }
+
   it { is_expected.to validate_presence_of(:phone1) }
-  it { is_expected.to validate_length_of(:phone1).is_at_least(14).is_at_most(15) }
-  it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone1) }
-  it { is_expected.to_not allow_value('a' * 14).for(:phone1) }
+  it {
+    is_expected.to validate_numericality_of(:phone1)
+      .only_integer
+      .is_greater_than(10_000_000)
+      .is_less_than(1_000_000_000)
+  }
 
   it { is_expected.to validate_presence_of(:phone1_type) }
   it {
@@ -35,9 +46,19 @@ RSpec.describe User, type: :model do
   }
 
   context '.phone2 defined' do
-    it { is_expected.to validate_length_of(:phone2).is_at_least(14).is_at_most(15) }
-    it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone2) }
-    it { is_expected.to_not allow_values('a' * 14).for(:phone2) }
+    it {
+      is_expected.to validate_numericality_of(:ddd2)
+        .only_integer
+        .is_greater_than(10)
+        .is_less_than(100)
+    }
+
+    it {
+      is_expected.to validate_numericality_of(:phone2)
+        .only_integer
+        .is_greater_than(10_000_000)
+        .is_less_than(1_000_000_000)
+    }
     it { is_expected.to_not allow_value(nil).for(:phone2_type) }
   end
   context '.phone2 undefined' do

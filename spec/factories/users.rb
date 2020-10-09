@@ -6,9 +6,11 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Lorem.characters(number: 6) }
     password_confirmation { password }
-    phone1 { phone_creator }
+    ddd1 { Faker::Number.number(digits: 2) }
+    phone1 { Faker::Number.number(digits: 9) }
     phone1_type { phone_type_creator }
-    phone2 { phone_creator }
+    ddd2 { Faker::Number.number(digits: 2) }
+    phone2 { Faker::Number.number(digits: 9) }
     phone2_type { phone_type_creator }
     account_type { 'Comprador' }
     waiting_approval { false }
