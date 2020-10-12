@@ -41,4 +41,8 @@ class XMLUtils
     end
     output.to_xml
   end
+
+  def self.get_token(body)
+    Nokogiri::XML(body).xpath('//code').text
+  end
 end

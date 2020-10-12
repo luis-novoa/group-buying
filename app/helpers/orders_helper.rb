@@ -9,4 +9,8 @@ module OrdersHelper
       [%w[Cuiabá Cuiabá]]
     end
   end
+
+  def close_cart_link(orders)
+    link_to 'Fechar Carrinho', payments_path, method: :post unless orders.empty?
+  end
 end

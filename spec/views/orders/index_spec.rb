@@ -38,5 +38,15 @@ RSpec.describe 'Orders#index', type: :feature do
     it { is_expected.to have_no_text paid_order.purchase_product.name }
     it { is_expected.to have_no_text processing_order.purchase_product.name }
     it { is_expected.to have_no_text delivered_order.purchase_product.name }
+    context 'closing the shopping cart' do
+      before(:each) { click_on 'Fechar Carrinho' }
+      it('change order status') { expect(order.status).to eq('Processando') }
+      it('adds payment_code to the order') { expect(order.payment_code).to_not eq(nil) }
+      it 'redirects to the payment website' do
+        expect(current_path).to eq(
+          "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{order.payment_code}"
+        )
+      end
+    end
   end
 end
