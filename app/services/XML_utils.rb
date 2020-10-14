@@ -14,7 +14,7 @@ class XMLUtils
           xml.documents do
             xml.document do
               xml.type 'CPF'
-              xml.value user.cpf
+              xml.value user.cpf.to_s
             end
           end
         end
@@ -36,7 +36,7 @@ class XMLUtils
         xml.timeout '100000'
         xml.maxAge '999999999'
         xml.maxUses '999'
-        xml.receiver { xml.email 'compracoletiva19@gmail.com' }
+        xml.receiver { xml.email Rails.application.credentials.pagseguro[:email] }
       end
     end
     output.to_xml

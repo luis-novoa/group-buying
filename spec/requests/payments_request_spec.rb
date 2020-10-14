@@ -1,5 +1,5 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe "Payments", type: :request do
+# RSpec.describe "Payments", type: :request do
 
-end
+# end
