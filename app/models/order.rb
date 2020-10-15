@@ -8,6 +8,7 @@ class Order < ApplicationRecord
 
   belongs_to :user, optional: false
   belongs_to :purchase_product, optional: false
+  belongs_to :payment, optional: true
 
   private
 

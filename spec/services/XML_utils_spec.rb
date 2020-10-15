@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe XMLUtils, type: :feature do
   context '#create_xml' do
+    let(:payment) { create(:payment) }
     let!(:user) { create(:user) }
     let!(:orders) { create_list(:order, 2, user: user) }
     it 'returns info formatted in xml' do
-      output = XMLUtils.create_xml(user, user.orders)
+      output = XMLUtils.create_xml(user, user.orders, payment.id)
       xml_result = "<?xml version=\"1.0\"?>\n"\
       "<checkout>\n"\
       "  <sender>\n"\
@@ -49,8 +50,9 @@ RSpec.describe XMLUtils, type: :feature do
       "  <maxAge>999999999</maxAge>\n"\
       "  <maxUses>999</maxUses>\n"\
       "  <receiver>\n"\
-      "    <email>compracoletiva19@gmail.com</email>\n"\
+      "    <email>faepenmt@gmail.com</email>\n"\
       "  </receiver>\n"\
+      "  <reference>PGTO#{payment.id}</reference>\n"\
       "</checkout>\n"
       expect(output).to eq(xml_result)
     end

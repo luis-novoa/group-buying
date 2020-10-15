@@ -20,6 +20,7 @@ RSpec.describe Order, type: :model do
 
   it { is_expected.to belong_to(:user).required }
   it { is_expected.to belong_to(:purchase_product).required }
+  it { is_expected.to belong_to(:payment).optional }
 
   context '.delivery_city != order.purchase_product.offer_city' do
     let(:purchase_product) { create(:purchase_product) }

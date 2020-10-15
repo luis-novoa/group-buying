@@ -1,7 +1,7 @@
 require 'nokogiri'
 
 class XMLUtils
-  def self.create_xml(user, orders)
+  def self.create_xml(user, orders, payment_id)
     output = Nokogiri::XML::Builder.new do |xml|
       xml.checkout do
         xml.sender do
@@ -37,12 +37,13 @@ class XMLUtils
         xml.maxAge '999999999'
         xml.maxUses '999'
         xml.receiver { xml.email Rails.application.credentials.pagseguro[:email] }
+        xml.reference "PGTO#{payment_id}"
       end
     end
     output.to_xml
   end
 
-  def self.get_token(body)
-    Nokogiri::XML(body).xpath('//code').text
+  def self.get_attr(body, attr)
+    Nokogiri::XML(body).xpath("//#{attr}").text
   end
 end
