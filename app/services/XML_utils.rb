@@ -1,46 +1,35 @@
 require 'nokogiri'
 
 class XMLUtils
-  def self.create_xml(user, orders, payment_id)
-    output = Nokogiri::XML::Builder.new do |xml|
-      xml.checkout do
-        xml.sender do
-          xml.name user.name
-          xml.email user.email
-          xml.phone do
-            xml.areaCode user.ddd1
-            xml.number user.phone1
-          end
-          xml.documents do
-            xml.document do
-              xml.type 'CPF'
-              xml.value user.cpf.to_s
-            end
-          end
-        end
-        xml.currency 'BRL'
-        xml.items do
-          orders.each do |order|
-            xml.item do
-              xml.id order.purchase_product.id
-              xml.description order.purchase_product.name
-              xml.amount order.purchase_product.price
-              xml.quantity order.quantity
-              xml.weight '0'
-              xml.shippingCost '0.00'
-            end
-          end
-        end
-        xml.redirectURL 'https://terralimpacc.org/'
-        xml.shipping { xml.addressRequired 'false' }
-        xml.timeout '100000'
-        xml.maxAge '999999999'
-        xml.maxUses '999'
-        xml.receiver { xml.email Rails.application.credentials.pagseguro[:email] }
-        xml.reference "PGTO#{payment_id}"
-      end
+  def self.create_url_encoded(user, orders, payment_id)
+    output = {
+      email: Rails.application.credentials.pagseguro[:email],
+      token: Rails.application.credentials.pagseguro[:sandbox_token],
+      currency: 'BRL',
+      senderName: user.name,
+      senderEmail: user.email,
+      senderAreaCode: user.ddd1,
+      senderPhone: user.phone1,
+      senderCPF: user.cpf,
+      shippingAddressRequired: 'false',
+      redirectURL: 'https://terralimpacc.org/',
+      timeout: '100000',
+      maxAge: '999999999',
+      maxUses: '999',
+      receiverEmail: Rails.application.credentials.pagseguro[:email],
+      reference: "PGTO#{payment_id}"
+    }
+    i = 0
+    orders.each do |order|
+      i += 1
+      output["itemId#{i}"] = order.purchase_product.id
+      output["itemDescription#{i}"] = order.purchase_product.name
+      output["itemAmount#{i}"] = order.purchase_product.price
+      output["itemQuantity#{i}"] = order.quantity
+      output["itemWeight#{i}"] = '0'
+      output["itemShippingCost#{i}"] = '0.01'
     end
-    output.to_xml
+    URI.encode_www_form(output)
   end
 
   def self.get_attr(body, attr)

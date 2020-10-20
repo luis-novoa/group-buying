@@ -3,7 +3,6 @@ FactoryBot.define do
     active { true }
     status { create_status }
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }
-    message { nil }
     partner { association :partner }
 
     trait :inactive do

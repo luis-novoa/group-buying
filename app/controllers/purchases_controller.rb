@@ -47,6 +47,6 @@ class PurchasesController < ApplicationController
   end
 
   def update_purchase_params
-    params.require(:purchase).permit(:active, :status, :message)
+    params.require(:purchase).permit(:active, :status)
   end
 end
