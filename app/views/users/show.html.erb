@@ -26,5 +26,6 @@
     <span><%= order.quantity %></span>
     <span>R$ <%= br_currency(order.total) %></span>
     <span><%= order.delivery_city %></span>
+    <span><%= link_to 'Ver Pedido e Link de Pagamento', payment_path(order.payment) %></span>
   <% end %>
 </section>

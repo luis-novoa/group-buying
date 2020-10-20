@@ -64,6 +64,7 @@ RSpec.describe 'Users#show', type: :feature do
   context 'access from any account' do
     let(:user) { create(:user) }
     let(:user1) { create(:user, phone2: nil, phone2_type: nil) }
+    let!(:payment) { create(:payment) }
     let!(:order) { create(:order, user: user) }
     let!(:paid_order) { create(:order, user: user, status: 'Pago') }
     let!(:processing_order) { create(:order, user: user, status: 'Processando') }
@@ -97,6 +98,7 @@ RSpec.describe 'Users#show', type: :feature do
     it { is_expected.to have_text delivered_order.delivery_city }
     it { is_expected.to have_text delivered_order.created_at.strftime('%d/%m/%Y') }
     it { is_expected.to have_text delivered_order.status }
+    it { is_expected.to have_link 'Ver Pedido e Link de Pagamento', href: payment_path(delivered_order.payment) }
   end
 
   context 'access with buyer account' do

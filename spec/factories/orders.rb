@@ -5,6 +5,7 @@ FactoryBot.define do
     status { 'Carrinho' }
     delivery_city { 'Sinop' }
     user { association :user }
+    payment { association :payment }
     purchase_product { association :purchase_product }
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[create update destroy index]
   resources :partners, only: %i[index show create new update edit]
-  resources :payments, only: %i[create]
+  resources :payments, only: %i[create show]
   resources :products
   resources :purchases, except: %i[new destroy]
   resources :purchase_products, expect: %i[edit]
