@@ -20,13 +20,15 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    'hey'
+    @orders = @payment.orders
+    @total = @orders.pluck(:total).sum
+    [@payment, @orders, @total]
   end
 
   private
 
   def check_user_id
-    @payment = Payment.find(params[:id])
+    @payment = Payment.includes(orders: :purchase_product).find(params[:id])
     unauthorized(:forbidden) unless current_user == @payment.user
   end
 end
