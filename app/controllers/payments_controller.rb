@@ -1,6 +1,8 @@
 require 'httparty'
 
 class PaymentsController < ApplicationController
+  before_action :check_user_id, only: %i[show]
+
   def create
     new_payment = current_user.payments.build
     new_payment.save
@@ -15,5 +17,16 @@ class PaymentsController < ApplicationController
     redirect_to "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{payment_code}"
     orders.update_all(status: 'Processando', payment_id: new_payment.id)
     new_payment.update(ref: "PGTO#{new_payment.id}", code: payment_code)
+  end
+
+  def show
+    'hey'
+  end
+
+  private
+
+  def check_user_id
+    @payment = Payment.find(params[:id])
+    unauthorized(:forbidden) unless current_user == @payment.user
   end
 end

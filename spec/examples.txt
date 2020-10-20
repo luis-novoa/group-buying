@@ -245,6 +245,10 @@ example_id                                             | status  | run_time     
 ./spec/views/partners/show_spec.rb[1:5:15]             | passed  | 0.31333 seconds |
 ./spec/views/partners/show_spec.rb[1:5:16]             | passed  | 0.15436 seconds |
 ./spec/views/partners/show_spec.rb[1:5:17]             | passed  | 0.14871 seconds |
+./spec/views/payments/show_spec.rb[1:1:1]              | passed  | 0.48353 seconds |
+./spec/views/payments/show_spec.rb[1:1:2]              | passed  | 0.04914 seconds |
+./spec/views/payments/show_spec.rb[1:2:1]              | passed  | 0.09064 seconds |
+./spec/views/payments/show_spec.rb[1:2:2]              | passed  | 0.1262 seconds  |
 ./spec/views/products/edit_spec.rb[1:1:1]              | passed  | 0.08207 seconds |
 ./spec/views/products/edit_spec.rb[1:1:2]              | passed  | 0.07343 seconds |
 ./spec/views/products/edit_spec.rb[1:2:1]              | passed  | 0.2042 seconds  |
