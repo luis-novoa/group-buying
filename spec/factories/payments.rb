@@ -1,3 +1,5 @@
 FactoryBot.define do
-  factory :payment
+  factory :payment do
+    user { association :user }
+  end
 end
