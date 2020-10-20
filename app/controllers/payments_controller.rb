@@ -2,7 +2,7 @@ require 'httparty'
 
 class PaymentsController < ApplicationController
   def create
-    new_payment = Payment.new
+    new_payment = current_user.payments.build
     new_payment.save
     orders = current_user.orders.where(status: 'Carrinho')
     request_body = XMLUtils.create_url_encoded(current_user, orders, new_payment.id)

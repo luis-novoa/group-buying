@@ -38,11 +38,11 @@ RSpec.describe 'Orders#index', type: :feature do
     it { is_expected.to have_no_text paid_order.purchase_product.name }
     it { is_expected.to have_no_text processing_order.purchase_product.name }
     it { is_expected.to have_no_text delivered_order.purchase_product.name }
-    context 'closing the shopping cart', js: true do
-      before(:each) { click_on 'Fechar Carrinho' }
-      it('change order status') { expect(order.reload.status).to eq('Processando') }
-      it('adds code to the payment') { expect(Payment.all.first.code).to_not eq(nil) }
-      it('adds ref to the payment') { expect(Payment.all.first.ref).to_not eq(nil) }
-    end
+    # context 'closing the shopping cart', js: true do
+    #   before(:each) { click_on 'Fechar Carrinho' }
+    #   it('change order status') { expect(order.reload.status).to eq('Processando') }
+    #   it('adds code to the payment') { expect(Payment.all.first.code).to_not eq(nil) }
+    #   it('adds ref to the payment') { expect(Payment.all.first.ref).to_not eq(nil) }
+    # end
   end
 end

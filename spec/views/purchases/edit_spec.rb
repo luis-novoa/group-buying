@@ -44,12 +44,6 @@ RSpec.describe 'Purchases#edit', type: :feature do
     it { is_expected.to have_current_path(edit_purchase_path(purchase)) }
 
     context 'form' do
-      it 'updates purchase instance' do
-        fill_in 'Mensagem aos compradores',	with: "Delivery at 8 o'clock"
-        click_on 'Enviar'
-        expect(purchase.reload.message).to eq("Delivery at 8 o'clock")
-      end
-
       it 'deletes inactive instance with zero total' do
         purchase.update(total: 0)
         choose 'Inativa'
