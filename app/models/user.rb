@@ -35,6 +35,7 @@ class User < ApplicationRecord
             numericality: { only_integer: true, greater_than: 9_999_999_999, less_than: 100_000_000_000 }
 
   has_many :orders, dependent: false
+  has_many :payments, dependent: false
   has_one :partner, dependent: false
   has_one :volunteer_info, dependent: :destroy
 

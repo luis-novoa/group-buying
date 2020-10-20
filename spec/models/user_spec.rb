@@ -88,6 +88,7 @@ RSpec.describe User, type: :model do
       .is_less_than(100_000_000_000)
   }
   it { is_expected.to have_many(:orders) }
+  it { is_expected.to have_many(:payments) }
   it { is_expected.to have_one(:partner) }
   it { is_expected.to have_one(:volunteer_info).dependent(:destroy) }
 end
