@@ -116,4 +116,10 @@ module UsersHelper
     purchases = tag.span(link_to('Todas as Compras Coletivas', purchases_path))
     tag.div(purchase_form + purchases)
   end
+
+  def orders_to_deliver_link
+    return if current_user.account_type == 'Comprador'
+
+    link_to 'Pedidos prontos para Entrega', purchase_lists_path
+  end
 end

@@ -128,6 +128,7 @@ RSpec.describe 'Users#show', type: :feature do
     it { is_expected.to have_link href: new_product_path }
     it { is_expected.to have_link href: products_path }
     it { is_expected.to have_link href: purchases_path }
+    it { is_expected.to have_link href: purchase_lists_path }
     it 'can open a collective purchase from the volunteer panel' do
       select partner.name, from: 'purchase_partner_id'
       click_on 'Criar Compra Coletiva com este Fornecedor'
@@ -145,6 +146,7 @@ RSpec.describe 'Users#show', type: :feature do
     it { is_expected.to have_current_path(user_path(delivery)) }
     it { is_expected.to have_css('.delivery-point-greeting') }
     it { is_expected.to have_link href: users_path }
+    it { is_expected.to have_link href: purchase_lists_path }
   end
 
   context 'access with administrator account' do
