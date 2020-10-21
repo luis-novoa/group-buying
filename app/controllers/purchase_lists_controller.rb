@@ -7,12 +7,25 @@ class PurchaseListsController < ApplicationController
                         .merge(Purchase.where(status: 'Pronto para Retirada'))
     @users = []
     purchase_products.each do |purchase_product|
-      purchase_product.orders.each do |order|
+      purchase_product.orders.where(status: 'Pago').each do |order|
         @users << order.user
       end
     end
     @users.uniq!
   end
 
-  def show; end
+  def show
+    @buyer = User.find(params[:id])
+    @orders = Order.joins(:user, purchase_product: :purchase)
+                   .merge(Purchase.where(status: 'Pronto para Retirada'))
+                   .merge(User.where(id: params[:id]))
+    [@buyer, @orders]
+  end
+
+  def update
+    @orders = Order.joins(:user, purchase_product: :purchase)
+                   .merge(Purchase.where(status: 'Pronto para Retirada'))
+                   .merge(User.where(id: params[:id]))
+    @orders.update_all(status: 'Entregue')
+  end
 end

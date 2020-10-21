@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :payments, only: %i[create show]
   resources :products
   resources :purchases, except: %i[new destroy]
-  resources :purchase_lists, only: %i[index show]
+  resources :purchase_lists, only: %i[index show update]
   resources :purchase_products, expect: %i[edit]
   resources :volunteer_infos, only: %i[new create]
   get '/about' => 'static_pages#show', page: 'about'

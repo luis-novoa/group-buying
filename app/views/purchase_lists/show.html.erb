@@ -1,0 +1,8 @@
+<h1>Entrega para <%= @buyer.name %></h1>
+
+<%= link_to 'Confirmar Entrega', purchase_list_path(@buyer), method: :put %>
+
+<% @orders.each do |order| %>
+  <span><%= order.purchase_product.name %></span>
+  <span><%= order.quantity %></span>
+<% end %>
