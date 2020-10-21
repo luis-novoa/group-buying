@@ -3,7 +3,14 @@ require 'rails_helper'
 RSpec.describe 'PurchaseLists#index', type: :feature do
   subject { page }
 
-  # let!(:purchases) { create_list(:purchase, 2) }
+  let!(:order_ready_to_deliver) { create(:order) }
+  let!(:order_ready_to_deliver2) { create(:order) }
+  let!(:common_order) { create(:order) }
+  let!(:user1) { order_ready_to_deliver.user }
+  let!(:user2) { order_ready_to_deliver2.user }
+  let!(:user3) { common_order.user }
+  let!(:purchase_ready1) { order_ready_to_deliver.purchase_product.purchase }
+  let!(:purchase_ready2) { order_ready_to_deliver2.purchase_product.purchase }
   context 'attempt to access from unlogged user' do
     before(:each) { visit purchase_lists_path }
     it('redirects user to root') { is_expected.to have_current_path(root_path) }
@@ -37,21 +44,16 @@ RSpec.describe 'PurchaseLists#index', type: :feature do
   context 'access with volunteer account' do
     let(:volunteer) { create(:volunteer_info).user }
     before(:each) do
+      purchase_ready1.update(status: 'Pronto para Retirada')
+      purchase_ready2.update(status: 'Pronto para Retirada')
       volunteer.update(waiting_approval: false)
       login(volunteer)
       visit purchase_lists_path
     end
     it { is_expected.to have_current_path(purchase_lists_path) }
-    # it { is_expected.to have_link purchases[0].id, href: purchase_path(purchases[0]) }
-    # it { is_expected.to have_link purchases[1].id, href: purchase_path(purchases[1]) }
-    # it { is_expected.to have_text purchases[0].partner.name }
-    # it { is_expected.to have_text purchases[1].partner.name }
-    # it { is_expected.to have_text purchases[0].total }
-    # it { is_expected.to have_text purchases[1].total }
-    # it { is_expected.to have_text purchases[0].created_at.to_date }
-    # it { is_expected.to have_text purchases[1].created_at.to_date }
-    # it { is_expected.to have_link href: edit_purchase_path(purchases[0]) }
-    # it { is_expected.to have_link href: edit_purchase_path(purchases[1]) }
+    it { is_expected.to have_link user1.name, href: purchase_list_path(user1) }
+    it { is_expected.to have_link user2.name, href: purchase_list_path(user2) }
+    it { is_expected.to have_no_link user3.name, href: purchase_list_path(user3) }
   end
 
   context 'access with delivery point account' do
@@ -62,7 +64,5 @@ RSpec.describe 'PurchaseLists#index', type: :feature do
       visit purchase_lists_path
     end
     it { is_expected.to have_current_path(purchase_lists_path) }
-    # it { is_expected.to have_no_link href: edit_purchase_path(purchases[0]) }
-    # it { is_expected.to have_no_link href: edit_purchase_path(purchases[1]) }
   end
 end

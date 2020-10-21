@@ -1,0 +1,5 @@
+<h1>Compradores com Entregas Pendentes</h1>
+
+<% @users.each do |user| %>
+  <%= link_to user.name, purchase_list_path(user) %>
+<% end %>

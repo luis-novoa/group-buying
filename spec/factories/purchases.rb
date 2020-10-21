@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :purchase do
     active { true }
-    status { create_status }
+    status { 'Aberta' }
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }
     partner { association :partner }
 
