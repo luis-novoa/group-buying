@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background-color: #D6EEFF;
+  font-family: 'Rubik', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.useful-links {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1C671F;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  a {
+    color: #F9F9F9;
+    margin: 0 0.5rem;
+  }
+}
+
+.round-box {
+  background-color: white;
+  border-radius: 10px;
+}

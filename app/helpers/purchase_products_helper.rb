@@ -1,6 +1,6 @@
 module PurchaseProductsHelper
   def order_form(product, orders = nil, ordered_products_ids = nil)
-    return 'Faça Login para Comprar' unless current_user
+    return tag.span('Faça Login para Comprar') unless current_user
 
     if ordered_products_ids&.include?(product.id)
       order = orders.find_by(purchase_product_id: product.id)

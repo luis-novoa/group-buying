@@ -1,9 +1,147 @@
-<section class="active-purchases">
+<section class='welcome'>
+  <article class='welcome-window round-box'>
+    <%= image_tag('tl.jpg') %>
+    <p>
+      Somos um grupo de compras coletivas sem fins lucrativos. Nosso objetivo é conectar compradores 
+      e produtores de alimentos agroecológicos, para garantir alimentação saudável a preços 
+      acessíveis.
+    </p>
+    <p>
+      No sistema de compras coletivas, o pedido é realizado junto ao produtor quando a meta 
+      financeira é atingida. Portanto, pode haver certa demora na entrega.
+    </p>
+    <p>
+      Atualmente atendemos as cidades de Sinop e Cuiabá. Boas compras!
+    </p>
+  </article>
+</section>
+
+<section class='active-purchases'>
+  <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
+    <article class='purchase-product-preview round-box'>
+    <%= image_tag('sample.jpg') %>
+    <div>
+      <h2 class='purchase-product-name purchase-product-link'>Sample Product</h2>
+      <span class='purchase-product-price'>R$ 25,00</span>
+      <span>Faça Login para Comprar</span>
+    </div>
+  </article>
   <% @purchase_products.each do |purchase_product| %>
-    <article class="purchase-product-preview">
-      <img src="" alt="" class="image-to-be-implemented">
+    <article class='purchase-product-preview'>
+      <img src='' alt='' class='image-to-be-implemented'>
       <%= link_to purchase_product.name, purchase_product_path(purchase_product), class: 'purchase-product-name purchase-product-link' %>
-      <span class="purchase-product-price">R$ <%= br_currency(purchase_product.price) %></span>
+      <span class='purchase-product-price'>R$ <%= br_currency(purchase_product.price) %></span>
       <div><%= order_form(purchase_product, @existing_orders, @existing_orders_ids) %></div>
     </article>
   <% end %>
