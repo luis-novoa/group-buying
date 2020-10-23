@@ -1,5 +1,5 @@
-<section class='form round-box'>
-  <h2>Registre-se</h2>
+<section class='form round-box registration'>
+  <h2>Cadastre-se</h2>
   <span>Campos marcados com asterísco (*) são obrigatórios.</span>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'try') do |f| %>
@@ -78,7 +78,6 @@
         ]
       %>
     </div>
-
 
     <div class='actions'>
       <%= f.submit 'Enviar', id: 'send' %>

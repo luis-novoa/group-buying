@@ -42,11 +42,10 @@ a {
 .form {
   margin: 0 auto 1rem auto;
   padding: 1rem 2rem;
-  width: 32rem;
   span {
     display: block;
   }
-  input, select {
+  input:not(input[type=checkbox]), select {
     margin-left: 0.1rem;
     margin-right: 1rem;
   }
