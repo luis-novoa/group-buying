@@ -22,7 +22,6 @@
 .active-purchases {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3.5rem;
   margin-left: 32rem;
 }
 
@@ -44,5 +43,6 @@
   img {
     width: 8rem;
     height: 8rem;
+    border-radius: 10px;
   }
 }

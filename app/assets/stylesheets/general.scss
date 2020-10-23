@@ -10,6 +10,7 @@ h2 {
 
 body {
   margin: 0;
+  margin-top: 3.5rem;
   background-color: #D6EEFF;
   font-family: 'Rubik', sans-serif;
 }
@@ -36,4 +37,35 @@ a {
 .round-box {
   background-color: white;
   border-radius: 10px;
+}
+
+.form {
+  margin: 0 auto 1rem auto;
+  padding: 1rem 2rem;
+  width: 32rem;
+  span {
+    display: block;
+  }
+  input, select {
+    margin-left: 0.1rem;
+    margin-right: 1rem;
+  }
+  h2, span {
+    text-align: center;
+  }
+  .field, h2, span {
+    margin-bottom: 1rem;
+  }
+  .field_with_errors {
+    display: inline;
+    color: red;
+    input, select {
+      border: solid 1px red;
+      border-radius: 2px;
+    }
+  }
+  .separator {
+    border-top: solid 1px #D6EEFF;
+    margin-bottom: 1rem;
+  }
 }
