@@ -34,6 +34,10 @@ a {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .round-box {
   background-color: white;
   border-radius: 10px;
@@ -51,16 +55,20 @@ a {
   span {
     display: block;
   }
+
   input:not(input[type=checkbox]), select {
     margin-left: 0.1rem;
     margin-right: 1rem;
   }
+
   h2, span {
     text-align: center;
   }
+
   .field, h2, span {
     margin-bottom: 1rem;
   }
+
   .field_with_errors {
     display: inline;
     color: red;
@@ -69,10 +77,12 @@ a {
       border-radius: 2px;
     }
   }
+
   .separator {
     border-top: solid 1px #D6EEFF;
     margin-bottom: 1rem;
   }
+
   .phone {
     margin-left: 1rem;
   }

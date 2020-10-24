@@ -1,54 +1,70 @@
-<%= form_for @volunteer_info do |f| %>
-  <div class='field'>
-    <%= f.label :address, 'Endereço*' %><br />
-    <%= f.text_field :address %>
-    <%= text_field_tag :address_street %> <!-- please apply display: none on this text field -->
-  </div>
-  <div class='field'> <!-- please apply display: none on this field -->
-    <%= label_tag :address_number, 'Número*' %><br />
-    <%= text_field_tag :address_number %>
-  </div>
-  <div class='field'> <!-- please apply display: none on this text field -->
-    <%= label_tag :address_additional_info, 'Complemento' %><br />
-    <%= text_field_tag :address_additional_info %>
-  </div>
+<section class='form round-box registration'>
+  <%= form_for @volunteer_info do |f| %>
+    <div class='field'>
+      <%= f.label :address, 'Endereço*' %>
+      <%= f.text_field :address, class: 'hidden' %>
+      <%= text_field_tag :address_street %> <!-- please apply display: none on this text field -->
+    </div>
 
-  <div class='field'>
-    <%= f.label :city, 'Cidade*' %><br />
-    <%= f.text_field :city %>
-  </div>
+    <div class='field'> <!-- please apply display: none on this field -->
+      <%= label_tag :address_number, 'Número*' %>
+      <%= text_field_tag :address_number %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :state, 'Estado*' %><br />
-    <%= f.select :state, [
-      %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
-      %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
-      %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
-      ]
-    %>
-  </div>
+    <div class='field'> <!-- please apply display: none on this text field -->
+      <%= label_tag :address_additional_info, 'Complemento' %>
+      <%= text_field_tag :address_additional_info %>
+    </div>
 
-  <%= f.label :institution, 'Instituição/Empresa*' %>
-  <%= f.text_field :institution %>
+    <div class='field'>
+      <%= f.label :city, 'Cidade*' %>
+      <%= f.text_field :city %>
+    </div>
 
-  <%= f.label :degree, 'Área de Estudo/Trabalho*' %>
-  <%= f.text_field :degree %>
+    <div class='field'>
+      <%= f.label :state, 'Estado*' %>
+      <%= f.select :state, [
+        %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
+        %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
+        %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
+        ]
+      %>
+    </div>
 
-  <%= f.label :unemat_bond, 'Vínculo com a UNEMAT*' %>
-  <%= f.select :unemat_bond, [ 
-    %w[Professor Professor], %w[Aluno Aluno], ['Colaborador Externo', 'Colaborador Externo']
-    ] %>
+    <div class='field'>
+      <%= f.label :institution, 'Instituição/Empresa*' %>
+      <%= f.text_field :institution %>
+    </div>
 
-  <%= f.label :instagram %>
-  <%= f.text_field :instagram %>
+    <div class='field'>
+      <%= f.label :degree, 'Área de Estudo/Trabalho*' %>
+      <%= f.text_field :degree %>
+    </div>
 
-  <%= f.label :facebook %>
-  <%= f.text_field :facebook %>
+    <div class='field'>
+      <%= f.label :unemat_bond, 'Vínculo com a UNEMAT*' %>
+      <%= f.select :unemat_bond, [ 
+        %w[Professor Professor], %w[Aluno Aluno], ['Colaborador Externo', 'Colaborador Externo']
+      ] %>
+    </div>
 
-  <%= f.label :lattes %>
-  <%= f.text_field :lattes %>
+    <div class='field'>
+      <%= f.label :instagram %>
+      <%= f.text_field :instagram %>
+    </div>
 
-  <%= f.submit 'Enviar' %>
-<% end %>
+    <div class='field'>
+      <%= f.label :facebook %>
+      <%= f.text_field :facebook %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :lattes %>
+      <%= f.text_field :lattes %>
+    </div>
+
+    <%= f.submit 'Enviar' %>
+  <% end %>
+</section>
 
 <%= javascript_pack_tag 'volunteer_registration' %>
