@@ -2,18 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.welcome-window {
+.welcome {
   position: fixed;
   top: 3.5rem;
   width: 30rem;
-  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+} 
+
+.welcome-window {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding: 1rem 2rem;
   text-align: justify;
-  margin-left: 1rem;
+  // margin-left: 1rem;
   img {
     width: 20rem;
   }
@@ -22,7 +27,8 @@
 .active-purchases {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 32rem;
+  margin-left: 31.5rem;
+  justify-content: center;
 }
 
 .purchase-product-preview {

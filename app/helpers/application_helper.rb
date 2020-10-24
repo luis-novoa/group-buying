@@ -11,6 +11,12 @@ module ApplicationHelper
     current_user ? logged_in_links : logged_out_links
   end
 
+  def display_notice
+    return if flash[:notice].nil?
+
+    render partial: 'layouts/notice', locals: { notice: flash[:notice] }
+  end
+
   private
 
   def logged_out_links
