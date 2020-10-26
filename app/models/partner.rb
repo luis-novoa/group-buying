@@ -13,7 +13,7 @@ class Partner < ApplicationRecord
             uniqueness: true,
             numericality: { only_integer: true, greater_than: 9_999_999_999_999, less_than: 100_000_000_000_000 }
   validates :description, presence: true, length: { minimum: 2, maximum: 5000 }
-  validates :website, allow_nil: true, length: { minimum: 2, maximum: 75 }
+  validates :website, allow_nil: true, length: { maximum: 75 }
   validates :email,
             presence: true,
             uniqueness: { case_sensitive: false },

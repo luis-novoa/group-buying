@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
       flash[:success] = 'Produto adicionado!'
       redirect_to product_path(@new_product)
     else
-      flash[:alert] = @new_product.errors.full_messages
+      flash.now[:alert] = @new_product.errors.full_messages
       suppliers_list
       render :new
     end
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
       flash[:success] = 'Produto atualizado!'
       redirect_to product_path(@product)
     else
-      flash[:alert] = @product.errors.full_messages
+      flash.now[:alert] = @product.errors.full_messages
       suppliers_list
       render :edit
     end

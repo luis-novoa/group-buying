@@ -15,7 +15,7 @@ class PartnersController < ApplicationController
       flash[:success] = 'Parceiro adicionado!'
       redirect_to partner_path(@partner)
     else
-      flash[:alert] = @partner.errors.full_messages
+      flash.now[:alert] = @partner.errors.full_messages
       render :new
     end
   end
@@ -44,7 +44,7 @@ class PartnersController < ApplicationController
       flash[:success] = 'Parceiro adicionado!'
       redirect_to partner_path(@partner)
     else
-      flash[:alert] = @partner.errors.full_messages
+      flash.now[:alert] = @partner.errors.full_messages
       render :edit
     end
   end

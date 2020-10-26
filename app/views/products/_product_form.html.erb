@@ -1,28 +1,38 @@
+<div class='separator'></div>
+<%= error_messages %>
+
 <%= form_for(product) do |f| %>
+  <div class='field'>
+    <%= f.label :partner_id, 'Fornecedor*' %>
+    <%= f.select :partner_id, options_for_select(@partner_select, params[:id]) %>
+  </div>
 
-  <%= f.label :partner_id, 'Fornecedor*' %><br />
-  <%= f.select :partner_id, options_for_select(@partner_select, params[:id]) %>
+  <div class='field'>
+    <%= f.label :name, 'Nome*' %>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label :name, 'Nome*' %>
-  <%= f.text_field :name %>
+  <div class='field'>
+    <%= f.label :weight, 'Peso*' %>
+    <%= f.number_field :weight, min: 0 %>
 
-  <%= f.label :weight, 'Peso*' %>
-  <%= f.number_field :weight, min: 0 %>
+    <%= f.radio_button :weight_type, 'g', checked: true %>
+    <%= f.label :weight_type, 'Gramas', value: 'g' %>
+    <%= f.radio_button :weight_type, 'mL' %>
+    <%= f.label :weight_type, 'Mililitros', value: 'mL' %>
+  </div>
 
-  <%= f.radio_button :weight_type, 'g', checked: true %>
-  <%= f.label :weight_type, 'Gramas', value: 'g' %>
-  <%= f.radio_button :weight_type, 'mL' %>
-  <%= f.label :weight_type, 'Mililitros', value: 'mL' %>
+  <div class='field'>
+    <%= f.label :description, 'Descrição*' %>
+    <%= f.text_field :description %>
+  </div>
 
-  <%= f.label :description, 'Descrição Completa*' %>
-  <%= f.text_field :description %>
+  <div class='field'>
+    <%= f.label :image, 'Adicionar/Modificar Imagem' %>
+    <%= f.file_field :image %>
+  </div>
 
-  <% if product.image.attached? %>
-    <%= image_tag product.image, style: 'width: 200px; display: block' %>
-  <% end %>
-
-  <%= f.label :image, 'Adicionar/Modificar Imagem' %>
-  <%= f.file_field :image %>
-
-  <%= f.submit 'Enviar', id: 'send' %>
+  <div class='actions'>
+    <%= f.submit 'Enviar', id: 'send' %>
+  </div>
 <% end %>
