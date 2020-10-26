@@ -15,14 +15,14 @@ class ApplicationController < ActionController::Base
       'para que você possa acessar esta página.',
       forbidden: 'O acesso a esta página não é permitido para sua conta.'
     }
-    flash[:alert] = messages[message]
+    flash[:notice] = messages[message]
     redirect_to root_path
   end
 
   def check_volunteer_info
     return unless current_user.volunteer_info.nil?
 
-    flash[:notice] = 'Complete seu cadastro para prosseguir'
+    flash[:alert] = 'Complete seu cadastro para prosseguir'
     redirect_to new_volunteer_info_path
   end
 

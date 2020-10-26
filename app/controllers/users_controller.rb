@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :only_approved_users
+  before_action :only_approved_users, except: %i[show]
   before_action :check_user_id, only: %i[show]
   before_action :except_buyers, only: %i[index]
   before_action :only_privileged_users, only: %i[update]
