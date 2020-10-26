@@ -17,11 +17,14 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 end
 
-def phone_creator
-  ddd = Faker::Number.between(from: 11, to: 99)
-  first_half = Faker::Number.between(from: 9_000, to: 99_999)
-  second_half = Faker::Number.number(digits: 4)
-  "(#{ddd}) #{first_half}-#{second_half}"
+def phone_format(ddd, phone)
+  phone = phone.to_s.split('')
+  "(#{ddd}) #{phone[0...-4].join}-#{phone[-4...phone.size].join}"
+end
+
+def cpf_format(cpf)
+  cpf = cpf.to_s.split('')
+  "#{cpf[0...3].join}.#{cpf[3...6].join}.#{cpf[6...9].join}-#{cpf[9...11].join}"
 end
 
 def phone_type_creator

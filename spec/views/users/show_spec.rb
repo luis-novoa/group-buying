@@ -76,12 +76,12 @@ RSpec.describe 'Users#show', type: :feature do
 
     it { is_expected.to have_text user.name }
     it { is_expected.to have_text user.email }
-    it { is_expected.to have_text user.phone1 }
+    it { is_expected.to have_text phone_format(user.ddd1, user.phone1) }
     it { is_expected.to have_text user.phone1_type }
-    it { is_expected.to have_text user.phone2 }
+    it { is_expected.to have_text phone_format(user.ddd2, user.phone2) }
     it { is_expected.to have_text user.phone2_type }
     it { is_expected.to have_text user.account_type }
-    it { is_expected.to have_link href: edit_user_registration_path }
+    it { is_expected.to have_text cpf_format(user.cpf) }
     it "doesn't show phone2 field if user didn't provide it" do
       click_on 'Sair'
       login(user1)
@@ -108,7 +108,6 @@ RSpec.describe 'Users#show', type: :feature do
       click_on 'Minha Conta'
     end
     it { is_expected.to have_current_path(user_path(buyer)) }
-    it { is_expected.to have_css('.buyer-greeting') }
     it { is_expected.to have_no_link href: users_path }
   end
 
@@ -121,7 +120,6 @@ RSpec.describe 'Users#show', type: :feature do
       click_on 'Minha Conta'
     end
     it { is_expected.to have_current_path(user_path(volunteer)) }
-    it { is_expected.to have_css('.volunteer-greeting') }
     it { is_expected.to have_link href: users_path }
     it { is_expected.to have_link href: new_partner_path }
     it { is_expected.to have_link href: partners_path }
@@ -144,7 +142,6 @@ RSpec.describe 'Users#show', type: :feature do
       click_on 'Minha Conta'
     end
     it { is_expected.to have_current_path(user_path(delivery)) }
-    it { is_expected.to have_css('.delivery-point-greeting') }
     it { is_expected.to have_link href: users_path }
     it { is_expected.to have_link href: purchase_lists_path }
   end

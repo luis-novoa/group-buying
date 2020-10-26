@@ -1,4 +1,10 @@
 module UsersHelper
+  def volunteer_info(user)
+    return unless user.account_type == 'Voluntário'
+
+    render partial: 'volunteer_infos/infos', locals: { infos: user.volunteer_info }
+  end
+
   private
 
   def link_to_users_index

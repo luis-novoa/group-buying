@@ -1,21 +1,21 @@
-<h1>Conta de <%= @user.name %></h1>
-<nav class='user-utilities'>
-  <%= link_to_users_index %>
-  <tr>
-    <%= adm_actions(@user) %>
-  </tr>
-</nav>
-<%= volunteer_actions(@new_purchase, @partner_select) %>
-<%= orders_to_deliver_link %>
-<section class='user-information'>
-  <h2>Minhas Informações</h2>
-  <%= link_to 'Editar', edit_user_registration_path %>
-  <ul>
-    <li>Email: <%= @user.email %></li>
-    <li>Telefone 1: <%= @user.phone1 %> (<%= @user.phone1_type %>)</li>
+<section class='user-utilities'>
+  <nav class='user-tools'>
+    <%= link_to_users_index %>
+    <tr>
+      <%= adm_actions(@user) %>
+    </tr>
+    <%= volunteer_actions(@new_purchase, @partner_select) %>
+    <%= orders_to_deliver_link %>
+  </nav>
+  <article class='user-information round-box'>
+    <h2>Conta de <%= @user.name %></h2>
+    <span>Email: <%= @user.email %></span>
+    <span>CPF: <%= cpf_format(@user.cpf) %></span>
+    <span>Telefone: <%= phone_format(@user.ddd1, @user.phone1) %> (<%= @user.phone1_type %>)</span>
     <%= phone2(@user) %>
-    <li>Tipo de conta: <%= @user.account_type %></li>
-  </ul>
+    <span>Tipo de conta: <%= @user.account_type %></span>
+    <%= volunteer_info(@user) %>
+  </article>
 </section>
 <section class='user-orders'>
   <% @orders.each do |order| %>

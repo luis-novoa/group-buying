@@ -17,6 +17,16 @@ module ApplicationHelper
     render partial: 'layouts/notice', locals: { notice: flash[:notice] }
   end
 
+  def phone_format(ddd, phone)
+    phone = phone.to_s.split('')
+    "(#{ddd}) #{phone[0...-4].join}-#{phone[-4...phone.size].join}"
+  end
+
+  def cpf_format(cpf)
+    cpf = cpf.to_s.split('')
+    "#{cpf[0...3].join}.#{cpf[3...6].join}.#{cpf[6...9].join}-#{cpf[9...11].join}"
+  end
+
   private
 
   def logged_out_links
@@ -38,7 +48,7 @@ module ApplicationHelper
   end
 
   def phone2(object)
-    tag.li("Telefone Adicional: #{object.phone2} (#{object.phone2_type})") if object.phone2
+    tag.span("Telefone Adicional: #{phone_format(object.ddd2, object.phone2)} (#{object.phone2_type})") if object.phone2
   end
 
   def br_currency(number)
