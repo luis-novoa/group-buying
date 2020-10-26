@@ -33,7 +33,7 @@ function addressFormat(address, addressStreet, addressNumber, addressInfo) {
     }
   }
 
-  addressStreet.style.display = 'block';
+  addressStreet.style.display = 'inline-block';
   addressStreet.addEventListener('keyup', () => {
     if (addressStreet.value.length > 0) {
       addressStreet.value = addressStreet.value.charAt(0).toUpperCase() + addressStreet.value.slice(1);
@@ -41,12 +41,10 @@ function addressFormat(address, addressStreet, addressNumber, addressInfo) {
     updateAddress();
   });
 
-  addressNumber.style.display = 'block';
   addressNumber.addEventListener('keyup', () => {
     updateAddress();
   });
 
-  addressInfo.style.display = 'block';
   addressInfo.addEventListener('keyup', () => {
     updateAddress();
   });

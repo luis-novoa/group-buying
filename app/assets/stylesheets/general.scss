@@ -50,6 +50,8 @@ a {
 }
 
 .form {
+  width: -moz-fit-content;
+  width: fit-content;
   margin: 0 auto 1rem auto;
   padding: 1rem 2rem;
   span {
@@ -61,7 +63,7 @@ a {
     margin-right: 1rem;
   }
 
-  h2, span {
+  h2, span, .actions {
     text-align: center;
   }
 
@@ -83,7 +85,7 @@ a {
     margin-bottom: 1rem;
   }
 
-  .phone {
+  .margin-left {
     margin-left: 1rem;
   }
 }

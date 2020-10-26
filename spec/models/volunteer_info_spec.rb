@@ -16,12 +16,12 @@ RSpec.describe VolunteerInfo, type: :model do
       %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
     )
   }
-  
-  it { is_expected.to validate_length_of(:instagram).is_at_least(2).is_at_most(75).allow_nil }
 
-  it { is_expected.to validate_length_of(:facebook).is_at_least(2).is_at_most(75).allow_nil }
+  it { is_expected.to validate_length_of(:instagram).is_at_most(75).allow_nil }
 
-  it { is_expected.to validate_length_of(:lattes).is_at_least(2).is_at_most(75).allow_nil }
+  it { is_expected.to validate_length_of(:facebook).is_at_most(75).allow_nil }
+
+  it { is_expected.to validate_length_of(:lattes).is_at_most(75).allow_nil }
 
   it { is_expected.to validate_presence_of(:institution) }
   it { is_expected.to validate_length_of(:institution).is_at_least(2).is_at_most(75) }

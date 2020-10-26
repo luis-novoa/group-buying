@@ -2,6 +2,10 @@ class VolunteerInfosController < ApplicationController
   skip_before_action :check_volunteer_info
   before_action :only_volunteers
 
+  def index
+    redirect_to new_volunteer_info_path
+  end
+
   def new
     @volunteer_info = VolunteerInfo.new
   end
