@@ -34,11 +34,12 @@ class PurchaseProductsController < ApplicationController
     product = Product.find(parameters[:product_id])
     @new_purchase_product.name = product.name + ' ' + format_weight(product.weight, product.weight_type)
     if @new_purchase_product.save
-      flash[:success] = 'Produto adicionado!'
+      flash[:notice] = 'Produto adicionado!'
       redirect_to purchase_path(parameters[:purchase_id])
     else
-      flash[:alert] = @new_purchase_product.errors.full_messages
+      flash.now[:alert] = @new_purchase_product.errors.full_messages
       products_list
+      params[:purchase_id] = parameters[:purchase_id]
       render :new
     end
   end
@@ -64,7 +65,7 @@ class PurchaseProductsController < ApplicationController
     @product_select = []
     products.each do |product|
       product_option = product.name + ' ' + format_weight(product.weight, product.weight_type)
-      @product_select.push([product_option, product.id]) unless offered_products.include?(product.name)
+      @product_select.push([product_option, product.id]) unless offered_products.include?(product_option)
     end
   end
 end
