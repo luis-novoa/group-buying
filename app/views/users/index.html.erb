@@ -1,60 +1,62 @@
 <%= pending_users(@pending_users) %>
-<section class='buyers'>
-  <h2>Compradores</h2>
-  <table>
-    <tr>
-      <td>Nome</td>
-      <td>Email</td>
-      <td>Telefone 1</td>
-      <%= adm_actions %>
-    </tr>
-    <% @buyers.each do |buyer| %>
-      <tr id=<%= "buyer-#{buyer.id}" %>>
-        <td><%= link_to buyer.name, user_path(buyer) %></td>
-        <td><%= buyer.email %></td>
-        <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
-        <%= adm_actions(buyer) %>
+<section class='round-box fit-content'>
+  <article class='buyers table'>
+    <h2>Compradores</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <%= adm_actions %>
       </tr>
-    <% end %>
-  </table>
-</section>
-<section class='volunteers'>
-  <h2>Voluntários</h2>
-  <table>
-    <tr>
-      <td>Nome</td>
-      <td>Email</td>
-      <td>Telefone 1</td>
-      <%= mod_reveal %>
-      <%= adm_actions %>
-    </tr>
-      <% @volunteers.each do |volunteer| %>
-      <tr id=<%= "volunteer-#{volunteer.id}" %>>
-        <td><%= link_to volunteer.name, user_path(volunteer) %></td>
-        <td><%= volunteer.email %></td>
-        <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
-        <%= mod_reveal(volunteer) %>
-        <%= adm_actions(volunteer) %>
+      <% @buyers.each do |buyer| %>
+        <tr id=<%= "buyer-#{buyer.id}" %>>
+          <td><%= link_to buyer.name, user_path(buyer) %></td>
+          <td><%= buyer.email %></td>
+          <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
+          <%= adm_actions(buyer) %>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+  <article class='volunteers table'>
+    <h2>Voluntários</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <%= mod_reveal %>
+        <%= adm_actions %>
       </tr>
-    <% end %>
-  </table>
-</section>
-<section class='delivery-points'>
-  <h2>Pontos de Entrega</h2>
-  <table>
-    <tr>
-      <td>Nome</td>
-      <td>Email</td>
-      <td>Telefone 1</td>
-      <%= adm_actions %>
-    </tr>
-    <% @delivery_points.each do |delivery_point| %>
-      <tr id=<%= "delivery-#{delivery_point.id}" %>>
-        <td><%= link_to delivery_point.name, user_path(delivery_point) %></td>
-        <td><%= delivery_point.email %></td>
-        <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
-        <%= adm_actions(delivery_point) %>
+        <% @volunteers.each do |volunteer| %>
+        <tr id=<%= "volunteer-#{volunteer.id}" %>>
+          <td><%= link_to volunteer.name, user_path(volunteer) %></td>
+          <td><%= volunteer.email %></td>
+          <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
+          <%= mod_reveal(volunteer) %>
+          <%= adm_actions(volunteer) %>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+  <article class='delivery-points table'>
+    <h2>Pontos de Entrega</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <%= adm_actions %>
       </tr>
-    <% end %>
-  </table>
+      <% @delivery_points.each do |delivery_point| %>
+        <tr id=<%= "delivery-#{delivery_point.id}" %>>
+          <td><%= link_to delivery_point.name, user_path(delivery_point) %></td>
+          <td><%= delivery_point.email %></td>
+          <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
+          <%= adm_actions(delivery_point) %>
+        </tr>
+      <% end %>
+    </table>
+  </article>
 </section>

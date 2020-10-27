@@ -35,6 +35,32 @@ a {
   }
 }
 
+.fit-content {
+  width: fit-content;
+  width: -moz-fit-content;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.table {
+  margin-bottom: 1.5rem;
+  h2 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border-bottom: solid 1px #D6EEFF;
+    padding: 0.5rem 0;
+  }
+  td:not(:first-of-type) {
+    padding-left: 1rem;
+  }
+}
+
 .hidden {
   display: none;
 }
