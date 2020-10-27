@@ -1,6 +1,7 @@
 <h1>Compra Coletiva <%= @purchase.id %></h1>
 
 <%= link_to 'Todas as Compras Coletivas', purchases_path %>
+<%= link_to 'Adicionar Produto', new_purchase_product_path(purchase_id: @purchase.id) %>
 <%= edit_purchase(@purchase) %>
 
 <ul>

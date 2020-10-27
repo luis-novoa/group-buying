@@ -48,20 +48,13 @@ RSpec.describe 'PurchaseProducts#new', type: :feature do
     it { is_expected.to have_no_text purchase_product.name }
     context 'product form' do
       before(:each) do
-        select product.name, from: 'Produto*'
+        select product.name + ' ' + format_weight(product.weight, product.weight_type), from: 'Produto*'
         fill_in 'Preço*',	with: '10'
         fill_in 'Quantidade',	with: '10000'
         select 'Sinop', from: 'Disponível em*'
         click_on 'Oferecer Produto'
       end
       it('creates a new purchase_product') { expect(purchase.purchase_products.count).to eq(2) }
-    end
-
-    context 'failed form' do
-      it 'displays errors' do
-        click_on 'Oferecer Produto'
-        is_expected.to have_css('.alert-danger')
-      end
     end
   end
 

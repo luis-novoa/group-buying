@@ -1,40 +1,45 @@
-<h2>Todos os Parceiros</h2>
-<%= link_to 'Adicionar Parceiro', new_partner_path %>
-<h2>Fornecedores</h2>
-<table>
-  <tr>
-    <td>Nome</td>
-    <td>Email</td>
-    <td>Telefone 1</td>
-    <td>Ações</td>
-  </tr>
-  <% @suppliers.each do |supplier| %>
-    <tr>
-      <td><%= link_to supplier.name, partner_path(supplier) %></td>
-      <td><%= supplier.email %></td>
-      <td><%= "#{supplier.phone1} (#{supplier.phone1_type})" %></td>
-      <td>
-        <%= link_to 'Editar', edit_partner_path(supplier) %>
-      </td>
-    </tr>
-  <% end %>
-</table>
-<h2>Pontos de Entrega</h2>
-<table>
-  <tr>
-    <td>Nome</td>
-    <td>Email</td>
-    <td>Telefone 1</td>
-    <td>Ações</td>
-  </tr>
-  <% @delivery_points.each do |delivery_point| %>
-    <tr>
-      <td><%= link_to delivery_point.name, partner_path(delivery_point) %></td>
-      <td><%= delivery_point.email %></td>
-      <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
-      <td>
-        <%= link_to 'Editar', edit_partner_path(delivery_point) %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<section class='round-box fit-content'>
+  <%= link_to 'Adicionar Parceiro', new_partner_path %>
+  <article class='table'>
+    <h2>Fornecedores</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <td>Ações</td>
+      </tr>
+      <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= link_to supplier.name, partner_path(supplier) %></td>
+          <td><%= supplier.email %></td>
+          <td><%= "#{phone_format(supplier.ddd1, supplier.phone1)} (#{supplier.phone1_type})" %></td>
+          <td>
+            <%= link_to 'Editar', edit_partner_path(supplier) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+  <article class='table'>
+    <h2>Outros</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Telefone</td>
+        <td>Ações</td>
+      </tr>
+      <% @delivery_points.each do |delivery_point| %>
+        <tr>
+          <td><%= link_to delivery_point.name, partner_path(delivery_point) %></td>
+          <td><%= delivery_point.email %></td>
+          <td><%= "#{phone_format(delivery_point.ddd1, delivery_point.phone1)} (#{delivery_point.phone1_type})" %></td>
+          <td>
+            <%= link_to 'Editar', edit_partner_path(delivery_point) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+</section>

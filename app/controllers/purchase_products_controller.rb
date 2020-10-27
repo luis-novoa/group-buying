@@ -1,4 +1,5 @@
 class PurchaseProductsController < ApplicationController
+  include ProductsHelper
   skip_before_action :check_session, only: %i[index show]
   before_action :only_approved_users, only: %i[new create update destroy]
   before_action :only_volunteers, only: %i[new create update destroy]
@@ -31,7 +32,7 @@ class PurchaseProductsController < ApplicationController
     @purchase = Purchase.includes(:purchase_products).find(parameters[:purchase_id])
     @new_purchase_product = PurchaseProduct.new(parameters)
     product = Product.find(parameters[:product_id])
-    @new_purchase_product.name = product.name
+    @new_purchase_product.name = product.name + ' ' + format_weight(product.weight, product.weight_type)
     if @new_purchase_product.save
       flash[:success] = 'Produto adicionado!'
       redirect_to purchase_path(parameters[:purchase_id])
@@ -62,7 +63,8 @@ class PurchaseProductsController < ApplicationController
     offered_products = @purchase.purchase_products.pluck(:name)
     @product_select = []
     products.each do |product|
-      @product_select.push([product.name, product.id]) unless offered_products.include?(product.name)
+      product_option = product.name + ' ' + format_weight(product.weight, product.weight_type)
+      @product_select.push([product_option, product.id]) unless offered_products.include?(product.name)
     end
   end
 end
