@@ -7,10 +7,10 @@ module UsersHelper
 
   private
 
-  def link_to_users_index
+  def user_tools
     return if current_user.account_type == 'Comprador'
 
-    tag.span(link_to('Todos os Usuários', users_path), class: 'users_index')
+    render partial: 'users/delivery_point_tools'
   end
 
   def pending_users(users_list)
@@ -79,33 +79,5 @@ module UsersHelper
     return unless current_user.account_type == 'Voluntário' && current_user.id == params[:id].to_i
 
     render partial: 'users/volunteer_tools', locals: { template: new_purchase, options: partner_select }
-    # partner_links + product_links + purchase_links(new_purchase, partner_select)
-  end
-
-  def partner_links
-    new_partner = tag.span(link_to('Adicionar Parceiro', new_partner_path))
-    partners = tag.span(link_to('Todos os Parceiros', partners_path))
-    tag.nav(new_partner + partners, class: 'partner-links')
-  end
-
-  def product_links
-    new_product = tag.span(link_to('Adicionar Produto', new_product_path))
-    products = tag.span(link_to('Todos os Produtos', products_path))
-    tag.nav(new_product + products, class: 'product-links')
-  end
-
-  def purchase_links(new_purchase, partner_select)
-    purchase_form = form_for(new_purchase) do |f|
-      concat(f.select(:partner_id, options_for_select(partner_select)))
-      concat(f.submit('Criar Compra Coletiva com este Fornecedor'))
-    end
-    purchases = tag.span(link_to('Todas as Compras Coletivas', purchases_path))
-    tag.div(purchase_form + purchases)
-  end
-
-  def orders_to_deliver_link
-    return if current_user.account_type == 'Comprador'
-
-    link_to 'Pedidos prontos para Entrega', purchase_lists_path
   end
 end

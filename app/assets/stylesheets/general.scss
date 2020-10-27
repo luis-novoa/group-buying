@@ -17,6 +17,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #0000ee;
 }
 
 .useful-links {
@@ -47,6 +48,11 @@ a {
   text-align: center;
   margin-bottom: 0.5rem;
   padding: 0.5rem 0;
+}
+
+.separator {
+  border-top: solid 1px #D6EEFF;
+  margin-bottom: 1rem;
 }
 
 .form {
@@ -89,11 +95,6 @@ a {
       border: solid 1px red;
       border-radius: 2px;
     }
-  }
-
-  .separator {
-    border-top: solid 1px #D6EEFF;
-    margin-bottom: 1rem;
   }
 
   .margin-left {

@@ -1,0 +1,8 @@
+  <nav class='user-tools round-box'>
+    <h2>Ferramentas</h2>
+    <div class='separator'></div>
+    <span><%= link_to('Usuários', users_path) %></span>
+    <div class='separator'></div>
+    <span><%= link_to 'Pedidos prontos para Entrega', purchase_lists_path %></span>
+    <%= volunteer_actions(@new_purchase, @partner_select) %>
+  </nav>

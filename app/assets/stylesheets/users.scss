@@ -15,16 +15,39 @@
 .user-utilities {
   margin: 1rem 3.5rem 1rem 1rem;
   width: 25rem;
-}
-// color: #0000ee
-.user-information {
-  padding: 1rem 1.5rem;
   h2 {
-    margin-bottom: 1rem;
     text-align: center;
   }
+}
+
+.user-information {
+  padding: 1rem 1.5rem;
   span {
     display: block;
     margin-bottom: 0.5rem;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.user-tools {
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  span {
+    display: block;
+  }
+
+  .separator {
+    margin: 0.5rem 0;
+  }
+}
+
+.purchase-tools {
+  input, label {
+    display: block;
+  }
+  select {
+    margin-top: 0.25rem;
   }
 }

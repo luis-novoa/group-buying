@@ -1,16 +1,20 @@
-<h2>Ferramentas</h2>
-<div class='partners'>
-  <span><%= link_to('Adicionar Parceiro', new_partner_path) %></span>
-  <span><%= link_to('Ver Parceiros', partners_path) %></span>
-</div>
-<div class='products'>
-  <span><%= link_to('Adicionar Produto', new_product_path) %></span>
-  <span><%= link_to('Ver Produtos', products_path) %></span>
-</div>
-<div class='purchase'>
-  <span><%= link_to('Ver Compras Coletivas', purchases_path) %></span>
+<div class='separator'></div>
+<span>
+  <%= link_to('Parceiros', partners_path) %>
+  •
+  <%= link_to('Adicionar Parceiro', new_partner_path) %>
+</span>
+<div class='separator'></div>
+<span>
+  <%= link_to('Produtos', products_path) %>
+  •
+  <%= link_to('Adicionar Produto', new_product_path) %>
+</span>
+<div class='separator'></div>
+<div class='purchase-tools'>
+  <span><%= link_to('Compras Coletivas', purchases_path) %></span>
   <%= form_for(template) do |f| %>
     <%= f.select(:partner_id, options_for_select(options)) %>
-    <%= f.submit('Criar Compra Coletiva com este Fornecedor') %>
+    <%= f.submit('Criar Compra Coletiva') %>
   <% end %>
 </div>
