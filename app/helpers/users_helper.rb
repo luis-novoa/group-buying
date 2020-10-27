@@ -5,13 +5,19 @@ module UsersHelper
     render partial: 'volunteer_infos/infos', locals: { infos: user.volunteer_info }
   end
 
-  private
-
   def user_tools
     return if current_user.account_type == 'Comprador'
 
     render partial: 'users/delivery_point_tools'
   end
+
+  def purchases_link
+    return unless current_user.id == params[:id].to_i
+
+    tag.div(class: 'separator') + tag.span(link_to('Pedidos Prontos para Entrega', purchase_lists_path))
+  end
+
+  private
 
   def pending_users(users_list)
     return unless current_user.moderator
