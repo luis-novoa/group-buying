@@ -21,12 +21,13 @@
 
   <div class='field'>
     <%= f.label :cnpj, 'CNPJ*' %>
-    <%= f.text_field :cnpj, maxlength: 18, pattern: '\d*' %>
+    <%= f.text_field :cnpj, maxlength: 14, pattern: '\d*' %>
     <em>(Apenas números)</em>
   </div>
 
   <div class='field'>
     <%= f.label :website %>
+    <em>(Link)</em>
     <%= f.text_field :website %>
   </div>
 

@@ -7,7 +7,6 @@ let addressNumber = document.getElementById('address_number');
 let addressInfo = document.getElementById('address_additional_info');
 
 address.style.display = 'none';
-console.log(hiddenFields);
 Array.prototype.forEach.call(hiddenFields, (field) => {
   field.style.display = 'block';
 });

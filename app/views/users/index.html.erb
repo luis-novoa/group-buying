@@ -1,5 +1,5 @@
-<%= pending_users(@pending_users) %>
 <section class='round-box fit-content'>
+  <%= pending_users(@pending_users) %>
   <article class='buyers table'>
     <h2>Compradores</h2>
     <table>
@@ -13,7 +13,7 @@
         <tr id=<%= "buyer-#{buyer.id}" %>>
           <td><%= link_to buyer.name, user_path(buyer) %></td>
           <td><%= buyer.email %></td>
-          <td><%= "#{buyer.phone1} (#{buyer.phone1_type})" %></td>
+          <td><%= "#{phone_format(buyer.ddd1, buyer.phone1)} (#{buyer.phone1_type})" %></td>
           <%= adm_actions(buyer) %>
         </tr>
       <% end %>
@@ -33,7 +33,7 @@
         <tr id=<%= "volunteer-#{volunteer.id}" %>>
           <td><%= link_to volunteer.name, user_path(volunteer) %></td>
           <td><%= volunteer.email %></td>
-          <td><%= "#{volunteer.phone1} (#{volunteer.phone1_type})" %></td>
+          <td><%= "#{phone_format(volunteer.ddd1, volunteer.phone1)} (#{volunteer.phone1_type})" %></td>
           <%= mod_reveal(volunteer) %>
           <%= adm_actions(volunteer) %>
         </tr>
@@ -53,7 +53,7 @@
         <tr id=<%= "delivery-#{delivery_point.id}" %>>
           <td><%= link_to delivery_point.name, user_path(delivery_point) %></td>
           <td><%= delivery_point.email %></td>
-          <td><%= "#{delivery_point.phone1} (#{delivery_point.phone1_type})" %></td>
+          <td><%= "#{phone_format(delivery_point.ddd1, delivery_point.phone1)} (#{delivery_point.phone1_type})" %></td>
           <%= adm_actions(delivery_point) %>
         </tr>
       <% end %>

@@ -56,23 +56,31 @@ RSpec.describe 'Users#index', type: :feature do
     it { is_expected.to have_text 'Pontos de Entrega' }
     it { is_expected.to have_no_text 'Usuários Pendentes' }
     it { is_expected.to have_text 'Nome', count: 3 }
-    it { is_expected.to have_text 'Telefone 1', count: 3 }
+    it { is_expected.to have_text 'Telefone', count: 3 }
     it { is_expected.to have_text 'Email', count: 3 }
     it { is_expected.to have_no_text pending_delivery.name }
     it { is_expected.to have_no_text pending_volunteer.name }
     it { within('.buyers') { is_expected.to have_text buyer1.name } }
     it { within('.buyers') { is_expected.to have_text buyer1.email } }
-    it { within('.buyers') { is_expected.to have_text buyer1.phone1 } }
+    it { within('.buyers') { is_expected.to have_text phone_format(buyer1.ddd1, buyer1.phone1) } }
     it { within('.buyers') { is_expected.to have_text buyer1.phone1_type } }
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.name } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.email } }
-    it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
+    it {
+      within('.volunteers') do
+        is_expected.to have_text phone_format(accepted_volunteer.ddd1, accepted_volunteer.phone1)
+      end
+    }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.name } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
-    it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
+    it {
+      within('.delivery-points') do
+        is_expected.to have_text phone_format(accepted_delivery.ddd1, accepted_delivery.phone1)
+      end
+    }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
   end
@@ -89,7 +97,7 @@ RSpec.describe 'Users#index', type: :feature do
     it { is_expected.to have_text 'Pontos de Entrega' }
     it { is_expected.to have_no_text 'Usuários Pendentes' }
     it { is_expected.to have_text 'Nome', count: 3 }
-    it { is_expected.to have_text 'Telefone 1', count: 3 }
+    it { is_expected.to have_text 'Telefone', count: 3 }
     it { is_expected.to have_text 'Email', count: 3 }
     it { is_expected.to have_no_text pending_delivery.name }
     it { is_expected.to have_no_text pending_volunteer.name }
@@ -100,12 +108,20 @@ RSpec.describe 'Users#index', type: :feature do
     it { within('.buyers') { is_expected.to have_link href: user_path(buyer1) } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.name } }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.email } }
-    it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1 } }
+    it {
+      within('.volunteers') do
+        is_expected.to have_text phone_format(accepted_volunteer.ddd1, accepted_volunteer.phone1)
+      end
+    }
     it { within('.volunteers') { is_expected.to have_text accepted_volunteer.phone1_type } }
     it { within('.volunteers') { is_expected.to have_link href: user_path(accepted_volunteer) } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.name } }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.email } }
-    it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1 } }
+    it {
+      within('.delivery-points') do
+        is_expected.to have_text phone_format(accepted_delivery.ddd1, accepted_delivery.phone1)
+      end
+    }
     it { within('.delivery-points') { is_expected.to have_text accepted_delivery.phone1_type } }
     it { within('.delivery-points') { is_expected.to have_link href: user_path(accepted_delivery) } }
   end
@@ -117,20 +133,28 @@ RSpec.describe 'Users#index', type: :feature do
       visit users_path
     end
     it { is_expected.to have_text 'Nome', count: 4 }
-    it { is_expected.to have_text 'Telefone 1', count: 4 }
+    it { is_expected.to have_text 'Telefone', count: 4 }
     it { is_expected.to have_text 'Email', count: 4 }
     it { is_expected.to have_text 'Usuários Pendentes' }
     it { within('.pending-users') { is_expected.to have_text 'Tipo' } }
     it { within('.pending-users') { is_expected.to have_text 'Aprovar?' } }
     it { within('.pending-users') { is_expected.to have_text pending_delivery.name } }
     it { within('.pending-users') { is_expected.to have_text pending_delivery.email } }
-    it { within('.pending-users') { is_expected.to have_text pending_delivery.phone1 } }
+    it {
+      within('.pending-users') do
+        is_expected.to have_text phone_format(pending_delivery.ddd1, pending_delivery.phone1)
+      end
+    }
     it { within('.pending-users') { is_expected.to have_text pending_delivery.phone1_type } }
     it { within('.pending-users') { is_expected.to have_text pending_delivery.account_type } }
     it { within('.pending-users') { is_expected.to have_link href: user_path(pending_delivery) } }
     it { within('.pending-users') { is_expected.to have_text pending_volunteer.name } }
     it { within('.pending-users') { is_expected.to have_text pending_volunteer.email } }
-    it { within('.pending-users') { is_expected.to have_text pending_volunteer.phone1 } }
+    it {
+      within('.pending-users') do
+        is_expected.to have_text phone_format(pending_volunteer.ddd1, pending_volunteer.phone1)
+      end
+    }
     it { within('.pending-users') { is_expected.to have_text pending_volunteer.phone1_type } }
     it { within('.pending-users') { is_expected.to have_text pending_volunteer.account_type } }
     it { within('.pending-users') { is_expected.to have_link href: user_path(pending_volunteer) } }
