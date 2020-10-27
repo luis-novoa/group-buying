@@ -78,7 +78,8 @@ module UsersHelper
   def volunteer_actions(new_purchase, partner_select)
     return unless current_user.account_type == 'Voluntário' && current_user.id == params[:id].to_i
 
-    partner_links + product_links + purchase_links(new_purchase, partner_select)
+    render partial: 'users/volunteer_tools', locals: { template: new_purchase, options: partner_select }
+    # partner_links + product_links + purchase_links(new_purchase, partner_select)
   end
 
   def partner_links
