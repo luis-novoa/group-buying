@@ -45,7 +45,7 @@ a {
 .table {
   margin-bottom: 1.5rem;
   h2 {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
     text-align: center;
   }
   table {
@@ -58,6 +58,9 @@ a {
   }
   td:not(:first-of-type) {
     padding-left: 1rem;
+  }
+  .table-actions a:first-of-type {
+    margin-right: 0.5rem;
   }
 }
 

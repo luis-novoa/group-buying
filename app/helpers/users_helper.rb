@@ -35,7 +35,7 @@ module UsersHelper
             rows = tag.td(user_link) +
                    tag.td(user.email) +
                    tag.td("#{phone_format(user.ddd1, user.phone1)} (#{user.phone1_type})") +
-                   tag.td(approval_link + reject_link, class: 'user-approval')
+                   tag.td(approval_link + reject_link, class: 'table-actions')
             concat(tag.tr(rows))
           end
         end

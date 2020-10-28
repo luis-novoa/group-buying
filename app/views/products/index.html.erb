@@ -1,8 +1,25 @@
-<h1>Todos os Produtos</h1>
-
-<% @products.each do |product| %>
-  <span><%= link_to product.name, product_path(product) %></span>
-  <span><%= link_to product.partner.name, partner_path(product.partner) %></span>
-  <span><%= link_to 'Editar Produto', edit_product_path(product) %></span>
-  <span><%= link_to 'Apagar Produto', product_path(product), method: :delete %></span>
-<% end %>
+<section class='round-box fit-content'>
+  <%= link_to 'Adicionar Produto', new_product_path %>
+  <article class='table'>
+    <h2>Todos os Produtos</h2>
+    <table>
+      <tr>
+        <td>Nome</td>
+        <td>Peso</td>
+        <td>Fornecedor</td>
+        <td>Ações</td>
+      </tr>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, product_path(product) %></td>
+          <td><%= format_weight(product.weight, product.weight_type) %></td>
+          <td><%= link_to product.partner.name, partner_path(product.partner) %></td>
+          <td class='table-actions'>
+            <%= link_to 'Editar', edit_product_path(product) %>
+            <%= link_to 'Apagar', product_path(product), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+</section>
