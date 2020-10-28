@@ -59,6 +59,9 @@ a {
   td:not(:first-of-type) {
     padding-left: 1rem;
   }
+  th:not(:first-of-type) {
+    padding-left: 1rem;
+  }
   .table-actions a:first-of-type {
     margin-right: 0.5rem;
   }

@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
   def create
     new_order = current_user.orders.build(order_params)
-    new_order.save
-    redirect_to orders_path
+    if new_order.save
+      redirect_to orders_path
+    else
+      flash[:notice] = 'Especifique uma quantidade.'
+      redirect_to root_path
+    end
   end
 
   def update

@@ -25,7 +25,7 @@ module UsersHelper
     tag.article(class: 'table') do
       tag.h2('Usuários Pendentes') +
         tag.table do
-          rows = tag.td('Nome') + tag.td('Email') + tag.td('Telefone') + tag.td('Aprovar?')
+          rows = tag.th('Nome') + tag.th('Email') + tag.th('Telefone') + tag.th('Aprovar?')
           concat(tag.tr(rows))
           users_list.each do |user|
             user_link = link_to user.name, user_path(user)
@@ -44,7 +44,7 @@ module UsersHelper
 
   def adm_actions(user = nil)
     return unless current_user.super_user
-    return tag.td('Ações') unless user
+    return tag.th('Ações') unless user
 
     links = []
     unless user.account_type == 'Voluntário'
@@ -75,7 +75,7 @@ module UsersHelper
 
   def mod_reveal(user = nil)
     return unless current_user.super_user
-    return tag.td('Moderador?') unless user
+    return tag.th('Moderador?') unless user
 
     user.moderator ? tag.td('Sim') : tag.td('Não')
   end
