@@ -1,13 +1,17 @@
-<div id=<%= "product-#{product.id}" %>>
+<div id=<%= "product-#{product.id}" %> class='order-form'>
   <%= form_for(order) do |f| %>
     <%= f.hidden_field :purchase_product_id %>
     <%= f.hidden_field :id %>
 
-    <%= f.label :quantity, 'Quantidade' %>
-    <%= f.number_field :quantity, min: 1 %>
+    <div class='field'>
+      <%= f.label :quantity, 'Quantidade' %>
+      <%= f.number_field :quantity, min: 1 %>
+    </div>
 
-    <%= f.label :delivery_city, 'Cidade' %>
-    <%= f.select :delivery_city, city_options(product) %>
+    <div class='field'>
+      <%= f.label :delivery_city, 'Cidade' %>
+      <%= f.select :delivery_city, city_options(product) %>
+    </div>
     <%= f.submit button_text, disable_with: 'Processando...' %>
   <% end %>
 </div>

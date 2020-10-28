@@ -5,7 +5,7 @@ class PurchaseProductsController < ApplicationController
   before_action :only_volunteers, only: %i[new create update destroy]
 
   def index
-    purchases = Purchase.all.where(active: true)
+    purchases = Purchase.includes(purchase_products: { product: { image_attachment: :blob } }).all.where(active: true)
     @purchase_products = []
     purchases.each do |purchase|
       purchase.purchase_products.each do |purchase_product|

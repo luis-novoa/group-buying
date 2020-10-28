@@ -36,11 +36,9 @@
   padding: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
   div {
-    display: flex;
-    flex-direction: column;
     margin-left: 2rem;
-    justify-content: space-evenly;
     h2 {
       font-size: 1.3rem;
     }
@@ -49,5 +47,20 @@
     width: 8rem;
     height: 8rem;
     border-radius: 10px;
+  }
+  .purchase-product-price {
+    display: block;
+    margin: 1rem 0;
+  }
+  .order-form {
+    margin: 0;
+    .field {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+      input {
+        width: 5rem;
+      }
+    }
   }
 }
