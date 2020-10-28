@@ -21,8 +21,8 @@ class PartnersController < ApplicationController
   end
 
   def index
-    @suppliers = Partner.all.where(supplier: true)
-    @delivery_points = Partner.all.where(supplier: false)
+    @suppliers = Partner.all.where(supplier: true).order(:name)
+    @delivery_points = Partner.all.where(supplier: false).order(:name)
   end
 
   def show

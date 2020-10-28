@@ -1,6 +1,6 @@
 <section class='round-box fit-content'>
   <article class='table'>
-    <h2>Compras Ativas</h2>
+    <h2>Compras Coletivas Ativas</h2>
     <table>
       <tr>
         <th>ID</th>
@@ -13,13 +13,13 @@
         <tr>
           <td><%= link_to purchase.id, purchase_path(purchase) %></td>
           <td><%= purchase.partner.name %></td>
-          <td><%= purchase.total %></td>
-          <td><%= purchase.created_at.to_date %></td>
+          <td>R$ <%= br_currency(purchase.total) %></td>
+          <td><%= purchase.created_at.strftime("%d/%m/%Y") %></td>
           <td><%= edit_purchase(purchase) %></td>
         </tr>
       <% end %>
     </table>
-    <h2>Compras Inativas</h2>
+    <h2>Compras Coletivas Inativas</h2>
     <table>
       <tr>
         <th>ID</th>

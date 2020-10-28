@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     compress_image(parameters[:image]) if parameters[:image]
     @new_product = Product.new(parameters)
     if @new_product.save
-      flash[:success] = 'Produto adicionado!'
+      flash[:notice] = 'Produto adicionado!'
       redirect_to product_path(@new_product)
     else
       flash.now[:alert] = @new_product.errors.full_messages
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @products = Product.includes(:partner).joins(:partner).merge(Partner.all)
   end
 
   def edit
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       compress_image(parameters[:image])
     end
     if @product.update(parameters)
-      flash[:success] = 'Produto atualizado!'
+      flash[:notice] = 'Produto atualizado!'
       redirect_to product_path(@product)
     else
       flash.now[:alert] = @product.errors.full_messages
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
 
   def destroy
     Product.find(params[:id]).delete
-    flash[:success] = 'Produto apagado!'
+    flash[:notice] = 'Produto apagado!'
     redirect_to products_path
   end
 
