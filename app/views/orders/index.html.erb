@@ -1,13 +1,32 @@
-<% @orders.each do |order| %>
-  <%= form_for(order) do |f| %>
-    <%= f.hidden_field :id %>
-    <span><%= order.purchase_product.name %></span>
-    <span>R$ <%= br_currency(order.purchase_product.price) %></span>
-    <%= f.number_field :quantity, min: 1 %>
-    <span>R$ <%= br_currency(order.total) %></span>
-    <%= f.select :delivery_city, city_options(order.purchase_product) %>
-    <%= f.submit "Modificar", disable_with: 'Modificando...' %>
-    <span><%= link_to 'Retirar do Carrinho', order_path(order), method: :delete %></span>
-  <% end %>
-<% end %>
-<%= close_cart_link(@orders) %>
+<section class='round-box fit-content'>
+  <article class='table'>
+  <h2>Meu Carrinho</h2>
+    <table>
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+        <th>Cidade de Entrega</th>
+        <th>Ações</th>
+      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <%= form_for(order) do |f| %>
+            <%= f.hidden_field :id %>
+            <td><%= order.purchase_product.name %></td>
+            <td>R$ <%= br_currency(order.purchase_product.price) %></td>
+            <td><%= f.number_field :quantity, min: 1 %></td>
+            <td>R$ <%= br_currency(order.total) %></td>
+            <td><%= f.select :delivery_city, city_options(order.purchase_product) %></td>
+            <td>
+              <%= f.submit "Modificar", disable_with: 'Modificando...' %>
+              <%= link_to 'Retirar', order_path(order), method: :delete %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+  <%= close_cart_link(@orders) %>
+</section>
