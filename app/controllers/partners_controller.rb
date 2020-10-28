@@ -26,7 +26,7 @@ class PartnersController < ApplicationController
   end
 
   def show
-    @partner = Partner.find(params[:id])
+    @partner = Partner.includes(:products).find(params[:id])
   end
 
   def edit

@@ -1,19 +1,52 @@
-<h1><%= @partner.name %></h1>
-<%= link_to 'Lista de Parceiros', partners_path %>
-<%= link_to 'Editar este Parceiro', edit_partner_path(@partner) %>
-
-<% if @partner.image.attached? %>
-  <%= image_tag @partner.image %>
-<% end %>
-
-<ul>
-  <li>Razão Social: <%= @partner.official_name %></li> 
-  <li>CNPJ: <%= @partner.cnpj %></li>
-  <li>Descrição: <%= @partner.description %></li>
-  <li>Website: <%= @partner.website %></li>
-  <li>Email: <%= @partner.email %></li>
-  <li>Telefone: <%= @partner.phone1 %> (<%= @partner.phone1_type %>)</li>
-  <%= phone2(@partner) %>
-  <li>Endereço: <%= @partner.address %>, <%= @partner.city %> - <%= @partner.state %></li>
-  <li>Tipo: <%= supplier?(@partner) %></li>
-</ul>
+<div class='show-pattern' >
+  <section class='utilities'>
+    <nav class='tools round-box'>
+      <h2>Ações</h2>
+      <div class='separator'></div>
+      <%= link_to 'Voltar aos Parceiros', partners_path %>
+      <div class='separator'></div>
+      <%= link_to 'Editar este Parceiro', edit_partner_path(@partner) %>
+      <div class='separator'></div>
+      <%= link_to 'Adicionar Produto', new_product_path %>
+    </nav>
+    <article class='information round-box'>
+      <% if @partner.image.attached? %>
+        <%= image_tag @partner.image %>
+      <% end %>
+      <h2><%= @partner.name %></h2>
+      <span>Razão Social: <%= @partner.official_name %></span> 
+      <span>CNPJ: <%= cnpj_format(@partner.cnpj) %></span>
+      <span>Descrição: <%= @partner.description %></span>
+      <span>Email: <%= @partner.email %></span>
+      <span>Telefone: <%= phone_format(@partner.ddd1, @partner.phone1) %> <br> (<%= @partner.phone1_type %>)</span>
+      <%= phone2(@partner) %>
+      <span>Endereço: <%= @partner.address %>, <%= @partner.city %> - <%= @partner.state %></span>
+      <span>Tipo: <%= supplier?(@partner) %></span>
+      <span><a href=<%= @partner.website %> target='_blank'>Website</a></span>
+    </article>
+  </section>
+  <section class='round-box fit-content'>
+    <article class='table'>
+      <h2>Produtos deste Parceiro</h2>
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Peso</th>
+          <th>Fornecedor</th>
+          <th>Ações</th>
+        </tr>
+        <% @partner.products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product) %></td>
+            <td><%= format_weight(product.weight, product.weight_type) %></td>
+            <td><%= link_to product.partner.name, partner_path(product.partner) %></td>
+            <td class='table-actions'>
+              <%= link_to 'Editar', edit_product_path(product) %>
+              <%= link_to 'Apagar', product_path(product), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </article>
+  </section>
+</div>
