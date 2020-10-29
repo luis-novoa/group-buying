@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.includes(:partner).joins(:partner).merge(Partner.all)
+    @products = Product.includes(:partner).joins(:partner).merge(Partner.all).order(:name)
   end
 
   def edit

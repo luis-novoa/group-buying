@@ -21,7 +21,8 @@
       <span>Email: <%= @partner.email %></span>
       <span>Telefone: <%= phone_format(@partner.ddd1, @partner.phone1) %> <br> (<%= @partner.phone1_type %>)</span>
       <%= phone2(@partner) %>
-      <span>Endereço: <%= @partner.address %>, <%= @partner.city %> - <%= @partner.state %></span>
+      <span>Endereço: <%= @partner.address %></span>
+      <span>Cidade: <%= @partner.city %> - <%= @partner.state %> </span>
       <span>Tipo: <%= supplier?(@partner) %></span>
       <span><a href=<%= @partner.website %> target='_blank'>Website</a></span>
     </article>
