@@ -19,7 +19,14 @@ class PurchaseProductsController < ApplicationController
     [@purchase_products, @existing_orders, @existing_orders_ids]
   end
 
-  def show; end
+  def show
+    @purchase_product = PurchaseProduct
+                        .includes(product: { image_attachment: :blob, partner: { image_attachment: :blob } })
+                        .find(params[:id])
+    @product = @purchase_product.product
+    @partner = @product.partner
+    [@purchase_product, @product, @partner]
+  end
 
   def new
     @purchase = Purchase.find(params[:purchase_id])

@@ -88,9 +88,22 @@ h1, h2 {
   margin-bottom: 1rem;
 }
 
+.show-centered {
+  .utilities {
+    display: flex;
+    justify-content: stretch;
+    width: 40rem;
+    margin: 0 auto;
+    article:first-of-type {
+      margin-right: 1rem;
+    }
+  }
+}
+
 .show-private {
   display: flex;
   margin-bottom: 1rem;
+  padding: 0 1rem;
 }
 
 .form {
@@ -146,7 +159,7 @@ h1, h2 {
 }
 
 .utilities {
-  margin: 0 1rem;
+  margin-right: 1rem;
   width: 25rem;
   h2 {
     text-align: center;

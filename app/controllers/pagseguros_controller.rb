@@ -1,0 +1,2 @@
+class PagsegurosController < ApplicationController
+end

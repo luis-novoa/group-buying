@@ -1,10 +1,29 @@
-<a href=<%= "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{@payment.code}" %>>Link de Pagamento</a>
-<section class='orders'>
-  <% @orders.each do |order| %>
-    <span><%= order.purchase_product.name %></span>
-    <span>R$ <%= br_currency(order.purchase_product.price) %></span>
-    <span><%= order.quantity %></span>
-    <span>R$ <%= br_currency(order.total) %></span>
-  <% end %>
-  <span>R$ <%= br_currency(@total) %></span>
+<section class='round-box fit-content'>
+  <article class='table'>
+  <h2>Pedido de <%= @payment.created_at.strftime("%d/%m/%Y") %></h2>
+    <table>
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+        <th>Cidade de Entrega</th>
+      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.purchase_product.name %></td>
+          <td>R$ <%= br_currency(order.purchase_product.price) %></td>
+          <td><%= order.quantity %></td>
+          <td>R$ <%= br_currency(order.total) %></td>
+          <td><%= order.delivery_city %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class='payment-info'>
+      <span>Total do Pedido: R$ <%= br_currency(@total) %></span>
+      <span>
+        <a href=<%= "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{@payment.code}" %>>Clique Aqui para Pagar</a>
+      </span>
+    </div>
+  </article>
 </section>

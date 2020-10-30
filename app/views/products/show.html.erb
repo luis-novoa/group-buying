@@ -1,4 +1,4 @@
-<div class='show-public' >
+<div class='show-centered' >
   <section class='utilities'>
     <%= display_notice %>
     <nav class='tools round-box'>
@@ -19,30 +19,6 @@
       <span>Descrição: <%= @product.description %></span>
       <span>Fornecedor: <%= link_to @product.partner.name, partner_path(@product.partner) %></span>    </article>
     </article>
-  </section> <!--
-  <section class='round-box fit-content'>
-    <article class='table'>
-      <h2>Produtos deste Parceiro</h2>
-      <table>
-        <tr>
-          <th>Nome</th>
-          <th>Peso</th>
-          <th>Fornecedor</th>
-          <th>Ações</th>
-        </tr>
-        <%# @partner.products.each do |product| %>
-          <tr>
-            <td><%# link_to product.name, product_path(product) %></td>
-            <td><%# format_weight(product.weight, product.weight_type) %></td>
-            <td><%# link_to product.partner.name, partner_path(product.partner) %></td>
-            <td class='table-actions'>
-              <%# link_to 'Editar', edit_product_path(product) %>
-              <%# link_to 'Apagar', product_path(product), method: :delete %>
-            </td>
-          </tr>
-        <%# end %>
-      </table>
-    </article>
-  </section> -->
+  </section>
 </div>
 
