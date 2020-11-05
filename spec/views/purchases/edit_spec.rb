@@ -44,12 +44,16 @@ RSpec.describe 'Purchases#edit', type: :feature do
     it { is_expected.to have_current_path(edit_purchase_path(purchase)) }
 
     context 'form' do
-      it 'deletes inactive instance with zero total' do
-        purchase.update(total: 0)
-        choose 'Inativa'
-        click_on 'Enviar'
-        expect(Purchase.all.count).to eq(0)
-      end
+      let(:purchase_product) { create(:purchase_product, purchase: purchase) }
+      let(:purchase_product2) { create(:purchase_product, purchase: purchase) }
+      let(:order) { create(:order, purchase_product: purchase_product, status: 'Pago') }
+      let(:order2) { create(:order, purchase_product: purchase_product2, status: 'Pago') }
+      # it 'deletes inactive instance with zero total' do
+      #   purchase.update(total: 0)
+      #   choose 'Inativa'
+      #   click_on 'Enviar'
+      #   expect(Purchase.all.count).to eq(0)
+      # end
 
       it 'turns instance inactive' do
         purchase.update(total: 10)
@@ -57,6 +61,13 @@ RSpec.describe 'Purchases#edit', type: :feature do
         click_on 'Enviar'
         expect(purchase.reload.active).to eq(false)
       end
+
+      # it 'changes orders in right conditions' do
+      #   choose 'Inativa'
+      #   select 'Pronto para Retirada'
+      #   click_on 'Enviar'
+      #   expect(Order.all.all? { |order| order.status == 'Pronto para Entrega' }).to eq(true)
+      # end
     end
   end
 

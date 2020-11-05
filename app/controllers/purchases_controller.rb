@@ -24,15 +24,15 @@ class PurchasesController < ApplicationController
 
   def update
     @purchase = Purchase.find(params[:id])
-    if @purchase.total.zero? && update_purchase_params[:active] == 'false'
-      @purchase.delete
-      flash[:sucess] = 'Compra apagada!'
-      redirect_to purchases_path
-      return
-    end
+    # if @purchase.total.zero? && update_purchase_params[:active] == 'false'
+    #   @purchase.destroy
+    #   flash[:alert] = 'Compra apagada!'
+    #   redirect_to purchases_path
+    #   return
+    # end
 
     if @purchase.update(update_purchase_params)
-      flash[:success] = 'Compra atualizada!'
+      flash[:alert] = 'Compra atualizada!'
       redirect_to purchase_path(@purchase)
     else
       flash[:alert] = @purchase.errors.full_messages
