@@ -20,7 +20,9 @@
 <section class='active-purchases'>
   <% @purchase_products.each do |purchase_product| %>
     <article class='purchase-product-preview round-box'>
-      <%= image_tag(purchase_product.product.image) %>
+      <% if purchase_product.product.image.attached? %>
+        <%= image_tag(purchase_product.product.image) %>
+      <% end %>
       <div>
         <h2>
           <%= link_to purchase_product.name, purchase_product_path(purchase_product), class: 'purchase-product-name purchase-product-link' %>

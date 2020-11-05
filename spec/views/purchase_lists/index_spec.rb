@@ -41,7 +41,7 @@ RSpec.describe 'PurchaseLists#index', type: :feature do
     it('displays warning') { is_expected.to have_text 'O acesso a esta página não é permitido para sua conta.' }
   end
 
-  context 'access with volunteer account' do
+  context 'access with volunteer account', js: true do
     let(:volunteer) { create(:volunteer_info).user }
     before(:each) do
       purchase_ready1.update(status: 'Pronto para Retirada')
@@ -49,6 +49,7 @@ RSpec.describe 'PurchaseLists#index', type: :feature do
       volunteer.update(waiting_approval: false)
       login(volunteer)
       visit purchase_lists_path
+      sleep(9999)
     end
     it { is_expected.to have_current_path(purchase_lists_path) }
     it { is_expected.to have_link user1.name, href: purchase_list_path(user1) }

@@ -11,7 +11,8 @@ class PurchaseListsController < ApplicationController
         @users << order.user
       end
     end
-    @users.uniq!
+    @users = @users.uniq.sort_by(&:name)
+    @users
   end
 
   def show
