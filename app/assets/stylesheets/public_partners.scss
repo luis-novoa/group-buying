@@ -4,13 +4,12 @@
 
 .public-partner {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
 
   article {
     width: 25rem;
     padding: 1rem 1.5rem; 
-    margin: 0 1rem;
+    margin: 0 0.5rem;
     margin-bottom: 1rem;
   }
   span {
