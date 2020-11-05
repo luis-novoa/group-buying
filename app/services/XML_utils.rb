@@ -24,7 +24,7 @@ class XMLUtils
       i += 1
       output["itemId#{i}"] = order.purchase_product.id
       output["itemDescription#{i}"] = order.purchase_product.name
-      output["itemAmount#{i}"] = order.purchase_product.price
+      output["itemAmount#{i}"] = format('%<price>.2f', price: order.purchase_product.price)
       output["itemQuantity#{i}"] = order.quantity
       output["itemWeight#{i}"] = '0'
       output["itemShippingCost#{i}"] = '0.01'

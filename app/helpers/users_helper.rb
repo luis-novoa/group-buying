@@ -47,14 +47,14 @@ module UsersHelper
     return tag.th('Ações') unless user
 
     links = []
-    unless user.account_type == 'Voluntário'
-      become_volunteer = link_to 'Tornar Voluntário', user_path(user, account_type: 'Voluntário'), method: :put
-      links << become_volunteer
-    end
-    unless user.account_type == 'Comprador'
-      become_buyer = link_to 'Tornar Comprador', user_path(user, account_type: 'Comprador'), method: :put
-      links << become_buyer
-    end
+    # unless user.account_type == 'Voluntário'
+    #   become_volunteer = link_to 'Tornar Voluntário', user_path(user, account_type: 'Voluntário'), method: :put
+    #   links << become_volunteer
+    # end
+    # unless user.account_type == 'Comprador'
+    #   become_buyer = link_to 'Tornar Comprador', user_path(user, account_type: 'Comprador'), method: :put
+    #   links << become_buyer
+    # end
     # unless user.account_type == 'Ponto de Entrega'
     #   become_delivery_point = link_to 'Tornar Ponto de Entrega',
     #                                   user_path(user, account_type: 'Ponto de Entrega'), method: :put

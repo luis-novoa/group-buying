@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :orders, only: %i[create update destroy index]
+  resources :pagseguros, only: %i[create]
   resources :partners, only: %i[index show create new update edit]
   resources :payments, only: %i[create show]
   resources :products

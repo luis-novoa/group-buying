@@ -22,7 +22,7 @@
     <div class='payment-info'>
       <span>Total do Pedido: R$ <%= br_currency(@total) %></span>
       <span>
-        <a href=<%= "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{@payment.code}" %>>Clique Aqui para Pagar</a>
+        <%= link_to 'Clique Aqui para Pagar', pagseguros_path(payment_id: @payment.id), method: :post, target: '_blank' %>
       </span>
     </div>
   </article>
