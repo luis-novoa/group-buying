@@ -8,7 +8,6 @@
       <span>Preço: R$ <%= br_currency(@purchase_product.price) %></span>
       <span>Peso: <%= format_weight(@product.weight, @product.weight_type) %></span>
       <span>Descrição: <%= @product.description %></span>  </article>
-      <%# order_form(@purchase_product, @existing_orders, @existing_orders_ids) %>
     </article>
     <article class='information round-box'>
       <% if @partner.image.attached? %>

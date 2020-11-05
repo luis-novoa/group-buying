@@ -1,0 +1,32 @@
+// Place all the styles related to the PublicPartners controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.public-partner {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  article {
+    width: 25rem;
+    padding: 1rem 1.5rem; 
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+  }
+  span {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+  img {
+    width: 3rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 10px;
+  }
+}

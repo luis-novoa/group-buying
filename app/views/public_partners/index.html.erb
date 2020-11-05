@@ -1,0 +1,15 @@
+<div class='show-centered' >
+  <section class='public-partner'>
+    <% @partners.each do |partner| %>
+      <article class=' round-box'>
+        <% if partner.image.attached? %>
+          <%= image_tag partner.image %>
+        <% end %>
+        <h2><%= partner.name %></h2>
+        <span>Descrição: <%= partner.description %></span>
+        <span>Cidade: <%= partner.city %> - <%= partner.state %> </span>
+        <span><a href=<%= partner.website %> target='_blank'>Website</a></span>
+      </article>
+    <% end %>
+  </section>
+</div>
