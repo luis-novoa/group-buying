@@ -48,5 +48,10 @@ RSpec.describe Order, type: :model do
       order.update(status: 'Pago')
       expect(purchase.reload.total).to eq(order.total)
     end
+
+    it 'deduces quantity from purchase_product' do
+      order.update(status: 'Pago')
+      expect(purchase_product.reload.quantity).to eq(order.total)
+    end
   end
 end
