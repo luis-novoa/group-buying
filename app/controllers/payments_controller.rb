@@ -6,6 +6,7 @@ class PaymentsController < ApplicationController
   def create
     new_payment = current_user.payments.build
     new_payment.save
+    new_payment.update(ref: "PGTO#{new_payment.id}")
     orders = current_user.orders.where(status: 'Carrinho')
     orders.update_all(status: 'Processando', payment_id: new_payment.id)
     redirect_to payment_path(new_payment)

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[create update destroy index]
   resources :pagseguros, only: %i[create]
+  resources :pagseguro_notifications, only: %i[create]
   resources :partners, only: %i[index show create new update edit]
   resources :payments, only: %i[create show]
   resources :products
