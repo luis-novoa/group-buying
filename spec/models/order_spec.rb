@@ -38,4 +38,15 @@ RSpec.describe Order, type: :model do
       expect(subject.save).to eq(true)
     end
   end
+
+  context "update status to 'pago'" do
+    let(:purchase) { create(:purchase, total: 0) }
+    let(:purchase_product) { create(:purchase_product, purchase: purchase) }
+    let(:order) { create(:order, purchase_product: purchase_product) }
+
+    it 'adds value to the purchase' do
+      order.update(status: 'Pago')
+      expect(purchase.reload.total).to eq(order.total)
+    end
+  end
 end
