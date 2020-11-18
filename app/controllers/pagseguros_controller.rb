@@ -7,7 +7,6 @@ class PagsegurosController < ApplicationController
       headers: { 'Content-Type' => 'application/x-www-form-urlencoded; charset=ISO-8859-1' },
       body: request_body
     )
-    p response.body
     payment_code = XMLUtils.get_attr(response.body, 'code')
     redirect_to "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{payment_code}"
   end
