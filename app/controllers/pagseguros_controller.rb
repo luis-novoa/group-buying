@@ -1,7 +1,7 @@
 class PagsegurosController < ApplicationController
   def create
     payment = Payment.includes(orders: :purchase_product).find(params[:payment_id])
-    request_body = XMLUtils.create_url_encoded(current_user, payment.orders, payment.id, root_url, pagseguro_notifications_url)
+    request_body = XMLUtils.create_url_encoded(current_user, payment.orders, payment.id)
     response = HTTParty.post(
       'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout',
       headers: { 'Content-Type' => 'application/x-www-form-urlencoded; charset=ISO-8859-1' },
