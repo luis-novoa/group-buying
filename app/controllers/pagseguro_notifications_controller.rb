@@ -1,6 +1,4 @@
-class PagseguroNotificationsController < ApplicationController
-  skip_before_action :check_session, :verify_authenticity_token
-
+class PagseguroNotificationsController < ActionController::API
   def create
     return unless params[:notificationType] == 'transaction'
 
