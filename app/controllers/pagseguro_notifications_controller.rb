@@ -5,11 +5,11 @@ class PagseguroNotificationsController < ActionController::API
     credentials = URI.encode_www_form(
       {
         email: Rails.application.credentials.pagseguro[:email],
-        token: Rails.application.credentials.pagseguro[:sandbox_token]
+        token: Rails.application.credentials.pagseguro[:token]
       }
     )
     transaction = HTTParty.get(
-      "https://ws.sandbox.pagseguro.uol.com.br/v3/transactions/notifications/#{params[:notificationCode]}?#{credentials}"
+      "https://ws.pagseguro.uol.com.br/v3/transactions/notifications/#{params[:notificationCode]}?#{credentials}"
     )
     transaction_status = XMLUtils.get_attr(transaction.body, 'status')
     payment = Payment.find_by(ref: XMLUtils.get_attr(transaction.body, 'reference'))

@@ -4,7 +4,7 @@ class XMLUtils
   def self.create_url_encoded(user, orders, payment_id)
     output = {
       email: Rails.application.credentials.pagseguro[:email],
-      token: Rails.application.credentials.pagseguro[:sandbox_token],
+      token: Rails.application.credentials.pagseguro[:token],
       currency: 'BRL',
       senderName: user.name,
       senderEmail: user.email,
@@ -12,8 +12,8 @@ class XMLUtils
       senderPhone: user.phone1,
       senderCPF: user.cpf,
       shippingAddressRequired: 'false',
-      redirectURL: 'https://terralimpa.herokuapp.com/',
-      notificationURL: 'https://terralimpa.herokuapp.com/pagseguro_notifications',
+      redirectURL: 'https://terralimpacc.org/',
+      notificationURL: 'https://terralimpacc.org/pagseguro_notifications',
       timeout: '100000',
       maxAge: '999999999',
       maxUses: '999',
