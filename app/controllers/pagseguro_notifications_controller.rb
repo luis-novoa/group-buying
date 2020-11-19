@@ -1,9 +1,7 @@
 class PagseguroNotificationsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :check_session, :verify_authenticity_token
 
   def create
-    p params
-    p params[:notificationType]
     return unless params[:notificationType] == 'transaction'
 
     credentials = URI.encode_www_form(
