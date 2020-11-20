@@ -123,4 +123,7 @@ Rails.application.configure do
     user_name: Rails.application.credentials.mailer[:username],
     password: Rails.application.credentials.mailer[:password]
   }
+
+  # Redis config
+  config.cache_store = :redis_cache_store, { url: Rails.application.credentials.redis[:url] }
 end
