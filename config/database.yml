@@ -20,6 +20,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= Rails.application.credentials.postgres[:role] %>
+  password: <%= Rails.application.credentials.postgres[:password] %>
 
 development:
   <<: *default
@@ -82,4 +84,4 @@ production:
   <<: *default
   database: group_buying_production
   username: group_buying
-  password: <%= ENV['GROUP_BUYING_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials.postgres[:production_password] %>

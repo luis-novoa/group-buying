@@ -1,0 +1,29 @@
+<section class='round-box fit-content'>
+  <article class='table'>
+    <h2>Entrega para <%= @buyer.name %></h2>
+
+    <table>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Cidade de Entrega</th>
+      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.purchase_product.name %></td>
+          <td><%= order.quantity %></td>
+          <td><%= order.delivery_city %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class='payment-info'>
+      <span>
+        <%= link_to 'Voltar ao Pedidos Pendentes', purchase_lists_path %>
+      </span>
+      <span>
+        <%= link_to 'Confirmar Entrega', purchase_list_path(@buyer), method: :put %>
+      </span>
+    </div>
+  </article>
+</section>
+

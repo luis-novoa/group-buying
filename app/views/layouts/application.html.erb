@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GroupBuying</title>
+    <title>Terra Limpa</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('logo.png') %>
   </head>
 
   <body>
+    <nav class='useful-links'>
+      <div class='left'>
+        <span class='home'>
+          <%= link_to 'Início', root_path %>
+        </span>
+        <span class='about'>
+          <%= link_to 'Sobre o Projeto', about_path %>
+        </span>
+        <span class='partners'>
+          <%= link_to 'Parceiros', public_partners_path %>
+        </span>
+      </div>
+      <div class='right'>
+        <%= mutable_links %>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,2 @@
+module PublicPartnersHelper
+end

@@ -1,0 +1,44 @@
+<div class='show-private'>
+  <section class='utilities'>
+    <%= user_tools %>
+    <article class='information round-box'>
+      <h2>Conta de <%= @user.name %></h2>
+      <%= adm_actions(@user) %>
+      <span>Email: <%= @user.email %></span>
+      <span>CPF: <%= cpf_format(@user.cpf) %></span>
+      <span>Telefone: <%= phone_format(@user.ddd1, @user.phone1) %> (<%= @user.phone1_type %>)</span>
+      <%= phone2(@user) %>
+      <span>Tipo de conta: <%= @user.account_type %></span>
+      <%= volunteer_info(@user) %>
+    </article>
+  </section>
+  <section class='fit-content round-box'>
+    <article class='table'>
+      <h2>Histórico de Pedidos</h2>
+      <table>
+        <tr>
+          <th>Data</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+          <th>Cidade de Entrega</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at.strftime('%d/%m/%Y') %></td>
+            <td><%= order.purchase_product.name %></td>
+            <td>R$ <%= br_currency(order.purchase_product.price) %></td>
+            <td><%= order.quantity %></td>
+            <td>R$ <%= br_currency(order.total) %></td>
+            <td><%= order.delivery_city %></td>
+            <td><%= order.status %></td>
+            <td><%= link_to 'Ver Pedido e Link de Pagamento', payment_path(order.payment) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </article>
+  </section>
+</div>

@@ -1,0 +1,15 @@
+<span>Endereço: <%= infos.address %></span>
+<span>Cidade: <%= "#{infos.city} - #{infos.state}" %></span>
+<span>Instituição/Empresa: <%= infos.institution %></span>
+<span>Área de Estudo/Trabalho: <%= infos.degree %></span>
+<span>Vínculo com a UNEMAT: <%= infos.unemat_bond %></span>
+<% unless infos.instagram.empty? %>
+  <span><a target='_blank' href=<%= infos.instagram %>>Instagram</a></span>
+<% end %>
+<% unless infos.facebook.empty? %>
+  <span><a target='_blank' href=<%= infos.facebook %>>Facebook</a></span>
+<% end %>
+<% unless infos.lattes.empty? %>
+  <span><a target='_blank' href=<%= infos.lattes %>>Lattes</a></span>
+<% end %>
+

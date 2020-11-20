@@ -1,0 +1,7 @@
+  <nav class='tools round-box'>
+    <h2>Ferramentas</h2>
+    <div class='separator'></div>
+    <span><%= link_to('Usuários', users_path) %></span>
+    <%= purchases_link %>
+    <%= volunteer_actions(@new_purchase, @partner_select) %>
+  </nav>
