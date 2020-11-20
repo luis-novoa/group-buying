@@ -6,14 +6,17 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { Faker::Lorem.characters(number: 6) }
     password_confirmation { password }
-    address { brazilian_address }
-    city { Faker::Address.city }
-    state { state_creator }
-    phone1 { phone_creator }
+    ddd1 { Faker::Number.between(from: 11, to: 99) }
+    phone1 { Faker::Number.number(digits: 9) }
     phone1_type { phone_type_creator }
-    phone2 { phone_creator }
+    ddd2 { Faker::Number.between(from: 11, to: 99) }
+    phone2 { Faker::Number.number(digits: 9) }
     phone2_type { phone_type_creator }
     account_type { 'Comprador' }
+    waiting_approval { false }
+    super_user { false }
+    moderator { false }
+    cpf { Faker::Number.number(digits: 11) }
 
     trait :volunteer_type do
       account_type { 'Voluntário' }
@@ -21,10 +24,25 @@ FactoryBot.define do
 
     trait :deliver_type do
       account_type { 'Ponto de Entrega' }
-      cpf { generate_cpf }
     end
 
-    factory :volunteer, traits: [:volunteer_type]
-    factory :delivery, traits: [:deliver_type]
+    trait :pending do
+      waiting_approval { true }
+    end
+
+    trait :mod do
+      moderator { true }
+    end
+
+    trait :adm do
+      super_user { true }
+    end
+
+    factory :volunteer, traits: %i[volunteer_type]
+    factory :moderator, traits: %i[volunteer_type mod]
+    factory :administrator, traits: %i[volunteer_type adm mod]
+    factory :pending_volunteer, traits: %i[volunteer_type pending]
+    factory :delivery, traits: %i[deliver_type]
+    factory :pending_delivery, traits: %i[deliver_type pending]
   end
 end

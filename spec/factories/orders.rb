@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :order do
-    quantity { Faker::Number.between(from: 0, to: 100) }
-    total { purchase.price * quantity }
-    paid { false }
+    quantity { Faker::Number.between(from: 1, to: 100) }
+    total { purchase_product.price * quantity }
+    status { 'Carrinho' }
+    delivery_city { 'Sinop' }
     user { association :user }
-    purchase { association :purchase }
+    payment { association :payment }
+    purchase_product { association :purchase_product }
   end
 end

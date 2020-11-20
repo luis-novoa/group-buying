@@ -1,0 +1,53 @@
+<section class='round-box fit-content'>
+  <%= link_to 'Adicionar Parceiro', new_partner_path %>
+  <article class='table'>
+    <h2>Fornecedores</h2>
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+      </tr>
+      <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= link_to supplier.name, partner_path(supplier) %></td>
+          <td><%= supplier.email %></td>
+          <td>
+            <%= "#{phone_format(supplier.ddd1, supplier.phone1)}" %>
+            <br>
+            <%= "(#{supplier.phone1_type})" %>
+          </td>
+          <td>
+            <%= link_to 'Editar', edit_partner_path(supplier) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+  <article class='table'>
+    <h2>Outros</h2>
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+      </tr>
+      <% @delivery_points.each do |delivery_point| %>
+        <tr>
+          <td><%= link_to delivery_point.name, partner_path(delivery_point) %></td>
+          <td><%= delivery_point.email %></td>
+          <td>
+            <%= "#{phone_format(delivery_point.ddd1, delivery_point.phone1)}" %>
+            <br>
+            <%= "(#{delivery_point.phone1_type})" %>
+          </td>
+          <td>
+            <%= link_to 'Editar', edit_partner_path(delivery_point) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
+</section>

@@ -4,3 +4,7 @@
 - Sign up page (app/views/devise/registrations/new.html.erb)
 - Log in page (app/views/devise/sessions/new.html.erb)
 - New volunteer info page (app/views/volunteer_infos/new.html.erb)
+
+# Next steps
+
+- Set update for users

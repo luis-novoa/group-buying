@@ -1,104 +1,88 @@
-<h2>Registre-se</h2>
+<section class='form round-box'>
+  <h2>Cadastre-se</h2>
+  <span>Campos marcados com asterísco (*) são obrigatórios.</span>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'try') do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
 
-  <span class='warning'>Campos marcados com asterísco (*) são obrigatórios.</span>
+    <div class='separator'></div>
 
-  <div class='field'>
-    <%= f.label :email, 'Email*' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
-  </div>
+    <div class='field'>
+      <%= f.label :name, 'Nome Completo*' %>
+      <%= f.text_field :name %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :password, 'Senha*' %>
-    <% if @minimum_password_length %>
-    <em>(Composta de, no mínimo, <%= @minimum_password_length %> caracteres)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: 'new-password' %>
-  </div>
+    <div class="field" id='cpf_field'>
+      <%= f.label :cpf, 'CPF*' %>
+      <%= f.text_field :cpf, maxlength: 11, pattern: '\d*' %>
+      <em>(Apenas números)</em>
+    </div>
 
-  <div class='field'>
-    <%= f.label :password_confirmation, 'Digite a senha novamente*' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
-  </div>
+    <div class='field'>
+      <%= f.label :email, 'Email*' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :name, 'Nome Completo*' %><br />
-    <%= f.text_field :name %>
-  </div>
+    <div class='field'>
+      <%= f.label :password, 'Senha*' %>
+      <%= f.password_field :password, autocomplete: 'new-password' %>
+      <% if @minimum_password_length %>
+      <em>(Mínimo de <%= @minimum_password_length %> caracteres)</em>
+      <% end %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :address, 'Endereço*' %><br />
-    <%= f.text_field :address %>
-    <%= text_field_tag :address_street %> <!-- please apply display: none on this text field -->
-  </div>
-  <div class='field'> <!-- please apply display: none on this field -->
-    <%= label_tag :address_number, 'Número*' %><br />
-    <%= text_field_tag :address_number %>
-  </div>
-  <div class='field'> <!-- please apply display: none on this text field -->
-    <%= label_tag :address_additional_info, 'Complemento' %><br />
-    <%= text_field_tag :address_additional_info %>
-  </div>
+    <div class='field'>
+      <%= f.label :password_confirmation, 'Digite a senha novamente*' %>
+      <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :city, 'Cidade*' %><br />
-    <%= f.text_field :city %>
-  </div>
+    <div class='separator'></div>
 
-  <div class='field'>
-    <%= f.label :state, 'Estado*' %><br />
-    <%= f.select :state, [
-      %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
-      %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
-      %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
-      ]
-    %>
-  </div>
+    <div class='field'>
+      <%= f.label :ddd1, 'DDD*' %> 
+      <%= f.text_field :ddd1, maxlength: 2, pattern: '\d*' %>
+      <%= f.label :phone1, 'Telefone*', class: 'margin-left' %> 
+      <%= f.text_field :phone1, maxlength: 9, pattern: '\d*' %>
+      <em>(Apenas números)</em>
+    </div>
 
-  <div class='field'>
-    <%= f.label :phone1, 'Telefone*' %> 
-    <%= f.telephone_field :phone1, maxlength: 15 %>
-  </div>
+    <div class='field'>
+      <%= f.label :phone1_type, 'Tipo de Telefone*' %>
+      <%= f.select :phone1_type, [
+        %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+        ]
+      %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :phone1_type, 'Tipo de Telefone*' %><br />
-    <%= f.select :phone1_type, [
-      %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
-      ]
-    %>
-  </div>
+    <div class='separator'></div>
 
-  <div class='field'>
-    <%= f.label :phone2, 'Telefone Adicional' %>
-    <%= f.telephone_field :phone2, maxlength: 15 %>
-  </div>
+    <div class='field'>
+      <%= f.label :ddd2, 'DDD' %> 
+      <%= f.text_field :ddd2, maxlength: 2, pattern: '\d*' %>
+      <%= f.label :phone2, 'Telefone Adicional', class: 'margin-left' %>
+      <%= f.text_field :phone2, maxlength: 9, pattern: '\d*' %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :phone2_type, 'Tipo de Telefone' %><br />
-    <%= f.select :phone2_type, [
-      ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
-      ]
-    %>
-  </div>
+    <div class='field'>
+      <%= f.label :phone2_type, 'Tipo de Telefone' %>
+      <%= f.select :phone2_type, [
+        ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+        ]
+      %>
+    </div>
 
-  <div class='field'>
-    <%= f.label :account_type, 'Tipo de Conta*' %><br />
-    <%= f.select :account_type, [
-      %w[Comprador Comprador], %w[Voluntário Voluntário], ['Ponto de Entrega', 'Ponto de Entrega']
-      ]
-    %>
-  </div>
+    <div class='separator'></div>
 
-  <div class="field" id='cpf_field'>
-    <%= f.label :cpf, 'CPF*' %>
-    <%= f.text_field :cpf, maxlength: 14 %>
-  </div>
+    <div class='field'>
+      <%= f.label :account_type, 'Cadastrar-se como*' %>
+      <%= f.select :account_type, [
+        %w[Comprador Comprador], %w[Voluntário Voluntário], ['Ponto de Entrega', 'Ponto de Entrega']
+        ]
+      %>
+    </div>
 
-  <div class='actions'>
-    <%= f.submit 'Enviar', id: 'send' %>
-  </div>
-<% end %>
-
-<%= javascript_pack_tag 'user_registration' %>
+    <div class='actions'>
+      <%= f.submit 'Enviar', id: 'send' %>
+    </div>
+  <% end %>
+</section>

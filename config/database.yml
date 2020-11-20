@@ -84,4 +84,4 @@ production:
   <<: *default
   database: group_buying_production
   username: group_buying
-  password: <%= ENV['GROUP_BUYING_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials.postgres[:production_password] %>

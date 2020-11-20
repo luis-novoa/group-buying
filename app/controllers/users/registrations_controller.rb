@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :check_session, only: %i[new create]
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
@@ -45,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name address city state phone1 phone1_type phone2 phone2_type account_type cpf]
+      keys: %i[name ddd1 phone1 phone1_type ddd2 phone2 phone2_type account_type cpf]
     )
   end
 

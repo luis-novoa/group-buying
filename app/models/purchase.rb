@@ -1,11 +1,7 @@
 class Purchase < ApplicationRecord
-  validates :price, presence: true, numericality: true
-  validates :quantity, numericality: { only_integer: true }
   validates :status, inclusion: { in: ['Aberta', 'Solicitada ao Fornecedor', 'Pronto para Retirada', 'Finalizada'] }
-  validates :total, presence: true, numericality: true
-  validates :message, length: { maximum: 500 }, allow_nil: true
-  validates :product_id, presence: true
+  validates :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
-  has_many :orders, dependent: false
-  belongs_to :product
+  has_many :purchase_products, dependent: :destroy
+  belongs_to :partner
 end

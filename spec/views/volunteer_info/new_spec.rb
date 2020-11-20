@@ -1,7 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'VolunteerInfo#new', type: :feature do
+RSpec.describe 'VolunteerInfos#new', type: :feature do
   subject { page }
+
+  context 'attempt to access from unlogged user' do
+    before(:each) { visit new_volunteer_info_path }
+    it('redirects user to root') { is_expected.to have_current_path(root_path) }
+    it('displays warning') { is_expected.to have_text 'Página disponível apenas para usuários cadastrados.' }
+  end
 
   context 'attempt to access from buyer' do
     let(:buyer) { create(:user) }
@@ -24,8 +30,14 @@ RSpec.describe 'VolunteerInfo#new', type: :feature do
   end
 
   context 'structure' do
-    before(:each) { login(volunteer) }
     let(:volunteer) { create(:volunteer) }
+    before(:each) { login(volunteer) }
+    it { is_expected.to have_field 'Endereço*' }
+    it { is_expected.to have_field 'Cidade*' }
+    it {
+      is_expected.to have_select 'Estado*', with_options:
+      %w[AC AL AM AP BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RO RS RR SC SE SP TO]
+    }
     it { is_expected.to have_field 'Instagram' }
     it { is_expected.to have_field 'Facebook' }
     it { is_expected.to have_field 'Lattes' }
@@ -37,18 +49,20 @@ RSpec.describe 'VolunteerInfo#new', type: :feature do
     }
   end
 
-  context 'succesful creation', js: true do
+  context 'succesful creation' do
     let(:volunteer_info) { build(:volunteer_info) }
     let(:volunteer) { create(:volunteer) }
     before(:each) do
       login(volunteer)
+      fill_in 'Endereço*', with: brazilian_address
+      fill_in 'Cidade*', with: Faker::Address.city
+      select state_creator, from: 'Estado*'
       fill_in 'Instituição/Empresa*',	with: volunteer_info.institution
       fill_in 'Área de Estudo/Trabalho*',	with: volunteer_info.degree
       select volunteer_info.unemat_bond, from: 'Vínculo com a UNEMAT*'
       fill_in 'Instagram',	with: volunteer_info.instagram
       fill_in 'Facebook',	with: volunteer_info.facebook
       fill_in 'Lattes',	with: volunteer_info.lattes
-      sleep(5)
       click_on 'Enviar'
     end
     it('adds informations to the database') { expect(VolunteerInfo.all.count).to eq(1) }

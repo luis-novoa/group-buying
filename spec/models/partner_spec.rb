@@ -17,13 +17,16 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to validate_length_of(:official_name).is_at_least(2).is_at_most(75) }
 
   it { is_expected.to validate_presence_of(:cnpj) }
-  it { is_expected.to validate_uniqueness_of(:cnpj).case_insensitive }
-  it { is_expected.to validate_length_of(:cnpj).is_equal_to(18) }
-  it { is_expected.to allow_value('12.345.678/9012-34').for(:cnpj) }
-  it { is_expected.to_not allow_values('aa.aaa.aaaa/aaaa-aa', 'a' * 18).for(:cnpj) }
+  it { is_expected.to validate_uniqueness_of(:cnpj) }
+  it {
+    is_expected.to validate_numericality_of(:cnpj)
+      .only_integer
+      .is_greater_than(9_999_999_999_999)
+      .is_less_than(100_000_000_000_000)
+  }
 
   it { is_expected.to validate_presence_of(:description) }
-  it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(500) }
+  it { is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(5000) }
 
   it { is_expected.to validate_length_of(:website).is_at_least(2).is_at_most(75).allow_nil }
 
@@ -33,10 +36,21 @@ RSpec.describe Partner, type: :model do
   it { is_expected.to allow_value('email@test.com').for(:email) }
   it { is_expected.to_not allow_value('emailtest.com', 'email@testcom', 'emailtestcom').for(:email) }
 
+  it { is_expected.to validate_presence_of(:ddd1) }
+  it {
+    is_expected.to validate_numericality_of(:ddd1)
+      .only_integer
+      .is_greater_than(10)
+      .is_less_than(100)
+  }
+
   it { is_expected.to validate_presence_of(:phone1) }
-  it { is_expected.to validate_length_of(:phone1).is_at_least(14).is_at_most(15) }
-  it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone1) }
-  it { is_expected.to_not allow_value('a' * 14).for(:phone1) }
+  it {
+    is_expected.to validate_numericality_of(:phone1)
+      .only_integer
+      .is_greater_than(10_000_000)
+      .is_less_than(1_000_000_000)
+  }
 
   it { is_expected.to validate_presence_of(:phone1_type) }
   it {
@@ -46,9 +60,19 @@ RSpec.describe Partner, type: :model do
   }
 
   context '.phone2 defined' do
-    it { is_expected.to validate_length_of(:phone2).is_at_least(14).is_at_most(15) }
-    it { is_expected.to allow_values('(66) 8536-7485', '(66) 98536-7485').for(:phone2) }
-    it { is_expected.to_not allow_values('a' * 14).for(:phone2) }
+    it {
+      is_expected.to validate_numericality_of(:ddd2)
+        .only_integer
+        .is_greater_than(10)
+        .is_less_than(100)
+    }
+
+    it {
+      is_expected.to validate_numericality_of(:phone2)
+        .only_integer
+        .is_greater_than(10_000_000)
+        .is_less_than(1_000_000_000)
+    }
     it { is_expected.to_not allow_value(nil).for(:phone2_type) }
   end
   context '.phone2 undefined' do
@@ -84,5 +108,6 @@ RSpec.describe Partner, type: :model do
   }
 
   it { is_expected.to have_many(:products) }
+  it { is_expected.to have_many(:purchases) }
   it { is_expected.to belong_to(:user).conditions(account_type: 'Ponto de Entrega').optional }
 end

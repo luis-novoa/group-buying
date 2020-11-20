@@ -1,0 +1,22 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.session {
+  a:not(:last-child) {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  input[type=submit] {
+    margin-bottom: 1rem;
+  }
+}
+
+.purchase-tools {
+  input, label {
+    display: block;
+  }
+  select {
+    margin-top: 0.25rem;
+  }
+}

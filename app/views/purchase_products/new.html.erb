@@ -1,0 +1,42 @@
+<section class='form round-box'>
+  <h2>Adicionar Produto<br>à Compra Coletiva</h2>
+  <div class='separator'></div>
+  <%= error_messages %>
+  <%= form_for @new_purchase_product do |f| %>
+    <%= f.hidden_field :purchase_id %>
+
+    <div class='field'>
+      <%= f.label :product_id, 'Produto*' %>
+      <%= f.select :product_id, options_for_select(@product_select) %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :price, "Preço*" %>
+      <%= f.number_field :price, step: 0.01, min: 0 %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :quantity, "Quantidade" %>
+      <%= f.number_field :quantity, step: 1, min: 0 %>
+    </div>
+
+    <div class='field'>
+      <em>
+        (Em caso de ofertar o produto sem<br>restrição de quantidade, não<br>modifique o campo "quantidade")
+      </em>
+    </div>
+
+    <div class='field'>
+      <%= f.label :offer_city, 'Disponível em*' %>
+      <%= f.select :offer_city, [
+        %w[Sinop Sinop], %w[Cuiabá Cuiabá], ['Sinop e Cuiabá', 'Sinop e Cuiabá']
+        ]
+      %>
+    </div>
+
+    <div class='actions'>
+      <%= f.submit 'Oferecer Produto', disable_with: 'Criando Oferta' %>
+      <%= link_to 'Voltar', purchase_path(params[:purchase_id]) %>
+    </div>
+  <% end %>
+</section>

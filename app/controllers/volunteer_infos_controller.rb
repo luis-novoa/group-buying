@@ -1,6 +1,10 @@
 class VolunteerInfosController < ApplicationController
   skip_before_action :check_volunteer_info
-  before_action :check_volunteer_account
+  before_action :only_volunteers
+
+  def index
+    redirect_to new_volunteer_info_path
+  end
 
   def new
     @volunteer_info = VolunteerInfo.new
@@ -18,14 +22,7 @@ class VolunteerInfosController < ApplicationController
 
   private
 
-  def check_volunteer_account
-    return if current_user.account_type == 'Voluntário'
-
-    flash[:alert] = ['O acesso a esta página não é permitido para sua conta.']
-    redirect_to root_path
-  end
-
   def volunteer_info_params
-    params.require(:volunteer_info).permit(:institution, :degree, :unemat_bond, :instagram, :facebook, :lattes)
+    params.require(:volunteer_info).permit(:address, :city, :state, :institution, :degree, :unemat_bond, :instagram, :facebook, :lattes)
   end
 end

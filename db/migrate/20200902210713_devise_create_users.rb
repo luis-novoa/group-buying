@@ -26,15 +26,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       t.string :name, null: false, limit: 75, unique: true
-      t.string :address, null: false, limit: 75
-      t.string :city, null: false, limit: 30
-      t.string :state, null: false, limit: 2
-      t.string :phone1, null: false, limit: 19
+      t.bigint :ddd1, null: false
+      t.bigint :phone1, null: false
       t.string :phone1_type, null: false
-      t.string :phone2, limit: 19
+      t.bigint :ddd2
+      t.bigint :phone2
       t.string :phone2_type
       t.string :account_type, default: 'Comprador'
-      t.string :cpf, limit: 14, unique: true
+      t.bigint :cpf, null: false
       t.boolean :super_user, default: false
       t.boolean :moderator, default: false
       t.boolean :waiting_approval, default: false

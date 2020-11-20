@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #0000ee;
+}
+
+body {
+  margin: 0;
+  margin-top: 3.5rem;
+  background-color: #D6EEFF;
+  font-family: 'Rubik', sans-serif;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+.useful-links {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1C671F;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  a {
+    color: #F9F9F9;
+    margin: 0 0.5rem;
+  }
+}
+
+.fit-content {
+  width: fit-content;
+  width: -moz-fit-content;
+  height: min-content;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.table {
+  margin-bottom: 1.5rem;
+  h2 {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border-bottom: solid 1px #D6EEFF;
+    padding: 0.5rem 0;
+  }
+  td:not(:first-of-type) {
+    padding-left: 1rem;
+  }
+  th:not(:first-of-type) {
+    padding-left: 1rem;
+  }
+  .table-actions a:first-of-type {
+    margin-right: 0.5rem;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.round-box {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.notice {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.separator {
+  border-top: solid 1px #D6EEFF;
+  margin-bottom: 1rem;
+}
+
+.show-centered {
+  .utilities {
+    display: flex;
+    justify-content: stretch;
+    width: 40rem;
+    margin: 0 auto;
+    article:first-of-type {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.show-private {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.form {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto 1rem auto;
+  padding: 1rem 2rem;
+  span {
+    display: block;
+  }
+
+  input:not(input[type=checkbox]), select {
+    margin-left: 0.1rem;
+    margin-right: 1rem;
+  }
+
+  input[type=file], textarea {
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 5rem;
+  }
+
+  h2, span, .actions {
+    text-align: center;
+  }
+
+  .actions a {
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .field, h2, span {
+    margin-bottom: 1rem;
+  }
+
+  .field_with_errors {
+    display: inline;
+    color: red;
+    input, select {
+      border: solid 1px red;
+      border-radius: 2px;
+    }
+  }
+
+  .margin-left {
+    margin-left: 1rem;
+  }
+}
+
+.utilities {
+  margin-right: 1rem;
+  width: 25rem;
+  h2 {
+    text-align: center;
+  }
+  .information {
+    padding: 1rem 1.5rem;
+    span {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      margin-bottom: 1rem;
+    }
+    img {
+      width: 3rem;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      display: block;
+      width: 8rem;
+      height: 8rem;
+      border-radius: 10px;
+    }
+  }
+  
+  .tools {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    span {
+      display: block;
+    }
+  
+    .separator {
+      margin: 0.5rem 0;
+    }
+  }
+}

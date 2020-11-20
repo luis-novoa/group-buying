@@ -1,0 +1,2 @@
+module PagsegurosHelper
+end

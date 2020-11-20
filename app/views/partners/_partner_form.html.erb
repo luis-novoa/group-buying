@@ -1,0 +1,122 @@
+<div class='separator'></div>
+<%= error_messages %>
+<%= form_for(partner) do |f| %>
+  <div class='field'>
+    <%= f.label :supplier, 'Tipo de Parceiro' %>
+    <%= f.radio_button :supplier, true, checked: true %>
+    <%= f.label :supplier, 'Fornecedor', value: 'true' %>
+    <%= f.radio_button :supplier, false %>
+    <%= f.label :supplier, 'Outro', value: 'false' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :name, 'Nome Fantasia*' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :official_name, 'Razão Social*' %>
+    <%= f.text_field :official_name %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :cnpj, 'CNPJ*' %>
+    <%= f.text_field :cnpj, maxlength: 14, pattern: '\d*' %>
+    <em>(Apenas números)</em>
+  </div>
+
+  <div class='field'>
+    <%= f.label :website %>
+    <em>(Link)</em>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :email, 'Email*' %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :description, 'Descrição*' %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :address, 'Endereço*' %>
+    <%= f.text_field :address %>
+    <%= text_field_tag :address_street, '', class: 'hidden' %>
+  </div>
+
+  <div class='field hidden'>
+    <%= label_tag :address_number, 'Número*' %>
+    <%= text_field_tag :address_number, '', maxlength: 6, size: 4 %>
+  </div>
+
+  <div class='field hidden'>
+    <%= label_tag :address_additional_info, 'Complemento' %>
+    <%= text_field_tag :address_additional_info %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :city, 'Cidade*' %>
+    <%= f.text_field :city %>
+
+    <%= f.label :state, 'Estado*', class: 'margin-left' %>
+    <%= f.select :state, [
+      %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
+      %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
+      %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
+      ]
+    %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :ddd1, 'DDD*' %> 
+    <%= f.text_field :ddd1, maxlength: 2, pattern: '\d*' %>
+    <%= f.label :phone1, 'Telefone*' %> 
+    <%= f.text_field :phone1, maxlength: 9, pattern: '\d*' %>
+    <em>(Apenas números)</em>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone1_type, 'Tipo de Telefone*' %>
+    <%= f.select :phone1_type, [
+      %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+      ]
+    %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :ddd2, 'DDD' %> 
+    <%= f.text_field :ddd2, maxlength: 2, pattern: '\d*' %>
+    <%= f.label :phone2, 'Telefone Adicional' %>
+    <%= f.text_field :phone2, maxlength: 9, pattern: '\d*' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :phone2_type, 'Tipo de Telefone' %>
+    <%= f.select :phone2_type, [
+      ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+      ]
+    %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :image, 'Adicionar/Modificar Imagem' %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class='actions'>
+    <%= f.submit 'Enviar', id: 'send' %>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag 'partner_registration' %>

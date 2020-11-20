@@ -1,0 +1,65 @@
+// Place all the styles related to the PurchaseProducts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.welcome {
+  position: fixed;
+  top: 3.5rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+} 
+
+.welcome-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 2rem;
+  text-align: justify;
+  img {
+    width: 20rem;
+  }
+}
+
+.active-purchases {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 30rem;
+}
+
+.purchase-product-preview {
+  display: flex;
+  width: 26.2rem;
+  padding: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  div {
+    margin-left: 2rem;
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+  img {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 10px;
+  }
+  .purchase-product-price {
+    display: block;
+    margin: 1rem 0;
+  }
+  .order-form {
+    margin: 0;
+    .field {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+      input {
+        width: 5rem;
+      }
+    }
+  }
+}

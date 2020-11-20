@@ -1,13 +1,15 @@
 FactoryBot.define do
   factory :purchase do
-    price { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
-    limited_quantity { false }
-    quantity { 0 }
     active { true }
-    status { create_status }
+    status { 'Aberta' }
     total { Faker::Number.decimal(l_digits: 2, r_digits: 4) }
-    message { nil }
-    product { association :product }
+    partner { association :partner }
+
+    trait :inactive do
+      active { false }
+    end
+
+    factory :inactive_purchase, traits: [:inactive]
   end
 end
 

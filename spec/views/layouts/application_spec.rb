@@ -18,7 +18,7 @@ RSpec.describe 'Navbar', type: :feature do
   context 'for logged users' do
     let(:user) { create(:user) }
     before(:each) { login(user) }
-    it { is_expected.to have_link 'Carrinho', href: cart_path }
+    it { is_expected.to have_link 'Carrinho', href: orders_path }
     it { is_expected.to have_link 'Minha Conta', href: user_path(user) }
     it { is_expected.to have_link 'Sair', href: destroy_user_session_path }
   end

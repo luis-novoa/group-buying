@@ -1,0 +1,11 @@
+// Place all the styles related to the Payments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.payment-info {
+  display: flex;
+  justify-content: space-between;
+  span {
+    margin-top: 1rem;
+  }
+}
