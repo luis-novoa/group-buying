@@ -2,7 +2,7 @@
 lock '~> 3.14.1'
 
 set :application, 'group-buying'
-set :repo_url, 'git@github.com:luis-novoa/group-buying.git'
+set :repo_url, 'https://github.com/luis-novoa/group-buying.git'
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
@@ -14,7 +14,7 @@ set :keep_releases, 5
 
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy
 # This is useful if you don't want to use ENV variables
-append :linked_files, 'config/database.yml', 'config/credentials.yml.enc', %w[config/master.key]
+append :linked_files, 'config/database.yml', 'config/credentials.yml.enc', 'config/master.key'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
