@@ -1,6 +1,6 @@
 module UsersHelper
   def volunteer_info(user)
-    return unless user.account_type == 'Voluntário'
+    return unless user.volunteer_info
 
     render partial: 'volunteer_infos/infos', locals: { infos: user.volunteer_info }
   end
