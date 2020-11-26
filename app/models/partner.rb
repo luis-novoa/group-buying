@@ -11,7 +11,8 @@ class Partner < ApplicationRecord
   validates :cnpj,
             presence: true,
             uniqueness: true,
-            numericality: { only_integer: true, greater_than: 9_999_999_999_999, less_than: 100_000_000_000_000 }
+            length: { minimum: 14, maximum: 14 },
+            format: /\A\d{14}\z/
   validates :description, presence: true, length: { minimum: 2, maximum: 5000 }
   validates :website, allow_nil: true, length: { maximum: 75 }
   validates :email,

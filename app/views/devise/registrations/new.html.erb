@@ -14,7 +14,7 @@
 
     <div class="field" id='cpf_field'>
       <%= f.label :cpf, 'CPF*' %>
-      <%= f.text_field :cpf, maxlength: 11, pattern: '\d*' %>
+      <%= f.text_field :cpf, maxlength: 11, pattern: '\d{11}' %>
       <em>(Apenas números)</em>
     </div>
 

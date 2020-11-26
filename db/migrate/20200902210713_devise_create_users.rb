@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.bigint :phone2
       t.string :phone2_type
       t.string :account_type, default: 'Comprador'
-      t.bigint :cpf, null: false
+      t.string :cpf, null: false, limit: 11
       t.boolean :super_user, default: false
       t.boolean :moderator, default: false
       t.boolean :waiting_approval, default: false

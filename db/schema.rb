@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_212644) do
   create_table "partners", force: :cascade do |t|
     t.string "name", limit: 75, null: false
     t.string "official_name", limit: 75, null: false
-    t.bigint "cnpj", null: false
+    t.string "cnpj", limit: 14, null: false
     t.text "description", null: false
     t.string "website", limit: 75
     t.string "email", limit: 75, null: false
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_212644) do
     t.bigint "phone2"
     t.string "phone2_type"
     t.string "account_type", default: "Comprador"
-    t.bigint "cpf", null: false
+    t.string "cpf", limit: 11, null: false
     t.boolean "super_user", default: false
     t.boolean "moderator", default: false
     t.boolean "waiting_approval", default: false

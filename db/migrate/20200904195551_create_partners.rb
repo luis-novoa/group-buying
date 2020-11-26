@@ -3,7 +3,7 @@ class CreatePartners < ActiveRecord::Migration[6.0]
     create_table :partners do |t|
       t.string :name, null: false, limit: 75, unique: true
       t.string :official_name, null: false, limit: 75, unique: true
-      t.bigint :cnpj, null: false, unique: true
+      t.string :cnpj, null: false, unique: true, limit: 14
       t.text :description, null: false, limit: 5000
       t.string :website, limit: 75
       t.string :email, null: false, limit: 75, unique: true
