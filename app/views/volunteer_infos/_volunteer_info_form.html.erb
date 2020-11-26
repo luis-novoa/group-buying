@@ -1,0 +1,76 @@
+<div class='separator'></div>
+
+<%= error_messages %>
+
+<%= form_for(volunteer_info) do |f| %>
+  <div class='field'>
+    <%= f.label :address, 'Endereço*' %>
+    <%= f.text_field :address %>
+    <%= text_field_tag :address_street, '', class: 'hidden' %>
+  </div>
+
+  <div class='field hidden'>
+    <%= label_tag :address_number, 'Número*' %>
+    <%= text_field_tag :address_number, '', maxlength: 6, size: 4 %>
+  </div>
+
+  <div class='field hidden'>
+    <%= label_tag :address_additional_info, 'Complemento' %>
+    <%= text_field_tag :address_additional_info %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :city, 'Cidade*' %>
+    <%= f.text_field :city %>
+    <%= f.label :state, 'Estado*', class: 'margin-left' %>
+    <%= f.select :state, [
+      %w[AC AC], %w[AL AL], %w[AM AM], %w[AP AP], %w[BA BA], %w[CE CE], %w[DF DF], %w[ES ES], %w[GO GO], 
+      %w[MA MA], %w[MT MT], %w[MS MS], %w[MG MG], %w[PA PA], %w[PB PB], %w[PR PR], %w[PE PE], %w[PI PI], 
+      %w[RJ RJ], %w[RN RN], %w[RO RO], %w[RS RS], %w[RR RR], %w[SC SC], %w[SE SE], %w[SP SP], %w[TO TO],
+      ]
+    %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :institution, 'Instituição/Empresa*' %>
+    <%= f.text_field :institution %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :degree, 'Área de Estudo/Trabalho*' %>
+    <%= f.text_field :degree %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :unemat_bond, 'Vínculo com a UNEMAT*' %>
+    <%= f.select :unemat_bond, [ 
+      %w[Professor Professor], %w[Aluno Aluno], ['Colaborador Externo', 'Colaborador Externo']
+    ] %>
+  </div>
+
+  <div class='separator'></div>
+
+  <div class='field'>
+    <%= f.label :instagram %>
+    <em>(Link)</em>
+    <%= f.text_field :instagram %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :facebook %>
+    <em>(Link)</em>
+    <%= f.text_field :facebook %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :lattes %>
+    <em>(Link)</em>
+    <%= f.text_field :lattes %>
+  </div>
+
+  <div class='actions'>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>
