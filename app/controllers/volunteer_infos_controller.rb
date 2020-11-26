@@ -20,6 +20,20 @@ class VolunteerInfosController < ApplicationController
     end
   end
 
+  def edit
+    @volunteer_info = current_user.volunteer_info
+  end
+
+  def update
+    @volunteer_info = current_user.volunteer_info
+    if @volunteer_info.update(volunteer_info_params)
+      redirect_to user_path(current_user)
+    else
+      flash.now[:alert] = @volunteer_info.errors.full_messages
+      render 'edit'
+    end
+  end
+
   private
 
   def volunteer_info_params

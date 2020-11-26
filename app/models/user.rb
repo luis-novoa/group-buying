@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   before_save :capitalize_first_letter
   before_create :set_need_for_approval
+  before_update :set_approval_again
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: false },
@@ -47,5 +48,9 @@ class User < ApplicationRecord
 
   def set_need_for_approval
     self.waiting_approval = true unless account_type == 'Comprador'
+  end
+
+  def set_approval_again
+    self.waiting_approval = true if account_type_was == 'Comprador'
   end
 end

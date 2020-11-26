@@ -1,6 +1,6 @@
 module UsersHelper
   def volunteer_info(user)
-    return unless user.account_type == 'Voluntário'
+    return unless user.volunteer_info
 
     render partial: 'volunteer_infos/infos', locals: { infos: user.volunteer_info }
   end
@@ -9,6 +9,16 @@ module UsersHelper
     return if current_user.account_type == 'Comprador'
 
     render partial: 'users/delivery_point_tools'
+  end
+
+  def user_actions(user)
+    return unless current_user == user
+
+    output = tag.span(link_to('Editar Informações Pessoais', edit_user_registration_path))
+    if current_user.account_type == 'Voluntário'
+      output += tag.span(link_to('Editar Informações de Voluntário', edit_volunteer_info_path))
+    end
+    output
   end
 
   def purchases_link

@@ -3,6 +3,7 @@
     <%= user_tools %>
     <article class='information round-box'>
       <h2>Conta de <%= @user.name %></h2>
+      <%= user_actions(@user) %>
       <%= adm_actions(@user) %>
       <span>Email: <%= @user.email %></span>
       <span>CPF: <%= cpf_format(@user.cpf) %></span>
