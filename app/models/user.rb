@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_save :capitalize_first_letter
-  before_create :set_need_for_approval
+  before_save :set_need_for_approval
   validates :name,
             presence: true,
             uniqueness: { case_sensitive: false },

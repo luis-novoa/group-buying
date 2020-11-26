@@ -11,6 +11,12 @@ module UsersHelper
     render partial: 'users/delivery_point_tools'
   end
 
+  def user_actions(user)
+    return unless current_user == user
+
+    tag.span(link_to('Editar Informações Pessoais', edit_user_registration_path))
+  end
+
   def purchases_link
     return unless current_user.id == params[:id].to_i
 

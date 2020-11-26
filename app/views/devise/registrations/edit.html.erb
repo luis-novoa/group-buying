@@ -1,43 +1,111 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class='form round-box'>
+  <h2>Editar suas Informações</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class='field'>
+      <%= f.label :name, 'Nome Completo' %>
+      <%= f.text_field :name %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="field" id='cpf_field'>
+      <%= f.label :cpf, 'CPF' %>
+      <%= f.text_field :cpf, maxlength: 11, pattern: '\d{11}' %>
+      <em>(Apenas números)</em>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class='separator'></div>
+
+    <div class='field'>
+      <%= f.label :ddd1, 'DDD' %> 
+      <%= f.text_field :ddd1, maxlength: 2, pattern: '\d*' %>
+      <%= f.label :phone1, 'Telefone', class: 'margin-left' %> 
+      <%= f.text_field :phone1, maxlength: 9, pattern: '\d*' %>
+      <em>(Apenas números)</em>
+    </div>
+
+    <div class='field'>
+      <%= f.label :phone1_type, 'Tipo de Telefone' %>
+      <%= f.select :phone1_type, [
+        %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+        ]
+      %>
+    </div>
+
+    <div class='separator'></div>
+
+    <div class='field'>
+      <%= f.label :ddd2, 'DDD' %> 
+      <%= f.text_field :ddd2, maxlength: 2, pattern: '\d*' %>
+      <%= f.label :phone2, 'Telefone Adicional', class: 'margin-left' %>
+      <%= f.text_field :phone2, maxlength: 9, pattern: '\d*' %>
+    </div>
+
+    <div class='field'>
+      <%= f.label :phone2_type, 'Tipo de Telefone' %>
+      <%= f.select :phone2_type, [
+        ['', nil], %w[Fixo Fixo], ['Celular sem Whatsapp', 'Celular sem Whatsapp'], ['Celular com Whatsapp', 'Celular com Whatsapp']
+        ]
+      %>
+    </div>
+
+    <div class='separator'></div>
+
+    <div class='field'>
+      <%= f.label :account_type, 'Modificar conta para' %>
+      <%= f.select :account_type, [
+        %w[Comprador Comprador], %w[Voluntário Voluntário], ['Ponto de Entrega', 'Ponto de Entrega']
+        ]
+      %>
+    </div>
+
+    <div class='separator'></div>
+
+    <h3>Modificar Senha</h3>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, 'Nova Senha' %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <br>
+      <i>Deixe em branco se não quiser modificar.</i>
+      <% if @minimum_password_length %>
+        <br>
+        <em>Mínimo de <%= @minimum_password_length %> caracteres</em>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation, 'Confirme a senha' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+    <div class='separator'></div>
 
-<h3>Cancel my account</h3>
+    <div class="field">
+      <%= f.label :current_password, 'Senha Atual*' %>
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+      <br>
+      <i>(Necessária para confirmar as modificações)</i>
+    </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <div class="actions">
+      <%= f.submit "Atualizar Informações" %>
+    </div>
+  <% end %>
+  <!--
+  <h3>Cancel my account</h3>
 
-<%= link_to "Back", :back %>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  -->
+  <%= link_to "Voltar", :back %>
+</section>
