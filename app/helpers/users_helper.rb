@@ -14,7 +14,11 @@ module UsersHelper
   def user_actions(user)
     return unless current_user == user
 
-    tag.span(link_to('Editar Informações Pessoais', edit_user_registration_path))
+    output = tag.span(link_to('Editar Informações Pessoais', edit_user_registration_path))
+    if current_user.account_type == 'Voluntário'
+      output += tag.span(link_to('Editar Informações de Voluntário', edit_volunteer_info_path))
+    end
+    output
   end
 
   def purchases_link
