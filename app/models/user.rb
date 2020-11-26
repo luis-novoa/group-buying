@@ -32,7 +32,8 @@ class User < ApplicationRecord
   validates :cpf,
             presence: true,
             uniqueness: true,
-            numericality: { only_integer: true, greater_than: 9_999_999_999, less_than: 100_000_000_000 }
+            length: { minimum: 11, maximum: 11 },
+            format: /\A\d{11}\z/
 
   has_many :orders, dependent: false
   has_many :payments, dependent: false

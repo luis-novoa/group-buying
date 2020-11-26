@@ -21,7 +21,7 @@
 
   <div class='field'>
     <%= f.label :cnpj, 'CNPJ*' %>
-    <%= f.text_field :cnpj, maxlength: 14, pattern: '\d*' %>
+    <%= f.text_field :cnpj, maxlength: 14, pattern: '\d{14}' %>
     <em>(Apenas números)</em>
   </div>
 
