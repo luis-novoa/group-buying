@@ -7,6 +7,7 @@
         <th>Fornecedor</th>
         <th>Total Arrecadado</th>
         <th>Data de Criação</th>
+        <th>Status</th>
         <th>Ações</th>
       </tr>
       <% @active_purchases.each do |purchase| %>
@@ -15,6 +16,7 @@
           <td><%= purchase.partner.name %></td>
           <td>R$ <%= br_currency(purchase.total) %></td>
           <td><%= purchase.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= purchase.status %></td>
           <td><%= edit_purchase(purchase) %></td>
         </tr>
       <% end %>
@@ -26,14 +28,16 @@
         <th>Fornecedor</th>
         <th>Total Arrecadado</th>
         <th>Data de Criação</th>
+        <th>Status</th>
         <th>Ações</th>
       </tr>
       <% @inactive_purchases.each do |purchase| %>
         <tr>
           <td><%= link_to purchase.id, purchase_path(purchase) %></td>
           <td><%= purchase.partner.name %></td>
-          <td><%= purchase.total %></td>
-          <td><%= purchase.created_at.to_date %></td>
+          <td>R$ <%= br_currency(purchase.total) %></td>
+          <td><%= purchase.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= purchase.status %></td>
           <td><%= edit_purchase(purchase) %></td>
         </tr>
       <% end %>

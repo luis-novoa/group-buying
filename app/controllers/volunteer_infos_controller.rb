@@ -27,6 +27,7 @@ class VolunteerInfosController < ApplicationController
   def update
     @volunteer_info = current_user.volunteer_info
     if @volunteer_info.update(volunteer_info_params)
+      flash[:notice] = 'Informações de voluntário atualizadas!'
       redirect_to user_path(current_user)
     else
       flash.now[:alert] = @volunteer_info.errors.full_messages

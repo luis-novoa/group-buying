@@ -5,6 +5,7 @@ class PurchasesController < ApplicationController
 
   def create
     new_purchase = Purchase.new(create_purchase_params)
+    new_purchase.active = false
     new_purchase.save
     redirect_to purchase_path(new_purchase)
   end
@@ -32,7 +33,7 @@ class PurchasesController < ApplicationController
     # end
 
     if @purchase.update(update_purchase_params)
-      flash[:alert] = 'Compra atualizada!'
+      flash[:notice] = 'Compra atualizada!'
       redirect_to purchase_path(@purchase)
     else
       flash[:alert] = @purchase.errors.full_messages
