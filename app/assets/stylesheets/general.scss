@@ -196,3 +196,30 @@ h1, h2 {
     }
   }
 }
+
+.mobile {
+  display: none;
+}
+
+// Mobile version
+@media only screen and (max-width: 500px){
+
+  .bi-list {
+    color: white;
+    $font-size: 5rem;
+    width: $font-size;
+    height: $font-size;
+  }
+
+  .mobile {
+    display: flex;
+  }
+  
+  .not-mobile {
+    display: none;
+  }
+
+  .useful-links {
+    font-size: 4rem;
+  }
+}

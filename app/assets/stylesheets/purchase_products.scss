@@ -63,3 +63,10 @@
     }
   }
 }
+
+// Mobile version
+@media only screen and (max-width: 500px){
+  .welcome {
+    position: static;
+  }
+}
