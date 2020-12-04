@@ -1,7 +1,7 @@
 <div class='show-centered' >
   <section class='public-partner'>
     <% @partners.each do |partner| %>
-      <article class=' round-box'>
+      <article class='round-box'>
         <% if partner.image.attached? %>
           <%= image_tag partner.image %>
         <% end %>
