@@ -203,7 +203,11 @@ h1, h2 {
 
 // Mobile version
 @media only screen and (max-width: 500px){
-  $font-size: 5rem;
+  $font-size: 2.5rem;
+
+  body {
+    margin-top: 4.5rem;
+  }
 
   .bi {
     color: white;
@@ -236,6 +240,7 @@ h1, h2 {
       border-top: white 1px solid;
       margin-top: 1rem;
       padding-top: 1rem;
+      padding-right: 4rem;
     }
     .partners {
       padding-bottom: 1rem;

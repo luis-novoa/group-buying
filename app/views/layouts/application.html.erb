@@ -7,7 +7,6 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'navbar' %>
     <%= favicon_link_tag asset_path('logo.png') %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
@@ -48,5 +47,5 @@
     </nav>
     <%= yield %>
   </body>
-  
+  <%= javascript_pack_tag 'navbar' %>
 </html>
