@@ -1,13 +1,13 @@
 $(document).ready(function () {
   $('.bi-list').click(function () {
     $('#hidden-links').slideDown();
-    $(this).fadeToggle(500);
-    setTimeout(() => { $('.bi-x').fadeToggle(); }, 500);
+    $(this).fadeToggle(125);
+    setTimeout(() => { $('.bi-x').fadeToggle(); }, 125);
   });
 
   $('.bi-x').click(function () {
     $('#hidden-links').slideUp();
-    $(this).fadeToggle(500);
-    setTimeout(() => { $('.bi-list').fadeToggle(); }, 500);
+    $(this).fadeToggle(125);
+    setTimeout(() => { $('.bi-list').fadeToggle(); }, 125);
   });
 });
