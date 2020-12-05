@@ -219,10 +219,17 @@ h1, h2 {
     display: none;
   }
 
+  .form {
+    width: 90%;
+    .margin-left {
+      margin: 0;
+    }
+  }
+
   .mobile {
     display: flex;
   }
-  
+
   .not-mobile {
     display: none;
   }
@@ -231,16 +238,20 @@ h1, h2 {
     font-size: $font-size - 1;
     align-items: center;
     flex-wrap: wrap;
+    width: 100vw;
   }
 
   #hidden-links {
     display: none;
+    padding-right: 3rem;
+    width: 100vw;
     span {
       display: block;
       border-top: white 1px solid;
       margin-top: 1rem;
+      margin-right: 1rem;
       padding-top: 1rem;
-      padding-right: 4rem;
+      width: 100%;
     }
     .partners {
       padding-bottom: 1rem;
