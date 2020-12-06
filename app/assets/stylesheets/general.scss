@@ -234,11 +234,19 @@ h1, h2 {
     display: none;
   }
 
+  .show-private {
+    display: block;
+  }
+
   .useful-links {
     font-size: $font-size - 1;
     align-items: center;
     flex-wrap: wrap;
     width: 100vw;
+  }
+
+  .utilities {
+    width: 100%;
   }
 
   #hidden-links {
