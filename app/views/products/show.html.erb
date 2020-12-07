@@ -1,15 +1,17 @@
 <div class='show-centered' >
   <section class='utilities'>
-    <%= display_notice %>
-    <nav class='tools round-box'>
-      <h2>Ações</h2>
-      <div class='separator'></div>
-      <%= link_to 'Voltar aos Produtos', products_path %>
-      <div class='separator'></div>
-      <%= link_to 'Editar este Produto', edit_product_path(@product) %>
-      <div class='separator'></div>
-      <%= link_to 'Apagar este Produto', product_path(@product), method: :delete %>
-    </nav>
+    <article>
+      <%= display_notice %>
+      <nav class='tools round-box'>
+        <h2>Ações</h2>
+        <div class='separator'></div>
+        <%= link_to 'Voltar aos Produtos', products_path %>
+        <div class='separator'></div>
+        <%= link_to 'Editar este Produto', edit_product_path(@product) %>
+        <div class='separator'></div>
+        <%= link_to 'Apagar este Produto', product_path(@product), method: :delete %>
+      </nav>
+    </article>
     <article class='information round-box'>
       <% if @product.image.attached? %>
         <%= image_tag @product.image %>

@@ -196,3 +196,89 @@ h1, h2 {
     }
   }
 }
+
+.mobile {
+  display: none;
+}
+
+// Mobile version
+@media only screen and (max-width: 500px){
+  $font-size: 2.5rem;
+
+  body {
+    margin-top: 4.5rem;
+  }
+
+  .bi {
+    color: white;
+    width: $font-size;
+    height: $font-size;
+  }
+
+  .bi-x {
+    display: none;
+  }
+
+  .fit-content {
+    width: 90%;
+  }
+
+  .form {
+    width: 90%;
+    .margin-left {
+      margin: 0;
+    }
+  }
+
+  .item-box {
+    flex-wrap: wrap;
+    div {
+      border-top: solid 1px #D6EEFF;
+    }
+  }
+
+  .mobile {
+    display: flex;
+  }
+
+  .not-mobile {
+    display: none;
+  }
+
+  .show-private {
+    display: block;
+  }
+
+  .useful-links {
+    font-size: $font-size - 1;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+  }
+
+  .utilities {
+    width: 100%;
+  }
+
+  #payments {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  #hidden-links {
+    display: none;
+    padding-right: 3rem;
+    width: 100vw;
+    span {
+      display: block;
+      border-top: white 1px solid;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      padding-top: 1rem;
+      width: 100%;
+    }
+    .partners {
+      padding-bottom: 1rem;
+    }
+  }
+}
