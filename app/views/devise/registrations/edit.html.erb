@@ -25,6 +25,7 @@
     <div class='field'>
       <%= f.label :ddd1, 'DDD' %> 
       <%= f.text_field :ddd1, maxlength: 2, pattern: '\d*' %>
+      <br class='mobile'>
       <%= f.label :phone1, 'Telefone', class: 'margin-left' %> 
       <%= f.text_field :phone1, maxlength: 9, pattern: '\d*' %>
       <em>(Apenas números)</em>
@@ -43,6 +44,7 @@
     <div class='field'>
       <%= f.label :ddd2, 'DDD' %> 
       <%= f.text_field :ddd2, maxlength: 2, pattern: '\d*' %>
+      <br class='mobile'>
       <%= f.label :phone2, 'Telefone Adicional', class: 'margin-left' %>
       <%= f.text_field :phone2, maxlength: 9, pattern: '\d*' %>
     </div>

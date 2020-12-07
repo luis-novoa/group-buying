@@ -5,7 +5,7 @@
       <tr>
         <th>Produto</th>
         <th>Preço</th>
-        <th>Quantidade</th>
+        <th>Qtd</th>
         <th>Total</th>
         <th>Cidade de Entrega</th>
       </tr>
@@ -19,7 +19,7 @@
         </tr>
       <% end %>
     </table>
-    <div class='payment-info'>
+    <div class='payment-info not-mobile'>
       <span>Total do Pedido: R$ <%= br_currency(@total) %></span>
       <span>
         <%= payment_link(@payment) %>
