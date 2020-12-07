@@ -1,7 +1,7 @@
 <section class='round-box fit-content'>
   <article class='table'>
   <h2>Meu Carrinho</h2>
-    <table>
+    <table class='not-mobile'>
       <tr>
         <th>Produto</th>
         <th>Preço</th>
@@ -27,6 +27,25 @@
         </tr>
       <% end %>
     </table>
+    <div class='mobile item-box'>
+      <% @orders.each do |order| %>
+        <div>
+          <%= form_for(order) do |f| %>
+            <%= f.hidden_field :id %>
+            <h3><%= order.purchase_product.name %></h3>
+            <p>Preço: R$ <%= br_currency(order.purchase_product.price) %></p>
+            <p>Quantidade: <%= f.number_field :quantity, min: 1 %></p>
+            <p>Total: R$ <%= br_currency(order.total) %></p>
+            <p>Cidade de Entrega: <%= f.select :delivery_city, city_options(order.purchase_product) %></p>
+            <p>
+              <%= f.submit "Modificar", disable_with: 'Modificando...' %>
+              <%= link_to 'Retirar', order_path(order), method: :delete %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </article>
+  <%= link_to 'Voltar às Ofertas', root_path %>
   <%= close_cart_link(@orders) %>
 </section>

@@ -14,10 +14,10 @@
       <%= volunteer_info(@user) %>
     </article>
   </section>
-  <section class='fit-content round-box'>
+  <section class='fit-content round-box'  id='payments'>
     <article class='table'>
       <h2>Histórico de Pedidos</h2>
-      <table>
+      <table class='not-mobile'>
         <tr>
           <th>Data</th>
           <th>Nome</th>
@@ -41,6 +41,19 @@
           </tr>
         <% end %>
       </table>
+      <div class='mobile item-box'>
+      <% @orders.each do |order| %>
+        <div>
+          <h3><%= order.purchase_product.name %></h3>
+          <p>Data: <%= order.created_at.strftime('%d/%m/%Y') %></p>
+          <p>Preço: R$ <%= br_currency(order.purchase_product.price) %></p>
+          <p>Quantidade: <%= order.quantity %></p>
+          <p>Total: R$ <%= br_currency(order.total) %></p>
+          <p>Cidade de Entrega: <%= order.delivery_city %></p>
+          <p><%= link_to 'Ver Pedido e Link de Pagamento', payment_path(order.payment) %></p>
+        </div>
+      <% end %>
+    </div>
     </article>
   </section>
 </div>

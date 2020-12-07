@@ -219,10 +219,21 @@ h1, h2 {
     display: none;
   }
 
+  .fit-content {
+    width: 90%;
+  }
+
   .form {
     width: 90%;
     .margin-left {
       margin: 0;
+    }
+  }
+
+  .item-box {
+    flex-wrap: wrap;
+    div {
+      border-top: solid 1px #D6EEFF;
     }
   }
 
@@ -246,6 +257,11 @@ h1, h2 {
   }
 
   .utilities {
+    width: 100%;
+  }
+
+  #payments {
+    margin-top: 1rem;
     width: 100%;
   }
 
