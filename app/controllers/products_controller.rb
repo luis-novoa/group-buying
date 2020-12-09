@@ -40,6 +40,7 @@ class ProductsController < ApplicationController
       @product.image.purge
       compress_image(parameters[:image])
     end
+    @product.image.purge if destroy_image_request && destroy_image_request[:confirm] == '1'
     if @product.update(parameters)
       flash[:notice] = 'Produto atualizado!'
       redirect_to product_path(@product)
@@ -60,5 +61,11 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :weight, :weight_type, :description, :partner_id, :image)
+  end
+
+  def destroy_image_request
+    return unless params[:delete_image]
+
+    params.require(:delete_image).permit(:confirm)
   end
 end
