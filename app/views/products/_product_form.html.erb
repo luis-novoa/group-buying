@@ -32,6 +32,13 @@
     <%= f.file_field :image %>
   </div>
 
+  <% if product.image.attached? %>
+    <div class='field'>
+      <%= check_box :delete_image, 'confirm' %>
+      <%= label :delete_image, 'Apagar imagem' %>
+    </div>
+  <% end %>
+
   <div class='actions'>
     <%= f.submit 'Enviar', id: 'send' %>
   </div>
