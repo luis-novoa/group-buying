@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .close-cart {
-  display: block;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  a {
+    display: block;
+  }
 }

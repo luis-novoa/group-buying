@@ -5,13 +5,13 @@ class PurchaseProductsController < ApplicationController
   before_action :only_volunteers, only: %i[new create update destroy]
 
   def index
-    purchases = Purchase.includes(purchase_products: { product: { image_attachment: :blob } }).all.where(active: true)
-    @purchase_products = []
-    purchases.each do |purchase|
-      purchase.purchase_products.each do |purchase_product|
-        @purchase_products << purchase_product
-      end
-    end
+    @purchase_products = Purchase
+                         .includes(purchase_products: { product: { image_attachment: :blob } })
+                         .all
+                         .where(active: true)
+                         .collect(&:purchase_products)[0]
+                         .order(:name)
+                         .paginate(page: params[:page], per_page: 12)
     if current_user
       @existing_orders = current_user.orders.where.not(status: 'Entregue')
       @existing_orders_ids = @existing_orders.pluck(:purchase_product_id)
