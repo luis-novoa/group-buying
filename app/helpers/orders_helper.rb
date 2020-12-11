@@ -11,6 +11,6 @@ module OrdersHelper
   end
 
   def close_cart_link(orders)
-    link_to 'Fechar Carrinho', payments_path, method: :post, class: 'close-cart' unless orders.empty?
+    link_to 'Fechar Carrinho', payments_path, method: :post unless orders.empty?
   end
 end

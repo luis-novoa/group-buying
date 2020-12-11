@@ -46,6 +46,8 @@
       <% end %>
     </div>
   </article>
-  <%= link_to 'Voltar às Ofertas', root_path %>
-  <%= close_cart_link(@orders) %>
+  <div class='close-cart'>
+    <%= link_to 'Voltar às Ofertas', root_path %>
+    <%= close_cart_link(@orders) %>
+  </div>
 </section>
