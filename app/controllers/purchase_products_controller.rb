@@ -5,12 +5,11 @@ class PurchaseProductsController < ApplicationController
   before_action :only_volunteers, only: %i[new create update destroy]
 
   def index
-    @purchase_products = Purchase
-                         .includes(purchase_products: { product: { image_attachment: :blob } })
-                         .all
-                         .where(active: true)
-                         .collect(&:purchase_products)[0]
-    @purchase_products = @purchase_products&.order(:name)&.paginate(page: params[:page], per_page: 12)
+    @purchase_products = PurchaseProduct
+                         .joins(:purchase)
+                         .includes(product: [{ image_attachment: :blob }])
+                         .where(purchases: { active: true })
+    @purchase_products = @purchase_products&.paginate(page: params[:page], per_page: 12)&.order(:name)
     @purchase_products ||= []
     if current_user
       @existing_orders = current_user.orders.where.not(status: 'Entregue')
