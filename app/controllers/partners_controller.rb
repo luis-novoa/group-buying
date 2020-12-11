@@ -27,6 +27,8 @@ class PartnersController < ApplicationController
 
   def show
     @partner = Partner.includes(:products).find(params[:id])
+    @products = @partner.products.order(:name)
+    [@partner, @products]
   end
 
   def edit
