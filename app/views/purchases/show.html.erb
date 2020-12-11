@@ -30,7 +30,7 @@
           <th>Disponível em</th>
           <th>Ações</th>
         </tr>
-        <% @purchase.purchase_products.each do |purchase_product| %>
+        <% @purchase_products.each do |purchase_product| %>
           <tr>
             <td><%= purchase_product.name %></td>
             <td>R$ <%= br_currency(purchase_product.price) %></td>

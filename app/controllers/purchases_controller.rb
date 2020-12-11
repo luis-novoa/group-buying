@@ -12,6 +12,8 @@ class PurchasesController < ApplicationController
 
   def show
     @purchase = Purchase.includes(:purchase_products).find(params[:id])
+    @purchase_products = @purchase.purchase_products.includes(:orders).order(:name)
+    [@purchase, @purchase_products]
   end
 
   def index
