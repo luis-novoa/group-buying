@@ -59,7 +59,7 @@
       </article>
     <% end %>
     <nav class='round-box willpaginate'>
-      <%= will_paginate %>
+      <%= will_paginate unless @purchase_products.empty? %>
     </nav>
   </section>
 </div>
