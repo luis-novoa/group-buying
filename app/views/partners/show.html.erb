@@ -34,14 +34,12 @@
         <tr>
           <th>Nome</th>
           <th>Peso</th>
-          <th>Fornecedor</th>
           <th>Ações</th>
         </tr>
-        <% @partner.products.each do |product| %>
+        <% @products.each do |product| %>
           <tr>
             <td><%= link_to product.name, product_path(product) %></td>
             <td><%= format_weight(product.weight, product.weight_type) %></td>
-            <td><%= link_to product.partner.name, partner_path(product.partner) %></td>
             <td class='table-actions'>
               <%= link_to 'Editar', edit_product_path(product) %>
               <%= link_to 'Apagar', product_path(product), method: :delete %>
