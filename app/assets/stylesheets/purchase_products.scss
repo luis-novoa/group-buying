@@ -2,12 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.homepage {
+  display: flex;
+}
+
 .welcome {
-  position: fixed;
-  top: 3.5rem;
   width: 30rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
   padding-left: 1rem;
 } 
 
@@ -26,7 +29,6 @@
 .active-purchases {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 30rem;
   margin-bottom: 1rem;
   padding-right: 1rem;
 }
@@ -70,16 +72,24 @@
   font-size: 1.3rem;
   margin-left: 1rem;
   width: 100%;
+  height: 2rem;
   div {
-    height: 2rem;
     display: flex;
+    margin-top: 0.25rem;
     justify-content: space-around;
     align-items: center;
+    a, span, em {
+      display: block;
+    }
   }
 }
 
 // Mobile version
 @media only screen and (max-width: 500px){
+  .homepage {
+    display: block;
+  }
+
   .welcome {
     position: static;
     padding: 0 1rem;
