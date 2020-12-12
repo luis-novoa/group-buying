@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
   }
   resources :users do
     member { get :confirm_email }
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :pagseguros, only: %i[create]
   resources :pagseguro_notifications, only: %i[create]
   resources :partners, only: %i[index show create new update edit]
-  resources :payments, only: %i[create show]
+  resources :payments, only: %i[create show destroy]
   resources :products
   resources :public_partners, only: %i[index]
   resources :purchases, except: %i[new destroy]

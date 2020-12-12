@@ -9,6 +9,7 @@ class PurchaseProductsController < ApplicationController
                          .joins(:purchase)
                          .includes(product: [{ image_attachment: :blob }])
                          .where(purchases: { active: true })
+                         .where(hidden: false)
     @purchase_products = @purchase_products&.paginate(page: params[:page], per_page: 12)&.order(:name)
     @purchase_products ||= []
     if current_user
@@ -50,7 +51,11 @@ class PurchaseProductsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    purchase_product = PurchaseProduct.includes(:purchase).find(params[:id])
+    purchase_product.update(hidden: params[:hide])
+    redirect_to purchase_path(purchase_product.purchase)
+  end
 
   def destroy
     purchase_product = PurchaseProduct.find(params[:id])

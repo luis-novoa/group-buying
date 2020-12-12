@@ -36,7 +36,10 @@
             <td>R$ <%= br_currency(purchase_product.price) %></td>
             <td><%= purchase_product.quantity %></td>
             <td><%= purchase_product.offer_city %></td>
-            <td><%= delete_purchase_product(purchase_product) %></td>
+            <td>
+              <%= delete_purchase_product(purchase_product) %> <br>
+              <%= hide_purchase_product(purchase_product) %>
+            </td>
           </tr>
         <% end %>
       </table>

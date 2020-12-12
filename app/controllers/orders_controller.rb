@@ -11,8 +11,13 @@ class OrdersController < ApplicationController
 
   def update
     order = current_user.orders.find(order_params[:id])
-    order.update(order_params) if order.status == 'Carrinho'
-    redirect_to orders_path
+    if order.status == 'Carrinho'
+      order.update(order_params)
+      redirect_to orders_path
+    else
+      order.update(delivery_city: order_params[:delivery_city])
+      redirect_to payment_path(params.require(:payment_id))
+    end
   end
 
   def index

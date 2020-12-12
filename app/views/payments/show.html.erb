@@ -15,15 +15,24 @@
           <td>R$ <%= br_currency(order.purchase_product.price) %></td>
           <td><%= order.quantity %></td>
           <td>R$ <%= br_currency(order.total) %></td>
-          <td><%= order.delivery_city %></td>
+          <td>
+            <%= form_for(order) do |f| %>
+              <%= f.hidden_field :id %>
+              <%= hidden_field_tag 'payment_id', @payment.id %>
+              <%= f.select :delivery_city, city_options(order.purchase_product) %>
+              <%= f.submit "Modificar Cidade" %></td>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>
+
     <div class='payment-info not-mobile'>
       <span>Total do Pedido: R$ <%= br_currency(@total) %></span>
       <span>
         <%= payment_link(@payment) %>
       </span>
     </div>
+    <%= delete_orders(@payment) %>
   </article>
 </section>
