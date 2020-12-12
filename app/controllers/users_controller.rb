@@ -11,11 +11,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @approved_users = User.all.where(waiting_approval: false)
-    @buyers = @approved_users.where(account_type: 'Comprador')
-    @volunteers = @approved_users.where(account_type: 'Voluntário')
-    @delivery_points = @approved_users.where(account_type: 'Ponto de Entrega')
-    @pending_users = User.all.where(waiting_approval: true)
+    @approved_users = User.all.where(waiting_approval: false)&.order(:name)
+    @buyers = @approved_users.where(account_type: 'Comprador')&.order(:name)
+    @volunteers = @approved_users.where(account_type: 'Voluntário')&.order(:name)
+    @delivery_points = @approved_users.where(account_type: 'Ponto de Entrega')&.order(:name)
+    @pending_users = User.all.where(waiting_approval: true)&.order(:name)
   end
 
   def update
