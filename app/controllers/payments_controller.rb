@@ -1,7 +1,7 @@
 require 'httparty'
 
 class PaymentsController < ApplicationController
-  before_action :check_user_id, only: %i[show]
+  before_action :check_user_id, only: %i[show destroy]
 
   def create
     new_payment = current_user.payments.build
@@ -16,6 +16,11 @@ class PaymentsController < ApplicationController
     @orders = @payment.orders
     @total = @orders.pluck(:total).sum
     [@payment, @orders, @total]
+  end
+
+  def destroy
+    @payment.destroy if @payment.orders.all? { |order| order.status == 'Processando' }
+    redirect_to user_path(current_user)
   end
 
   private

@@ -26,11 +26,13 @@
         </tr>
       <% end %>
     </table>
+
     <div class='payment-info not-mobile'>
       <span>Total do Pedido: R$ <%= br_currency(@total) %></span>
       <span>
         <%= payment_link(@payment) %>
       </span>
     </div>
+    <%= delete_orders(@payment) %>
   </article>
 </section>
