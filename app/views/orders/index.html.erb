@@ -5,25 +5,26 @@
       <tr>
         <th>Produto</th>
         <th>Preço</th>
-        <th>Quantidade</th>
+        <th>Quantidade e Cidade de Entrega</th>
         <th>Total</th>
-        <th>Cidade de Entrega</th>
         <th>Ações</th>
       </tr>
       <% @orders.each do |order| %>
         <tr>
-          <%= form_for(order) do |f| %>
-            <%= f.hidden_field :id %>
-            <td><%= order.purchase_product.name %></td>
-            <td>R$ <%= br_currency(order.purchase_product.price) %></td>
-            <td><%= f.number_field :quantity, min: 1 %></td>
-            <td>R$ <%= br_currency(order.total) %></td>
-            <td><%= f.select :delivery_city, city_options(order.purchase_product) %></td>
-            <td>
-              <%= f.submit "Modificar", disable_with: 'Modificando...' %>
-              <%= link_to 'Retirar', order_path(order), method: :delete %>
-            </td>
-          <% end %>
+          <td><%= order.purchase_product.name %></td>
+          <td>R$ <%= br_currency(order.purchase_product.price) %></td>
+          <td>
+            <%= form_for(order) do |f| %>
+              <%= f.hidden_field :id %>
+              <%= f.number_field :quantity, min: 1 %>
+              <%= f.select :delivery_city, city_options(order.purchase_product) %>
+              <%= f.submit "Modificar" %>
+            <% end %>
+          </td>
+          <td>R$ <%= br_currency(order.total) %></td>
+          <td>
+            <%= link_to 'Retirar', order_path(order), method: :delete %>
+          </td>
         </tr>
       <% end %>
     </table>

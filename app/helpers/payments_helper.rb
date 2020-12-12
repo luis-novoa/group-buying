@@ -8,4 +8,13 @@ module PaymentsHelper
             target: '_blank',
             rel: 'noopener'
   end
+
+  def delete_orders(payment)
+    return unless payment.orders.all? { |order| order.status == 'Processando' }
+
+    link_to 'Apagar Pedido',
+            payment_path(payment.id),
+            method: :delete,
+            data: { confirm: 'Tem certeza?' }
+  end
 end
