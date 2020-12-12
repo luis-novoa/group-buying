@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(orders: :purchase_product).find(params[:id])
     @orders = @user.orders.where.not(status: 'Carrinho')
+    @orders = @orders&.paginate(page: params[:page], per_page: 20)&.order(created_at: :desc)
     [@user, @orders]
   end
 
