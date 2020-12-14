@@ -13,7 +13,9 @@ class PurchaseProductsController < ApplicationController
     @purchase_products = @purchase_products&.paginate(page: params[:page], per_page: 12)&.order(:name)
     @purchase_products ||= []
     if current_user
-      @existing_orders = current_user.orders.where.not(status: 'Entregue')
+      @existing_orders = current_user.orders
+                                     .where(status: 'Carrinho')
+                                     .or(current_user.orders.where(status: 'Processando'))
       @existing_orders_ids = @existing_orders.pluck(:purchase_product_id)
     end
     [@purchase_products, @existing_orders, @existing_orders_ids]
