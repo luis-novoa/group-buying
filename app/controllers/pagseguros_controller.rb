@@ -4,7 +4,7 @@ class PagsegurosController < ApplicationController
     request_body = XMLUtils.create_url_encoded(current_user, payment.orders, payment.id)
     response = HTTParty.post(
       'https://ws.pagseguro.uol.com.br/v2/checkout',
-      headers: { 'Content-Type' => 'application/x-www-form-urlencoded; charset=ISO-8859-1' },
+      headers: { 'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8' },
       body: request_body
     )
     error = XMLUtils.get_attr(response.body, 'error')
