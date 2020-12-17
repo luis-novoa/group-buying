@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :total, presence: true, numericality: { greater_than: 0 }
   validates :delivery_city, presence: true, inclusion: { in: %w[Sinop Cuiabá] }
-  validates :status, presence: true, inclusion: { in: %w[Carrinho Processando Pago Entregue] }
+  validates :status, presence: true, inclusion: { in: %w[Carrinho Processando Aguardando Cancelado Pago Entregue] }
 
   belongs_to :user, optional: false
   belongs_to :purchase_product, optional: false

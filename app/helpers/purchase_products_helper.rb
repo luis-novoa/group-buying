@@ -16,6 +16,7 @@ module PurchaseProductsHelper
   def sum_orders(purchase_product)
     qtd_sinop = 0
     qtd_cuiaba = 0
+    qtd_boleto = 0
     qtd_total = 0
     total = 0
     purchase_product.orders.each do |order|
@@ -23,10 +24,11 @@ module PurchaseProductsHelper
 
       qtd_sinop += order.quantity if order.delivery_city == 'Sinop'
       qtd_cuiaba += order.quantity if order.delivery_city == 'Cuiabá'
+      qtd_boleto += order.quantity if order.status == 'Aguardando'
       qtd_total += order.quantity
       total += order.total
     end
     total = 'R$ ' + br_currency(total)
-    tag.td(total) + tag.td(qtd_sinop) + tag.td(qtd_cuiaba) + tag.td(qtd_total)
+    tag.td(total) + tag.td(qtd_sinop) + tag.td(qtd_cuiaba) + tag.td(qtd_total) + tag.td(qtd_boleto)
   end
 end
