@@ -4,7 +4,7 @@ class XMLUtils
   def self.create_url_encoded(user, orders, payment_id)
     output = {
       email: Rails.application.credentials.pagseguro[:email],
-      token: Rails.application.credentials.pagseguro[:sandbox_token],
+      token: Rails.application.credentials.pagseguro[:token],
       currency: 'BRL',
       senderName: user.name,
       senderEmail: user.email,
