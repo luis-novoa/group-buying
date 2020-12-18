@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :payments, only: %i[create show destroy]
   resources :products
   resources :public_partners, only: %i[index]
-  resources :purchases, except: %i[new destroy]
+  resources :purchases, except: %i[new]
   resources :purchase_lists, only: %i[index show update]
   resources :purchase_products, expect: %i[edit]
   resources :volunteer_infos, only: %i[new create index update edit]

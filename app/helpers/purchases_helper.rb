@@ -1,6 +1,10 @@
 module PurchasesHelper
   def edit_purchase(purchase)
-    link_to 'Editar', edit_purchase_path(purchase) if current_user.account_type == 'Voluntário'
+    return unless current_user.account_type == 'Voluntário'
+
+    edit = link_to 'Editar', edit_purchase_path(purchase)
+    delete = link_to 'Apagar', purchase_path(purchase), method: :delete
+    edit + tag.br + delete
   end
 
   def delete_purchase_product(purchase_product)
