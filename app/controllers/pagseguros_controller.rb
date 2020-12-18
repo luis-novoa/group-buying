@@ -10,7 +10,7 @@ class PagsegurosController < ApplicationController
     error = XMLUtils.get_attr(response.body, 'error')
     if error.blank?
       payment_code = XMLUtils.get_attr(response.body, 'code')
-      redirect_to "https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=#{payment_code}"
+      redirect_to "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=#{payment_code}"
     else
       render xml: response.body
     end

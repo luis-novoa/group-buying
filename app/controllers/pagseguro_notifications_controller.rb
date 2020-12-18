@@ -1,6 +1,5 @@
 class PagseguroNotificationsController < ActionController::API
   def create
-    headers['Access-Control-Allow-Origin'] = 'https://sandbox.pagseguro.uol.com.br'
     return unless params[:notificationType] == 'transaction'
 
     credentials = URI.encode_www_form(
