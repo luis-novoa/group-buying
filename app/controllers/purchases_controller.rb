@@ -27,12 +27,6 @@ class PurchasesController < ApplicationController
 
   def update
     @purchase = Purchase.find(params[:id])
-    # if @purchase.total.zero? && update_purchase_params[:active] == 'false'
-    #   @purchase.destroy
-    #   flash[:alert] = 'Compra apagada!'
-    #   redirect_to purchases_path
-    #   return
-    # end
 
     if @purchase.update(update_purchase_params)
       flash[:notice] = 'Compra atualizada!'
@@ -40,6 +34,17 @@ class PurchasesController < ApplicationController
     else
       flash[:alert] = @purchase.errors.full_messages
       render :edit
+    end
+  end
+
+  def destroy
+    @purchase = Purchase.find(params[:id])
+    if @purchase.purchase_products.empty?
+      @purchase.destroy
+      redirect_to purchases_path
+    else
+      flash[:notice] = 'Impossível apagar compra coletiva que possui produtos ofertados!'
+      redirect_to user_path(current_user)
     end
   end
 
