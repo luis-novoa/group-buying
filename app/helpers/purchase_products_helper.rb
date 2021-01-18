@@ -20,7 +20,7 @@ module PurchaseProductsHelper
     qtd_total = 0
     total = 0
     purchase_product.orders.each do |order|
-      next if order.status == 'Carrinho' || order.status == 'Processando'
+      next if %w[Carrinho Processando Cancelado].include?(order.status)
 
       qtd_sinop += order.quantity if order.delivery_city == 'Sinop'
       qtd_cuiaba += order.quantity if order.delivery_city == 'Cuiabá'
