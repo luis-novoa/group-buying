@@ -72,6 +72,13 @@ h1, h2 {
   display: none;
 }
 
+.gimme-space {
+  select {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
 .round-box {
   background-color: white;
   border-radius: 10px;

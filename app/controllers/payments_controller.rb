@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     new_payment.save
     new_payment.update(ref: "PGTO#{new_payment.id}")
     orders = current_user.orders.where(status: 'Carrinho')
-    orders.update_all(status: 'Processando', payment_id: new_payment.id)
+    orders.update_all(status: 'Processando', payment_id: new_payment.id, delivery_city: params[:city])
     redirect_to payment_path(new_payment)
   end
 

@@ -8,10 +8,6 @@
       <%= f.number_field :quantity, min: 1 %>
     </div>
 
-    <div class='field'>
-      <%= f.label :delivery_city, 'Cidade' %>
-      <%= f.select :delivery_city, city_options(product) %>
-    </div>
     <%= f.submit button_text, disable_with: 'Processando...' %>
   <% end %>
 </div>

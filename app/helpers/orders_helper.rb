@@ -10,7 +10,10 @@ module OrdersHelper
     end
   end
 
+  # link_to 'Fechar Carrinho', payments_path, method: :post, data: { confirm: 'Tem certeza?' }
   def close_cart_link(orders)
-    link_to 'Fechar Carrinho', payments_path, method: :post, data: { confirm: 'Tem certeza?' } unless orders.empty?
+    return if orders.empty?
+
+    render partial: 'close_order'
   end
 end

@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :total, presence: true, numericality: { greater_than: 0 }
-  validates :delivery_city, presence: true, inclusion: { in: %w[Sinop Cuiabá] }
+  # validates :delivery_city , inclusion: { in: %w[Sinop Cuiabá] }
   validates :status, presence: true, inclusion: { in: %w[Carrinho Processando Aguardando Cancelado Pago Entregue] }
 
   belongs_to :user, optional: false
@@ -15,6 +15,8 @@ class Order < ApplicationRecord
 
   def check_city
     return unless purchase_product
+
+    self.delivery_city = 'Sinop'
 
     throw :abort if ['Sinop e Cuiabá', delivery_city].none?(purchase_product.offer_city)
   end
