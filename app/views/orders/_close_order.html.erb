@@ -1,0 +1,5 @@
+<%= form_with(url: payments_path, method: :post) do |f| %>
+  <%= f.label :city, 'Cidade de Entrega' %>
+  <%= f.select :city, [%w[Sinop Sinop], %w[Cuiabá Cuiabá]] %>
+  <%= f.submit 'Fechar Carrinho', disable_with: 'Submiting...' %>
+<% end %>
