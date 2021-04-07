@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update(mod_params)
+    user.update_column(:waiting_approval, false) if params[:waiting_approval] == 'false'
     flash[:notice] = 'Ação concluída com sucesso!'
     redirect_back(fallback_location: users_path)
   end
